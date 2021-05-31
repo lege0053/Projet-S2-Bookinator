@@ -1,7 +1,7 @@
 # Projets du S2 : 
 **Documents Importants :**  
 [Cahier des charges](https://docs.google.com/document/d/1mMDruBJj4eRi81Vk2Cn5_lgzwhYYycQwmuRKFBrgvjY/edit#)  
-[Maquette Figma](https://www.figma.com/proto/o3G6N9qFhRvI0yEHWXxuKN/Untitled?node-id=2%3A3&scaling=scale-down-width&page-id=0%3A1)  
+[Maquette Figma](https://www.figma.com/file/o3G6N9qFhRvI0yEHWXxuKN/Untitled?node-id=0%3A1)  
 
 # Première Semaine : 
 **Lundi 31 Mai :** 
