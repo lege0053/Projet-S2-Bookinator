@@ -1,6 +1,6 @@
 # Projets du S2 : 
 **Documents Importants :**  
-[Cahier des charges](https://docs.google.com/document/d/1mMDruBJj4eRi81Vk2Cn5_lgzwhYYycQwmuRKFBrgvjY/edit#)  
+[Cahier des charges, Plan Projet](https://docs.google.com/document/d/1mMDruBJj4eRi81Vk2Cn5_lgzwhYYycQwmuRKFBrgvjY/edit#)  
 [Maquette Figma](https://www.figma.com/file/o3G6N9qFhRvI0yEHWXxuKN/Untitled?node-id=0%3A1)  
 
 # Première Semaine : 
@@ -10,6 +10,7 @@ Réunion de 14h à 15h avec Mr Gillard pour discuter du projet.
 Travail de 15h à 17h30, Nicolas et Lucie sur la maquette figma, Maxence, Marine et Thibaut sur le MCD de la base de donnée.  
 
 **Mardi 1 Juin :** 
-Travail de 8h15 à 12h15, ajout du MCD amélioré au dépot GIT (nouvelle branche "database"), relecture du MCD par le groupe. Suite de la maquette figma. Réalisation de la WBS par Marine.  
+Travail de 8h15 à 12h15, ajout du MCD amélioré au dépot GIT (nouvelle branche "database"), relecture du MCD par le groupe. Suite de la maquette figma. Réalisation de la WBS et mise en page du Cahier des Charges par Marine.  
 
 **Mercredi 2 Juin :** 
+Création du Diagramme de Cas d'Utilisation, continuité de la maquette Figma. Reflexion sur la BD.
