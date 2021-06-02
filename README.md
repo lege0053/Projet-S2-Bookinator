@@ -8,3 +8,8 @@
 Réunion de 8h15 à 12h15 avec les cinq membres du groupe. Réflexion sur le projet, création d'un doc pour la rédaction du cahier des charges et création d'un dépot Git. Commencement de la rédaction d'un README.md pour avoir un historique de ce qui est fait durant chaque séance.  
 Réunion de 14h à 15h avec Mr Gillard pour discuter du projet.  
 Travail de 15h à 17h30, Nicolas et Lucie sur la maquette figma, Maxence, Marine et Thibaut sur le MCD de la base de donnée.  
+
+**Mardi 1 Juin :** 
+Travail de 8h15 à 12h15, ajout du MCD amélioré au dépot GIT (nouvelle branche "database"), relecture du MCD par le groupe. Suite de la maquette figma. Réalisation de la WBS par Marine.  
+
+**Mercredi 2 Juin :** 
