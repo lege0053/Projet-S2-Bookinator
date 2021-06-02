@@ -229,9 +229,9 @@ m1=0,n
       <w>72</w>
       <h>234</h>
     </coordinates>
-    <panel_attributes>Client
+    <panel_attributes>Utilisateur
 --
-_idClient_
+_idUtilisateur_
 nom
 prnm
 dateNais
@@ -241,7 +241,9 @@ ville
 CP
 rue
 nomUtilisateur
-mdp</panel_attributes>
+mdp
+isAdmin
+isBanned</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
