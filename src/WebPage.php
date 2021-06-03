@@ -167,37 +167,19 @@ class WebPage
             throw new Exception(__CLASS__ . ': title not set');
         }
 
-        $lastModification = self::getLastModification();
-
         return <<<HTML
             <!doctype html>
             <html lang="fr">
                 <head>
                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
                     <title>{$this->getTitle()}</title>
-            {$this->getHead()}
+                    {$this->getHead()}
                 </head>
                 <body>
-                <div id="page">
-            {$this->getBody()}
-                    <div id='lastmodified'>{$lastModification}</div>
-                </div>
+                    {$this->getBody()}
                 </body>
             </html>
         HTML;
-    }
-
-    /**
-     * Donner la date et l'heure de la dernière modification du script principal.
-     *
-     * @return string
-     *
-     * @see http://php.net/manual/en/function.getlastmod.php
-     * @see http://php.net/manual/en/function.strftime.php
-     */
-    public static function getLastModification(): string
-    {
-        return strftime('Dernière modification de cette page le %d/%m/%Y à %Hh%M', getlastmod());
     }
 
     /**
