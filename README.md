@@ -13,4 +13,6 @@ Travail de 15h à 17h30, Nicolas et Lucie sur la maquette figma, Maxence, Marine
 Travail de 8h15 à 12h15, ajout du MCD amélioré au dépot GIT (nouvelle branche "database"), relecture du MCD par le groupe. Suite de la maquette figma. Réalisation de la WBS et mise en page du Cahier des Charges par Marine.  
 
 **Mercredi 2 Juin :** 
-Création du Diagramme de Cas d'Utilisation, continuité de la maquette Figma. Reflexion sur la BD.
+Matin : Création du Diagramme de Cas d'Utilisation, continuité de la maquette Figma. Reflexion sur la BD.  
+Réunion à 14h : État du projet par Mr Gillard.  
+Travail jusqu'à 17h30 : Correction sur le MCD puis création du MLD (Thibaut), amélioration de la maquette figma (Lucie, Nicolas), perfectionnement du cahier des charges en mettant tout ce qui est en rapport avec le plan projet (PBS, RBS, WBS, PERT, GANTT) dans un seul autre pdf (Marine).
