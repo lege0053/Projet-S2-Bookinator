@@ -141,4 +141,30 @@ class Utilisateur
     {
         return $this->ville;
     }
+
+    public function getCommandes() {
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Commande cmd 
+                    INNER JOIN Utilisateur u ON u.idUtilisateur = cmd.idUtilisateur
+                WHERE u.idUtilisateur = ?
+                ORDER BY cmd.idCmd
+                SQL);
+        $req->setFetchMode(PDO::FETCH_CLASS, Commande::class);
+        $req->execute([$this->idUtilisateur]);
+        return $req->fetchAll();
+    }
+
+    public function getFavoris() {
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Favoris fav 
+                    INNER JOIN Livres l ON fav.ISBN = l.ISBN
+                WHERE fav.idUtilisateur = ?
+                ORDER BY l.titre
+                SQL);
+        $req->setFetchMode(PDO::FETCH_CLASS, Livre::class);
+        $req->execute([$this->idUtilisateur]);
+        return $req->fetchAll();
+    }
 }

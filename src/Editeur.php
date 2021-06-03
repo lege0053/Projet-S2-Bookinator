@@ -36,4 +36,16 @@ class Editeur
         return $this->libEditeur;
     }
 
+    public function getLivres() {
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Editeur e 
+                    INNER JOIN Livre l ON e.idEditeur = l.idEditeur
+                WHERE e.idEditeur = ?
+                ORDER BY l.titre
+                SQL);
+        $req->setFetchMode(PDO::FETCH_CLASS, Livre::class);
+        $req->execute([$this->idEditeur]);
+        return $req->fetchAll();
+    }
 }

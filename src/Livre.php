@@ -127,9 +127,9 @@ class Livre
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function getGenre() : array
+    public function getGenres()
     {
         $stat = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
