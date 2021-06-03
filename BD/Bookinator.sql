@@ -23,7 +23,8 @@ CREATE TABLE Utilisateur (
                 mdp VARCHAR2(123) NOT NULL,
                 photoProfil BLOB,
                 isAdmin NUMBER DEFAULT 0 NOT NULL,
-                CONSTRAINT PK_UTILISATEUR PRIMARY KEY (idUtilisateur)
+                CONSTRAINT PK_UTILISATEUR PRIMARY KEY (idUtilisateur),
+                CONSTRAINT CK_ISADMIN CHECK (isAdmin BETWEEN 0 AND 1)
 );
 
 
@@ -156,7 +157,7 @@ CREATE TABLE AvoirGenre (
 );
 
 
-CREATE SEQUENCE APPRECIATION_IDAPPRECIATION602;
+CREATE SEQUENCE APPRECIATION_IDAPPRECIATION_SEQ;
 
 CREATE TABLE Appreciation (
                 idAppreciation NUMBER NOT NULL,
@@ -236,3 +237,27 @@ REFERENCES Livre (ISBN);
 ALTER TABLE Favoris ADD CONSTRAINT FK_LIVRE_FAVORIS
 FOREIGN KEY (ISBN)
 REFERENCES Livre (ISBN);
+
+CREATE TABLE  SignalementCommentaire(     
+                 idSignalement NUMBER NOT NULL,
+                 idAppreciation NUMBER NOT NULL,
+                 CONSTRAINT PK_IDSIGNALEMENT PRIMARY KEY (idSignalement),
+                 CONSTRAINT FK_SIGNALEMENTCOMMENTAIRE_HERITAGE__SIGNALEMENT FOREIGN KEY (idSignalement) REFERENCES SIGNALEMENT (idSignalement),
+                 CONSTRAINT FK_IDAPPRECIATION FOREIGN KEY (idAppreciation) REFERENCES Appreciation(idAppreciation)
+);
+
+CREATE TABLE  SignalementLivre(     
+                 idSignalement NUMBER NOT NULL,
+                 idLivre NUMBER NOT NULL,
+                 CONSTRAINT PK_IDSIGNALEMENT PRIMARY KEY (idSignalement),
+                 CONSTRAINT FK_SIGNALEMENTLIVRE_HERITAGE__SIGNALEMENT FOREIGN KEY (idSignalement) REFERENCES SIGNALEMENT (idSignalement),
+                 CONSTRAINT FK_IDLIVRE FOREIGN KEY (idLivre) REFERENCES Livre(idLivre)
+);
+
+CREATE TABLE  SignalementCommande(     
+                 idSignalement NUMBER NOT NULL,
+                 idCommande NUMBER NOT NULL,
+                 CONSTRAINT PK_IDSIGNALEMENT PRIMARY KEY (idSignalement),
+                 CONSTRAINT FK_SIGNALEMENTCOMMANDE_HERITAGE__SIGNALEMENT FOREIGN KEY (idSignalement) REFERENCES SIGNALEMENT (idSignalement),
+                 CONSTRAINT FK_IDCOMMANDE FOREIGN KEY (idCommande) REFERENCES Commande(idCommande)
+);
