@@ -36,7 +36,10 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Analyse des besoins" color="#8cb6ce" meeting="false" start="2021-05-31" duration="1" complete="0" thirdDate="2021-05-31" thirdDate-constraint="1" expand="true">
+        <task id="13" name="Constitution et organisation de l'équipe" color="#8cb6ce" meeting="false" start="2021-05-31" duration="1" complete="0" thirdDate="2021-05-31" thirdDate-constraint="0" expand="true">
+            <depend id="3" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="0" name="Etudes des besoins" color="#8cb6ce" meeting="false" start="2021-05-31" duration="1" complete="0" thirdDate="2021-05-31" thirdDate-constraint="1" expand="true">
             <depend id="3" type="2" difference="0" hardness="Strong"/>
             <depend id="4" type="2" difference="0" hardness="Strong"/>
         </task>
@@ -113,6 +116,7 @@
     </resources>
     <allocations>
         <allocation task-id="3" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="13" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="0" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
         <allocation task-id="82" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="111" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
