@@ -7,14 +7,14 @@ class Utilisateur
     private String $nom;
     private String $prnm;
     private String $dateNais;
-    private String $tel;
+    private $tel;
     private String $mail;
-    private String $ville;
-    private String $CP;
-    private String $rue;
-    private String $pseudo;
+    private $ville;
+    private $CP;
+    private $rue;
+    private $pseudo;
     private String $mdp;
-    private String $photoProfil;
+    private $photoProfil;
     private int $isAdmin;
 
     private function __construct(){}
@@ -113,7 +113,7 @@ class Utilisateur
      * Accesseur du prénom.
      * @return String
      */
-    public function getPrnm(): string
+    public function getPrenom(): string
     {
         return $this->prnm;
     }

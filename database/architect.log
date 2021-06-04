@@ -1,0 +1,1018 @@
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+840  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+913  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+916  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+954  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+3760 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+36621 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@4444512c]
+364785 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+364785 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+364786 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+364786 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+364786 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+364787 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+364787 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+364787 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+368864 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+368864 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+368864 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+368865 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+383275 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+383275 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+383275 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+383276 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+387007 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+387008 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+390707 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@4444512c]
+454964 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE Couverture (
+                idCouv INT AUTO_INCREMENT NOT NULL,
+                png LONGBLOB NOT NULL,
+                PRIMARY KEY (idCouv)
+)
+454965 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Utilisateur (
+                idUser INT AUTO_INCREMENT NOT NULL,
+                name VARCHAR(30) NOT NULL,
+                prnm VARCHAR(30) NOT NULL,
+                dateNais DATE NOT NULL,
+                tel CHAR(10) NOT NULL,
+                mail VARCHAR(50) NOT NULL,
+                city VARCHAR(38) NOT NULL,
+                CP CHAR(5) NOT NULL,
+                rue VARCHAR(40) NOT NULL,
+                pseudo VARCHAR(30),
+                password VARCHAR(123) NOT NULL,
+                profileImage LONGBLOB,
+                isAdmin INT DEFAULT 0 NOT NULL,
+                PRIMARY KEY (idUser)
+)
+454965 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Signalement (
+                idSignalement INT AUTO_INCREMENT NOT NULL,
+                contenu VARCHAR(500) NOT NULL,
+                dateSig DATE NOT NULL,
+                idUser INT NOT NULL,
+                PRIMARY KEY (idSignalement)
+)
+454966 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE StatusCommande (
+                idStatus INT AUTO_INCREMENT NOT NULL,
+                libStatus VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idStatus)
+)
+454966 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Commande (
+                idCmd INT AUTO_INCREMENT NOT NULL,
+                idUser INT NOT NULL,
+                idStatus INT NOT NULL,
+                prixCmd DOUBLE PRECISIONS NOT NULL,
+                dateCmd DATE NOT NULL,
+                villeLivraison VARCHAR(38) NOT NULL,
+                CPLivraison VARCHAR(30) NOT NULL,
+                rueLivraison VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idCmd)
+)
+454967 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SignalementCommande (
+                idSignalement INT NOT NULL,
+                idCmd INT NOT NULL,
+                PRIMARY KEY (idSignalement, idCmd)
+)
+454967 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Auteur (
+                idAuteur INT AUTO_INCREMENT NOT NULL,
+                nom VARCHAR(30) NOT NULL,
+                prnm VARCHAR(30) NOT NULL,
+                dateNais DATE NOT NULL,
+                PRIMARY KEY (idAuteur)
+)
+454967 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Support (
+                idSupport INT AUTO_INCREMENT NOT NULL,
+                libSupport VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idSupport)
+)
+454968 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Format (
+                idFormat INT AUTO_INCREMENT NOT NULL,
+                libFormat VARCHAR(30) NOT NULL,
+                largeur DOUBLE PRECISIONS NOT NULL,
+                hauteur DOUBLE PRECISIONS NOT NULL,
+                PRIMARY KEY (idFormat)
+)
+454968 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Genre (
+                idGenre INT AUTO_INCREMENT NOT NULL,
+                libGenre VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idGenre)
+)
+454968 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Editeur (
+                idEditeur INT AUTO_INCREMENT NOT NULL,
+                libEditeur VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idEditeur)
+)
+454968 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Livre (
+                ISBN VARCHAR(13) NOT NULL,
+                titre VARCHAR(30) NOT NULL,
+                datePublication DATE NOT NULL,
+                nbPages INT NOT NULL,
+                langue VARCHAR(30) NOT NULL,
+                description TEXT NOT NULL,
+                prix DOUBLE PRECISIONS NOT NULL,
+                qte INT NOT NULL,
+                idEditeur INT NOT NULL,
+                idCouv INT NOT NULL,
+                idFormat INT NOT NULL,
+                idSupport INT NOT NULL,
+                PRIMARY KEY (ISBN)
+)
+454969 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Favoris (
+                ISBN VARCHAR(13) NOT NULL,
+                idUser INT NOT NULL,
+                PRIMARY KEY (ISBN, idUser)
+)
+454969 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Contenu (
+                idCmd INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idCmd, ISBN)
+)
+454969 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Ecrire (
+                idAuteur INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idAuteur, ISBN)
+)
+454969 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE AvoirGenre (
+                idGenre INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idGenre, ISBN)
+)
+454970 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Appreciation (
+                idAppreciation INT AUTO_INCREMENT NOT NULL,
+                commentaire VARCHAR(500) NOT NULL,
+                note INT NOT NULL,
+                dateApp DATE NOT NULL,
+                idUser INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idAppreciation)
+)
+454970 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SignalementCommentaire (
+                idAppreciation INT NOT NULL,
+                idSignalement INT NOT NULL,
+                PRIMARY KEY (idAppreciation, idSignalement)
+)
+454970 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE Livre ADD CONSTRAINT couverture_livre_fk
+FOREIGN KEY (idCouv)
+REFERENCES Couverture (idCouv)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454971 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Commande ADD CONSTRAINT utilisateur_commande_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454971 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Appreciation ADD CONSTRAINT utilisateur_appreciation_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454971 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Favoris ADD CONSTRAINT utilisateur_favoris_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454972 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Signalement ADD CONSTRAINT utilisateur_signalement_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454972 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommentaire ADD CONSTRAINT signalement_signalementcommentaire_fk
+FOREIGN KEY (idSignalement)
+REFERENCES Signalement (idSignalement)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454972 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommande ADD CONSTRAINT signalement_signalementcommande_fk
+FOREIGN KEY (idSignalement)
+REFERENCES Signalement (idSignalement)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454972 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Commande ADD CONSTRAINT statuscommande_commande_fk
+FOREIGN KEY (idStatus)
+REFERENCES StatusCommande (idStatus)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454973 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Contenu ADD CONSTRAINT commande_contenu_fk
+FOREIGN KEY (idCmd)
+REFERENCES Commande (idCmd)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454973 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommande ADD CONSTRAINT commande_signalementcommande_fk
+FOREIGN KEY (idCmd)
+REFERENCES Commande (idCmd)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454973 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Ecrire ADD CONSTRAINT auteur_ecrire_fk
+FOREIGN KEY (idAuteur)
+REFERENCES Auteur (idAuteur)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454973 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Livre ADD CONSTRAINT support_livre_fk
+FOREIGN KEY (idSupport)
+REFERENCES Support (idSupport)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454974 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Livre ADD CONSTRAINT format_livre_fk
+FOREIGN KEY (idFormat)
+REFERENCES Format (idFormat)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454974 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE AvoirGenre ADD CONSTRAINT genre_avoirgenre_fk
+FOREIGN KEY (idGenre)
+REFERENCES Genre (idGenre)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454974 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Livre ADD CONSTRAINT editeur_livre_fk
+FOREIGN KEY (idEditeur)
+REFERENCES Editeur (idEditeur)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454974 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Appreciation ADD CONSTRAINT livre_appreciation_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454975 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE AvoirGenre ADD CONSTRAINT livre_avoirgenre_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454975 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Ecrire ADD CONSTRAINT livre_ecrire_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454975 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Contenu ADD CONSTRAINT livre_contenu_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454976 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Favoris ADD CONSTRAINT livre_favoris_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454976 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommentaire ADD CONSTRAINT appreciation_signalementcommentaire_fk
+FOREIGN KEY (idAppreciation)
+REFERENCES Appreciation (idAppreciation)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+454980 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :39
+459403 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE Couverture (
+                idCouv INT AUTO_INCREMENT NOT NULL,
+                png LONGBLOB NOT NULL,
+                PRIMARY KEY (idCouv)
+)
+459403 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Utilisateur (
+                idUser INT AUTO_INCREMENT NOT NULL,
+                name VARCHAR(30) NOT NULL,
+                prnm VARCHAR(30) NOT NULL,
+                dateNais DATE NOT NULL,
+                tel CHAR(10) NOT NULL,
+                mail VARCHAR(50) NOT NULL,
+                city VARCHAR(38) NOT NULL,
+                CP CHAR(5) NOT NULL,
+                rue VARCHAR(40) NOT NULL,
+                pseudo VARCHAR(30),
+                password VARCHAR(123) NOT NULL,
+                profileImage LONGBLOB,
+                isAdmin INT DEFAULT 0 NOT NULL,
+                PRIMARY KEY (idUser)
+)
+459403 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Signalement (
+                idSignalement INT AUTO_INCREMENT NOT NULL,
+                contenu VARCHAR(500) NOT NULL,
+                dateSig DATE NOT NULL,
+                idUser INT NOT NULL,
+                PRIMARY KEY (idSignalement)
+)
+459403 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE StatusCommande (
+                idStatus INT AUTO_INCREMENT NOT NULL,
+                libStatus VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idStatus)
+)
+459404 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Commande (
+                idCmd INT AUTO_INCREMENT NOT NULL,
+                idUser INT NOT NULL,
+                idStatus INT NOT NULL,
+                prixCmd DOUBLE PRECISIONS NOT NULL,
+                dateCmd DATE NOT NULL,
+                villeLivraison VARCHAR(38) NOT NULL,
+                CPLivraison VARCHAR(30) NOT NULL,
+                rueLivraison VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idCmd)
+)
+459404 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SignalementCommande (
+                idSignalement INT NOT NULL,
+                idCmd INT NOT NULL,
+                PRIMARY KEY (idSignalement, idCmd)
+)
+459404 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Auteur (
+                idAuteur INT AUTO_INCREMENT NOT NULL,
+                nom VARCHAR(30) NOT NULL,
+                prnm VARCHAR(30) NOT NULL,
+                dateNais DATE NOT NULL,
+                PRIMARY KEY (idAuteur)
+)
+459404 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Support (
+                idSupport INT AUTO_INCREMENT NOT NULL,
+                libSupport VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idSupport)
+)
+459404 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Format (
+                idFormat INT AUTO_INCREMENT NOT NULL,
+                libFormat VARCHAR(30) NOT NULL,
+                largeur DOUBLE PRECISIONS NOT NULL,
+                hauteur DOUBLE PRECISIONS NOT NULL,
+                PRIMARY KEY (idFormat)
+)
+459404 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Genre (
+                idGenre INT AUTO_INCREMENT NOT NULL,
+                libGenre VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idGenre)
+)
+459404 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Editeur (
+                idEditeur INT AUTO_INCREMENT NOT NULL,
+                libEditeur VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idEditeur)
+)
+459405 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Livre (
+                ISBN VARCHAR(13) NOT NULL,
+                titre VARCHAR(30) NOT NULL,
+                datePublication DATE NOT NULL,
+                nbPages INT NOT NULL,
+                langue VARCHAR(30) NOT NULL,
+                description TEXT NOT NULL,
+                prix DOUBLE PRECISIONS NOT NULL,
+                qte INT NOT NULL,
+                idEditeur INT NOT NULL,
+                idCouv INT NOT NULL,
+                idFormat INT NOT NULL,
+                idSupport INT NOT NULL,
+                PRIMARY KEY (ISBN)
+)
+459405 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Favoris (
+                ISBN VARCHAR(13) NOT NULL,
+                idUser INT NOT NULL,
+                PRIMARY KEY (ISBN, idUser)
+)
+459405 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Contenu (
+                idCmd INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idCmd, ISBN)
+)
+459405 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Ecrire (
+                idAuteur INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idAuteur, ISBN)
+)
+459405 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE AvoirGenre (
+                idGenre INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idGenre, ISBN)
+)
+459405 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Appreciation (
+                idAppreciation INT AUTO_INCREMENT NOT NULL,
+                commentaire VARCHAR(500) NOT NULL,
+                note INT NOT NULL,
+                dateApp DATE NOT NULL,
+                idUser INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idAppreciation)
+)
+459405 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SignalementCommentaire (
+                idAppreciation INT NOT NULL,
+                idSignalement INT NOT NULL,
+                PRIMARY KEY (idAppreciation, idSignalement)
+)
+459406 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE Livre ADD CONSTRAINT couverture_livre_fk
+FOREIGN KEY (idCouv)
+REFERENCES Couverture (idCouv)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459406 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Commande ADD CONSTRAINT utilisateur_commande_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459406 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Appreciation ADD CONSTRAINT utilisateur_appreciation_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459406 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Favoris ADD CONSTRAINT utilisateur_favoris_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459406 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Signalement ADD CONSTRAINT utilisateur_signalement_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459406 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommentaire ADD CONSTRAINT signalement_signalementcommentaire_fk
+FOREIGN KEY (idSignalement)
+REFERENCES Signalement (idSignalement)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459406 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommande ADD CONSTRAINT signalement_signalementcommande_fk
+FOREIGN KEY (idSignalement)
+REFERENCES Signalement (idSignalement)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459406 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Commande ADD CONSTRAINT statuscommande_commande_fk
+FOREIGN KEY (idStatus)
+REFERENCES StatusCommande (idStatus)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459407 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Contenu ADD CONSTRAINT commande_contenu_fk
+FOREIGN KEY (idCmd)
+REFERENCES Commande (idCmd)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459407 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommande ADD CONSTRAINT commande_signalementcommande_fk
+FOREIGN KEY (idCmd)
+REFERENCES Commande (idCmd)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459407 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Ecrire ADD CONSTRAINT auteur_ecrire_fk
+FOREIGN KEY (idAuteur)
+REFERENCES Auteur (idAuteur)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459407 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Livre ADD CONSTRAINT support_livre_fk
+FOREIGN KEY (idSupport)
+REFERENCES Support (idSupport)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459407 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Livre ADD CONSTRAINT format_livre_fk
+FOREIGN KEY (idFormat)
+REFERENCES Format (idFormat)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459407 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE AvoirGenre ADD CONSTRAINT genre_avoirgenre_fk
+FOREIGN KEY (idGenre)
+REFERENCES Genre (idGenre)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459407 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Livre ADD CONSTRAINT editeur_livre_fk
+FOREIGN KEY (idEditeur)
+REFERENCES Editeur (idEditeur)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459407 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Appreciation ADD CONSTRAINT livre_appreciation_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459408 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE AvoirGenre ADD CONSTRAINT livre_avoirgenre_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459408 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Ecrire ADD CONSTRAINT livre_ecrire_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459408 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Contenu ADD CONSTRAINT livre_contenu_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459408 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Favoris ADD CONSTRAINT livre_favoris_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459408 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommentaire ADD CONSTRAINT appreciation_signalementcommentaire_fk
+FOREIGN KEY (idAppreciation)
+REFERENCES Appreciation (idAppreciation)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+459408 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :39
+461176 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - SQL_FILE_FILTER:SQL Script Files:[sql, ddl]
+474023 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - SQL_FILE_FILTER:SQL Script Files:[sql, ddl]
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+578  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+656  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+656  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+694  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+3359 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+60051 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE Couverture (
+                idCouv INT AUTO_INCREMENT NOT NULL,
+                png LONGBLOB NOT NULL,
+                PRIMARY KEY (idCouv)
+)
+60051 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Utilisateur (
+                idUser INT AUTO_INCREMENT NOT NULL,
+                name VARCHAR(30) NOT NULL,
+                prnm VARCHAR(30) NOT NULL,
+                dateNais DATE NOT NULL,
+                tel CHAR(10) NOT NULL,
+                mail VARCHAR(50) NOT NULL,
+                city VARCHAR(38) NOT NULL,
+                CP CHAR(5) NOT NULL,
+                rue VARCHAR(40) NOT NULL,
+                pseudo VARCHAR(30),
+                password VARCHAR(123) NOT NULL,
+                profileImage LONGBLOB,
+                isAdmin INT DEFAULT 0 NOT NULL,
+                PRIMARY KEY (idUser)
+)
+60052 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Signalement (
+                idSignalement INT AUTO_INCREMENT NOT NULL,
+                contenu VARCHAR(500) NOT NULL,
+                dateSig DATE NOT NULL,
+                idUser INT NOT NULL,
+                PRIMARY KEY (idSignalement)
+)
+60052 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE StatusCommande (
+                idStatus INT AUTO_INCREMENT NOT NULL,
+                libStatus VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idStatus)
+)
+60052 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Commande (
+                idCmd INT AUTO_INCREMENT NOT NULL,
+                idUser INT NOT NULL,
+                idStatus INT NOT NULL,
+                prixCmd DOUBLE PRECISIONS NOT NULL,
+                dateCmd DATE NOT NULL,
+                villeLivraison VARCHAR(38) NOT NULL,
+                CPLivraison VARCHAR(30) NOT NULL,
+                rueLivraison VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idCmd)
+)
+60052 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SignalementCommande (
+                idSignalement INT NOT NULL,
+                idCmd INT NOT NULL,
+                PRIMARY KEY (idSignalement, idCmd)
+)
+60053 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Auteur (
+                idAuteur INT AUTO_INCREMENT NOT NULL,
+                nom VARCHAR(30) NOT NULL,
+                prnm VARCHAR(30) NOT NULL,
+                dateNais DATE NOT NULL,
+                PRIMARY KEY (idAuteur)
+)
+60053 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Support (
+                idSupport INT AUTO_INCREMENT NOT NULL,
+                libSupport VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idSupport)
+)
+60053 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Format (
+                idFormat INT AUTO_INCREMENT NOT NULL,
+                libFormat VARCHAR(30) NOT NULL,
+                largeur DOUBLE PRECISIONS NOT NULL,
+                hauteur DOUBLE PRECISIONS NOT NULL,
+                PRIMARY KEY (idFormat)
+)
+60053 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Genre (
+                idGenre INT AUTO_INCREMENT NOT NULL,
+                libGenre VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idGenre)
+)
+60053 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Editeur (
+                idEditeur INT AUTO_INCREMENT NOT NULL,
+                libEditeur VARCHAR(30) NOT NULL,
+                PRIMARY KEY (idEditeur)
+)
+60054 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Livre (
+                ISBN VARCHAR(13) NOT NULL,
+                titre VARCHAR(30) NOT NULL,
+                datePublication DATE NOT NULL,
+                nbPages INT NOT NULL,
+                langue VARCHAR(30) NOT NULL,
+                description TEXT NOT NULL,
+                prix DOUBLE PRECISIONS NOT NULL,
+                qte INT NOT NULL,
+                idEditeur INT NOT NULL,
+                idCouv INT NOT NULL,
+                idFormat INT NOT NULL,
+                idSupport INT NOT NULL,
+                PRIMARY KEY (ISBN)
+)
+60054 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Favoris (
+                ISBN VARCHAR(13) NOT NULL,
+                idUser INT NOT NULL,
+                PRIMARY KEY (ISBN, idUser)
+)
+60054 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Contenu (
+                idCmd INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idCmd, ISBN)
+)
+60054 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Ecrire (
+                idAuteur INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idAuteur, ISBN)
+)
+60055 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE AvoirGenre (
+                idGenre INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idGenre, ISBN)
+)
+60055 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE Appreciation (
+                idAppreciation INT AUTO_INCREMENT NOT NULL,
+                commentaire VARCHAR(500) NOT NULL,
+                note INT NOT NULL,
+                dateApp DATE NOT NULL,
+                idUser INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idAppreciation)
+)
+60055 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE SignalementCommentaire (
+                idAppreciation INT NOT NULL,
+                idSignalement INT NOT NULL,
+                PRIMARY KEY (idAppreciation, idSignalement)
+)
+60056 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE Livre ADD CONSTRAINT couverture_livre_fk
+FOREIGN KEY (idCouv)
+REFERENCES Couverture (idCouv)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60056 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Commande ADD CONSTRAINT utilisateur_commande_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60057 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Appreciation ADD CONSTRAINT utilisateur_appreciation_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60057 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Favoris ADD CONSTRAINT utilisateur_favoris_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60058 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Signalement ADD CONSTRAINT utilisateur_signalement_fk
+FOREIGN KEY (idUser)
+REFERENCES Utilisateur (idUser)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60058 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommentaire ADD CONSTRAINT signalement_signalementcommentaire_fk
+FOREIGN KEY (idSignalement)
+REFERENCES Signalement (idSignalement)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60059 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommande ADD CONSTRAINT signalement_signalementcommande_fk
+FOREIGN KEY (idSignalement)
+REFERENCES Signalement (idSignalement)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60059 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Commande ADD CONSTRAINT statuscommande_commande_fk
+FOREIGN KEY (idStatus)
+REFERENCES StatusCommande (idStatus)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60059 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Contenu ADD CONSTRAINT commande_contenu_fk
+FOREIGN KEY (idCmd)
+REFERENCES Commande (idCmd)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60060 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommande ADD CONSTRAINT commande_signalementcommande_fk
+FOREIGN KEY (idCmd)
+REFERENCES Commande (idCmd)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60060 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Ecrire ADD CONSTRAINT auteur_ecrire_fk
+FOREIGN KEY (idAuteur)
+REFERENCES Auteur (idAuteur)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60061 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Livre ADD CONSTRAINT support_livre_fk
+FOREIGN KEY (idSupport)
+REFERENCES Support (idSupport)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60061 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Livre ADD CONSTRAINT format_livre_fk
+FOREIGN KEY (idFormat)
+REFERENCES Format (idFormat)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60061 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE AvoirGenre ADD CONSTRAINT genre_avoirgenre_fk
+FOREIGN KEY (idGenre)
+REFERENCES Genre (idGenre)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60062 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Livre ADD CONSTRAINT editeur_livre_fk
+FOREIGN KEY (idEditeur)
+REFERENCES Editeur (idEditeur)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60062 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Appreciation ADD CONSTRAINT livre_appreciation_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60063 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE AvoirGenre ADD CONSTRAINT livre_avoirgenre_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60063 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Ecrire ADD CONSTRAINT livre_ecrire_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60064 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Contenu ADD CONSTRAINT livre_contenu_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60064 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Favoris ADD CONSTRAINT livre_favoris_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60064 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE SignalementCommentaire ADD CONSTRAINT appreciation_signalementcommentaire_fk
+FOREIGN KEY (idAppreciation)
+REFERENCES Appreciation (idAppreciation)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+60068 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :39

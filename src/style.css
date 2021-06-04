@@ -1,0 +1,39 @@
+* {
+    font-family: Comfortaa;
+}
+.font-size-24{
+    font-size: 24px;
+}
+
+.font-size-20{
+    font-size: 20px;
+}
+
+.white-text-color {
+    color: #F5F5F5;
+}
+
+.main-text-color {
+    color: #D0D0D0;
+}
+
+.main-background {
+    background-color: #353535;
+}
+
+.footer {
+    padding: 10px;
+}
+
+.booki-link {
+    color: #E1B74A;
+}
+.booki-link:hover {
+    color: #E1B74A;
+    text-decoration: underline;
+}
+
+.logo {
+    filter: invert(100%) sepia(7%) saturate(241%) hue-rotate(280deg) brightness(114%) contrast(92%);
+}
+
