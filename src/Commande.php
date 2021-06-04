@@ -94,4 +94,19 @@ class Commande
     {
         return $this->villeLivraison;
     }
+
+    /**
+     * Retourne le status actuel de la commande.
+     * @return mixed
+     * @throws Exception
+     */
+    public function getStatus(){
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT libStatus
+                FROM Commande
+                WHERE idStatus = ?
+        SQL);
+        $req->execute([$this->idStatus]);
+        return $req->fetch();
+    }
 }
