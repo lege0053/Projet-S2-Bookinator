@@ -1,4 +1,3 @@
-
 CREATE TABLE Couverture (
                 idCouv INT AUTO_INCREMENT NOT NULL,
                 png LONGBLOB NOT NULL,
@@ -44,7 +43,7 @@ CREATE TABLE Commande (
                 idCmd INT AUTO_INCREMENT NOT NULL,
                 idUtilisateur INT NOT NULL,
                 idStatus INT NOT NULL,
-                prixCmd DOUBLE PRECISIONS NOT NULL,
+                prixCmd DOUBLE NOT NULL,
                 dateCmd DATE NOT NULL,
                 villeLivraison VARCHAR(38) NOT NULL,
                 CPLivraison VARCHAR(30) NOT NULL,
@@ -79,8 +78,8 @@ CREATE TABLE Support (
 CREATE TABLE Format (
                 idFormat INT AUTO_INCREMENT NOT NULL,
                 libFormat VARCHAR(30) NOT NULL,
-                largeur DOUBLE PRECISIONS NOT NULL,
-                hauteur DOUBLE PRECISIONS NOT NULL,
+                largeur DOUBLE NOT NULL,
+                hauteur DOUBLE NOT NULL,
                 PRIMARY KEY (idFormat)
 );
 
@@ -106,7 +105,7 @@ CREATE TABLE Livre (
                 nbPages INT NOT NULL,
                 langue VARCHAR(30) NOT NULL,
                 description TEXT NOT NULL,
-                prix DOUBLE PRECISIONS NOT NULL,
+                prix DOUBLE NOT NULL,
                 qte INT NOT NULL,
                 idEditeur INT NOT NULL,
                 idCouv INT NOT NULL,
