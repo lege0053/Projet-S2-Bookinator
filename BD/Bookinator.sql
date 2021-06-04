@@ -44,12 +44,19 @@ CREATE TABLE Commande (
                 idCmd INT AUTO_INCREMENT NOT NULL,
                 idUtilisateur INT NOT NULL,
                 idStatus INT NOT NULL,
-                prixCmd DOUBLE NOT NULL,
+                prixCmd DOUBLE PRECISIONS NOT NULL,
                 dateCmd DATE NOT NULL,
                 villeLivraison VARCHAR(38) NOT NULL,
                 CPLivraison VARCHAR(30) NOT NULL,
                 rueLivraison VARCHAR(30) NOT NULL,
                 PRIMARY KEY (idCmd)
+);
+
+
+CREATE TABLE SignalementCommande (
+                idSignalement INT NOT NULL,
+                idCmd INT NOT NULL,
+                PRIMARY KEY (idSignalement, idCmd)
 );
 
 
@@ -72,8 +79,8 @@ CREATE TABLE Support (
 CREATE TABLE Format (
                 idFormat INT AUTO_INCREMENT NOT NULL,
                 libFormat VARCHAR(30) NOT NULL,
-                largeur DOUBLE NOT NULL,
-                hauteur DOUBLE NOT NULL,
+                largeur DOUBLE PRECISIONS NOT NULL,
+                hauteur DOUBLE PRECISIONS NOT NULL,
                 PRIMARY KEY (idFormat)
 );
 
@@ -99,13 +106,20 @@ CREATE TABLE Livre (
                 nbPages INT NOT NULL,
                 langue VARCHAR(30) NOT NULL,
                 description TEXT NOT NULL,
-                prix DOUBLE NOT NULL,
+                prix DOUBLE PRECISIONS NOT NULL,
                 qte INT NOT NULL,
                 idEditeur INT NOT NULL,
                 idCouv INT NOT NULL,
                 idFormat INT NOT NULL,
                 idSupport INT NOT NULL,
                 PRIMARY KEY (ISBN)
+);
+
+
+CREATE TABLE SignalementLivre (
+                idSignalement INT NOT NULL,
+                ISBN VARCHAR(13) NOT NULL,
+                PRIMARY KEY (idSignalement, ISBN)
 );
 
 
@@ -148,6 +162,13 @@ CREATE TABLE Appreciation (
 );
 
 
+CREATE TABLE SignalementAppreciation (
+                idSignalement INT NOT NULL,
+                idAppreciation INT NOT NULL,
+                PRIMARY KEY (idSignalement, idAppreciation)
+);
+
+
 ALTER TABLE Livre ADD CONSTRAINT couverture_livre_fk
 FOREIGN KEY (idCouv)
 REFERENCES Couverture (idCouv)
@@ -178,6 +199,24 @@ REFERENCES Utilisateur (idUtilisateur)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
+ALTER TABLE SignalementCommande ADD CONSTRAINT signalement_signalementcommande_fk
+FOREIGN KEY (idSignalement)
+REFERENCES Signalement (idSignalement)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+ALTER TABLE SignalementAppreciation ADD CONSTRAINT signalement_signalementappreciation_fk
+FOREIGN KEY (idSignalement)
+REFERENCES Signalement (idSignalement)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+ALTER TABLE SignalementLivre ADD CONSTRAINT signalement_signalementlivre_fk
+FOREIGN KEY (idSignalement)
+REFERENCES Signalement (idSignalement)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
 ALTER TABLE Commande ADD CONSTRAINT statuscommande_commande_fk
 FOREIGN KEY (idStatus)
 REFERENCES StatusCommande (idStatus)
@@ -185,6 +224,12 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 ALTER TABLE Contenu ADD CONSTRAINT commande_contenu_fk
+FOREIGN KEY (idCmd)
+REFERENCES Commande (idCmd)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+ALTER TABLE SignalementCommande ADD CONSTRAINT commande_signalementcommande_fk
 FOREIGN KEY (idCmd)
 REFERENCES Commande (idCmd)
 ON DELETE NO ACTION
@@ -250,26 +295,14 @@ REFERENCES Livre (ISBN)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
-CREATE TABLE  SignalementCommentaire(     
-                 idSignalement INT NOT NULL,
-                 idAppreciation INT NOT NULL,
-                 CONSTRAINT PK_IDSIGNALEMENT PRIMARY KEY (idSignalement),
-                 CONSTRAINT FK_SIGNALEMENTCOMMENTAIRE_HERITAGE__SIGNALEMENT FOREIGN KEY (idSignalement) REFERENCES SIGNALEMENT (idSignalement),
-                 CONSTRAINT FK_IDAPPRECIATION FOREIGN KEY (idAppreciation) REFERENCES Appreciation(idAppreciation)
-);
+ALTER TABLE SignalementLivre ADD CONSTRAINT livre_signalementlivre_fk
+FOREIGN KEY (ISBN)
+REFERENCES Livre (ISBN)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
 
-CREATE TABLE  SignalementLivre(     
-                 idSignalement INT NOT NULL,
-                 idLivre INT NOT NULL,
-                 CONSTRAINT PK_IDSIGNALEMENT PRIMARY KEY (idSignalement),
-                 CONSTRAINT FK_SIGNALEMENTLIVRE_HERITAGE__SIGNALEMENT FOREIGN KEY (idSignalement) REFERENCES SIGNALEMENT (idSignalement),
-                 CONSTRAINT FK_IDLIVRE FOREIGN KEY (idLivre) REFERENCES Livre(idLivre)
-);
-
-CREATE TABLE  SignalementCommande(     
-                 idSignalement INT NOT NULL,
-                 idCommande INT NOT NULL,
-                 CONSTRAINT PK_IDSIGNALEMENT PRIMARY KEY (idSignalement),
-                 CONSTRAINT FK_SIGNALEMENTCOMMANDE_HERITAGE__SIGNALEMENT FOREIGN KEY (idSignalement) REFERENCES SIGNALEMENT (idSignalement),
-                 CONSTRAINT FK_IDCOMMANDE FOREIGN KEY (idCommande) REFERENCES Commande(idCommande)
-);
+ALTER TABLE SignalementAppreciation ADD CONSTRAINT appreciation_signalementappreciation_fk
+FOREIGN KEY (idAppreciation)
+REFERENCES Appreciation (idAppreciation)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
