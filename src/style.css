@@ -21,6 +21,14 @@
     background-color: #353535;
 }
 
+.main-color-background {
+    background-color: #E1B74A;
+}
+
+.dark-text {
+    color: #2F2F2F;
+}
+
 .footer {
     padding: 10px;
 }
@@ -31,6 +39,14 @@
 .booki-link:hover {
     color: #E1B74A;
     text-decoration: underline;
+}
+
+.border-radius-10 {
+    border-radius: 10px;
+}
+
+.border-radius-5 {
+    border-radius: 5px;
 }
 
 .logo {

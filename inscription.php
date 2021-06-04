@@ -23,7 +23,16 @@ $form = <<<HTML
                 <input type="email" name="mail" class="form-control" placeholder="Email" required>
             </div>
             <div class="form-group">
+                <input type="email" name="repeat_mail" class="form-control" placeholder="Retapez votre Email" required>
+            </div>
+            <div class="form-group">
                 <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="repeat_mdp" class="form-control" placeholder="Retapez votre Mot de passe" required>
+            </div>
+            <div class="form-group">
+                <input type="date" name="dateNais" class="form-control" required>
             </div>
             <div class="form-group">
                 <button type="submit" class="form_submit">Inscription</button>

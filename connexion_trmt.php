@@ -27,10 +27,10 @@ if(isset($_POST['mail']) && !empty($_POST['mail']) && isset($_POST['mdp']) && !e
                 header('Location:userpage.php');
 
             }
-            else header('Location:index.php?login_err=password');
+            else header('Location: connexion.php?login_err=password');
         }
-        else header('Location:index.php?login_err=email');
+        else header('Location: connexion.php?login_err=email');
     }
-    else header('Location:index.php?login_err=already');
+    else header('Location: connexion.php?login_err=inconnu');
 }
-else header('Location:index.php');
+else header('Location: connexion.php');

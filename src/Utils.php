@@ -50,7 +50,12 @@ function getHeader() : String
 
     }
     $header = <<<HTLM
-
+        <div class="header d-flex main-background">
+            <div class="navbar">
+                <div class="font-size-24 white-text-color m-1"><img class="logo m-2" src="img/logo-48.png" width="48">Bookinator</div>
+                <a class="main-color-background dark-text border-radius-5 p-2 font-weight-bold">Rechercher</a>
+            </div>
+        </div>
     HTLM;
     return $header;
 

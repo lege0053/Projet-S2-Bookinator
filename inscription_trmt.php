@@ -4,13 +4,20 @@ declare(strict_types=1);
 require "autoload.php";
 require "src/Utils.php";
 
+init_php_session();
+
 if(isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prnm']) && !empty($_POST['prnm'])
-&& isset($_POST['mail']) && !empty($_POST['mail']) && isset($_POST['mdp']) && !empty($_POST['mdp']))
+    && isset($_POST['mail']) && !empty($_POST['mail']) && isset($_POST['repeat_mail']) && !empty($_POST['repeat_mail'])
+    && isset($_POST['mdp']) && !empty($_POST['mdp']) && isset($_POST['repeat_mdp']) && !empty($_POST['repeat_mdp'])
+    && isset($_POST['dateNais']) && !empty($_POST['dateNais']))
 {
     $nom = htmlspecialchars($_POST['nom']);
     $prnm = htmlspecialchars($_POST['prnm']);
     $mail = htmlspecialchars($_POST['mail']);
     $mdp = htmlspecialchars($_POST['mdp']);
+    $repeat_mail = htmlspecialchars($_POST['repeat_mail']);
+    $repeat_mdp = htmlspecialchars($_POST['repeat_mdp']);
+    $dateNais = htmlspecialchars($_POST['dateNais']);
 
     $check = MyPDO::getInstance()->prepare(<<<SQL
         SELECT * FROM Utilisateur
@@ -33,10 +40,10 @@ if(isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prnm']) && !em
                         $mdp = password_hash($mdp, PASSWORD_BCRYPT);
                         
                         $insert = MyPDO::getInstance()->prepare(
-                            'INSERT INTO Utilisateur(nom, prnm, mail, mdp)
-                            VALUES(?, ?, ?, ?)');
+                            'INSERT INTO Utilisateur(nom, prnm, mail, mdp, dateNais)
+                            VALUES(?, ?, ?, ?, ?)');
                         
-                        $insert->execute([$nom, $prnm, $mail, $mdp]);
+                        $insert->execute([$nom, $prnm, $mail, $mdp, $dateNais]);
 
                         $get = MyPDO::getInstance()->prepare(<<<SQL
                             SELECT * FROM Utilisateur
