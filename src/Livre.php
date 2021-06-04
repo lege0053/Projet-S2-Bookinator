@@ -7,7 +7,7 @@ class Livre
     private String $titre;
     private String $datePublication;
     private int $nbPages;
-    private String $langues;
+    private String $langue;
     private String $description;
     private float $prix;
     private int $qte;
@@ -103,9 +103,9 @@ class Livre
      * Accesseur de la langue.
      * @return String
      */
-    public function getLangues(): string
+    public function getLangue(): string
     {
-        return $this->langues;
+        return $this->langue;
     }
 
     /**
@@ -167,7 +167,7 @@ class Livre
      * @return array
      * @throws Exception
      */
-    public function getAppreciation()
+    public function getAppreciations()
     {
         $stat = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -180,8 +180,13 @@ class Livre
         return $stat->fetchAll();
     }
 
+    public function getNbAppreciations()
+    {
+        return count($this->getAppreciations());
+    }
+
     /**
-     * Retourne la note moyenne d'un livre en fonction de toutes les appréciations.
+     * Retourne la note moyenne d'un livre en fonction de toutes ses appréciations.
      * @return mixed
      * @throws Exception
      */
@@ -195,5 +200,23 @@ class Livre
                 SQL);
         $stat->execute([$this->ISBN]);
         return $stat->fetch();
+    }
+
+    /**
+     * Retourne les auteurs du livre sous forme d'instance de Auteur.
+     * @return array
+     * @throws Exception
+     */
+    public function getAuteurs()
+    {
+        $stat = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM auteur a
+                    INNER JOIN ecrire e ON a.idAuteur = e.idAuteur
+                WHERE e.ISBN = ?
+                SQL);
+        $stat->setFetchMode(PDO::FETCH_CLASS, Auteur::class);
+        $stat->execute([$this->ISBN]);
+        return $stat->fetchAll();
     }
 }
