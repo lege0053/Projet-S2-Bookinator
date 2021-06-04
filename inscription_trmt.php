@@ -60,5 +60,5 @@ if(isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prnm']) && !em
                 } else header('Location: inscription.php?reg_err=mail_lenght');
             } else header('Location: inscription.php?reg_err=prnm_lenght');
         } else header('Location: inscription.php?reg_err=nom_lenght');
-    } else echo header('Location: inscription.php?reg_err=already');
-}
+    } else header('Location: inscription.php?reg_err=already');
+} else header('Location: inscription.php');
