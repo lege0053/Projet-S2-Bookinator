@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 
 class Format
 {
@@ -8,9 +8,10 @@ class Format
     private float $largeur;
     private float $hauteur;
 
-    public function __construct(){}
+    private function __construct(){}
 
     /**
+     * Accesseur de l'idFormat.
      * @return int
      */
     public function getIdFormat(): int
@@ -19,6 +20,7 @@ class Format
     }
 
     /**
+     * Accesseur de libFormat.
      * @return string
      */
     public function getLibFormat(): string
@@ -27,6 +29,7 @@ class Format
     }
 
     /**
+     * Accesseur de la largeur.
      * @return float
      */
     public function getLargeur(): float
@@ -35,6 +38,7 @@ class Format
     }
 
     /**
+     * Accesseur de la longueur.
      * @return float
      */
     public function getHauteur(): float
@@ -42,6 +46,12 @@ class Format
         return $this->hauteur;
     }
 
+    /**
+     * Retourne une instance de la classe format à partir d'un id.
+     * @param int $id
+     * @return mixed
+     * @throws Exception
+     */
     public static function createFromId(int $id)
     {
 
@@ -55,6 +65,12 @@ class Format
         $stmt->execute([":id" => $id]);
         return $stmt->fetch();
     }
+
+    /**
+     * Retourne sous formes d'instance de livre tout les livres de ce format.
+     * @return array
+     * @throws Exception
+     */
     public function getLivres()
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
@@ -70,5 +86,4 @@ class Format
 
 
     }
-
 }

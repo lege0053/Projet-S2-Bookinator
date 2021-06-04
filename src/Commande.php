@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 class Commande
 {
-
     private int $idCmd;
     private int $idUtilisateur;
     private int $idStatus;
@@ -13,8 +12,14 @@ class Commande
     private String $CPLivraison;
     private String $rueLivraison;
 
-    public function __construct() {}
+    private function __construct() {}
 
+    /**
+     * Retourne une instance de la classe Commande à partir d'un id.
+     * @param int $idCmd
+     * @return mixed
+     * @throws Exception
+     */
     public static function createFromId(int $idCmd) {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -28,6 +33,7 @@ class Commande
     }
 
     /**
+     * Accesseur de l'idUtilisateur.
      * @return int
      */
     public function getIdUtilisateur(): int
@@ -36,6 +42,7 @@ class Commande
     }
 
     /**
+     * Accesseur du CP de livraison.
      * @return String
      */
     public function getCPLivraison(): string
@@ -44,6 +51,7 @@ class Commande
     }
 
     /**
+     * Accesseur de la date de la commande.
      * @return String
      */
     public function getDateCmd(): string
@@ -52,6 +60,7 @@ class Commande
     }
 
     /**
+     * Accesseur de l'id de la commande.
      * @return int
      */
     public function getIdCmd(): int
@@ -60,14 +69,7 @@ class Commande
     }
 
     /**
-     * @return int
-     */
-    public function getIdStatus(): int
-    {
-        return $this->idStatus;
-    }
-
-    /**
+     * Accesseur du prix de la commande.
      * @return float
      */
     public function getPrixCmd(): float
@@ -76,6 +78,7 @@ class Commande
     }
 
     /**
+     * Accesseur de la rue de livraison.
      * @return String
      */
     public function getRueLivraison(): string
@@ -84,11 +87,11 @@ class Commande
     }
 
     /**
+     * Accesseur de la ville de livraison.
      * @return String
      */
     public function getVilleLivraison(): string
     {
         return $this->villeLivraison;
     }
-
 }

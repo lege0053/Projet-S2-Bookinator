@@ -3,12 +3,17 @@ declare(strict_types=1);
 
 class Couverture
 {
-
     private int $idCouv;
     private String $png;
 
-    public function __construct() {}
+    private function __construct() {}
 
+    /**
+     * Retourune une instance de la classe Couverture à partir d'un id.
+     * @param int $idCouv
+     * @return mixed
+     * @throws Exception
+     */
     public static function createFromId(int $idCouv) {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -22,6 +27,7 @@ class Couverture
     }
 
     /**
+     * Accesseur de l'idCouv.
      * @return int
      */
     public function getIdCouv(): int
@@ -30,11 +36,11 @@ class Couverture
     }
 
     /**
+     * Accesseur du png.
      * @return String
      */
     public function getPng(): string
     {
         return $this->png;
     }
-
 }

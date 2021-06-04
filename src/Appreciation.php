@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 class Appreciation
 {
-
     private int $idAppreciation;
     private String $commentaire;
     private int $note;
@@ -11,8 +10,14 @@ class Appreciation
     private int $idUtilisateur;
     private String $ISBN;
 
-    public function __construct() {}
+    private function __construct() {}
 
+    /**
+     * Retourne une instance de la classe Appreciation à partir d'un id.
+     * @param int $idAppreciation
+     * @return mixed
+     * @throws Exception
+     */
     public static function createFromId(int $idAppreciation) {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -26,6 +31,7 @@ class Appreciation
     }
 
     /**
+     * Accesseur de ISBN.
      * @return String
      */
     public function getISBN(): string
@@ -34,6 +40,7 @@ class Appreciation
     }
 
     /**
+     * Accesseur de l'idUtilisateur
      * @return int
      */
     public function getIdUtilisateur(): int
@@ -42,6 +49,7 @@ class Appreciation
     }
 
     /**
+     * Accesseur de commentaire.
      * @return String
      */
     public function getCommentaire(): string
@@ -50,6 +58,7 @@ class Appreciation
     }
 
     /**
+     * Accesseur de date.
      * @return String
      */
     public function getDate(): string
@@ -58,6 +67,7 @@ class Appreciation
     }
 
     /**
+     * Accesseur de l'idAppreciation.
      * @return int
      */
     public function getIdAppreciation(): int
@@ -66,11 +76,11 @@ class Appreciation
     }
 
     /**
+     * Accesseur de la note.
      * @return int
      */
     public function getNote(): int
     {
         return $this->note;
     }
-
 }

@@ -16,8 +16,14 @@ class Livre
     private int $idFormat;
     private int $idSupport;
 
-    public function __construct() {}
+    private function __construct() {}
 
+    /**
+     * Retourne une instance de la classe Livre à portir d'un id.
+     * @param int $ISBN
+     * @return mixed
+     * @throws Exception
+     */
     public static function createFromId(int $ISBN) {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -31,6 +37,7 @@ class Livre
     }
 
     /**
+     * Accesseur de la date de publication.
      * @return String
      */
     public function getDatePublication(): string
@@ -39,6 +46,7 @@ class Livre
     }
 
     /**
+     * Accesseur de la description.
      * @return String
      */
     public function getDescription(): string
@@ -47,6 +55,7 @@ class Livre
     }
 
     /**
+     * Accesseur de l'idCouv.
      * @return int
      */
     public function getIdCouv(): int
@@ -55,6 +64,7 @@ class Livre
     }
 
     /**
+     * Accesseur de l'idEditeur.
      * @return int
      */
     public function getIdEditeur(): int
@@ -63,6 +73,7 @@ class Livre
     }
 
     /**
+     * Accesseur de l'idFormat.
      * @return int
      */
     public function getIdFormat(): int
@@ -71,6 +82,7 @@ class Livre
     }
 
     /**
+     * Accesseur de l'idSupport.
      * @return int
      */
     public function getIdSupport(): int
@@ -79,6 +91,7 @@ class Livre
     }
 
     /**
+     * Accesseur de l'ISBN.
      * @return String
      */
     public function getISBN(): string
@@ -87,6 +100,7 @@ class Livre
     }
 
     /**
+     * Accesseur de la langue.
      * @return String
      */
     public function getLangues(): string
@@ -95,6 +109,7 @@ class Livre
     }
 
     /**
+     * Accesseur du nombre de pages.
      * @return int
      */
     public function getNbPages(): int
@@ -103,6 +118,7 @@ class Livre
     }
 
     /**
+     * Accesseur du prix.
      * @return float
      */
     public function getPrix(): float
@@ -111,6 +127,7 @@ class Livre
     }
 
     /**
+     * Accesseur de la quantité.
      * @return int
      */
     public function getQte(): int
@@ -119,6 +136,7 @@ class Livre
     }
 
     /**
+     * Accesseur du titre.
      * @return String
      */
     public function getTitre(): string
@@ -127,6 +145,7 @@ class Livre
     }
 
     /**
+     * Retourne sous forme d'instance de genre les genres du livre.
      * @return mixed
      */
     public function getGenres()
@@ -143,4 +162,38 @@ class Livre
         return $stat->fetchAll();
     }
 
+    /**
+     * Retourne sous forme d'appréciation les appréciations du livre.
+     * @return array
+     * @throws Exception
+     */
+    public function getAppreciation()
+    {
+        $stat = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Appreciation a 
+                    INNER JOIN Livre l ON l.ISBN = a.ISBN
+                WHERE a.ISBN = ?
+                SQL);
+        $stat->setFetchMode(PDO::FETCH_CLASS, Appreciation::class);
+        $stat->execute([$this->ISBN]);
+        return $stat->fetchAll();
+    }
+
+    /**
+     * Retourne la note moyenne d'un livre en fonction de toutes les appréciations.
+     * @return mixed
+     * @throws Exception
+     */
+    public function getNoteMoyenne()
+    {
+        $stat = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT AVG(note)
+                FROM Appreciation a 
+                    INNER JOIN Livre l ON l.ISBN = a.ISBN
+                WHERE a.ISBN = ?
+                SQL);
+        $stat->execute([$this->ISBN]);
+        return $stat->fetch();
+    }
 }

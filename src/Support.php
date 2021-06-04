@@ -1,14 +1,15 @@
 <?php
-
+declare(strict_types=1);
 
 class Support
 {
     private int $idSupport;
     private string $libSupport;
 
-    public function __construct(){}
+    private function __construct(){}
 
     /**
+     * Accesseur de l'idSupport.
      * @return int
      */
     public function getIdSupport(): int
@@ -17,6 +18,7 @@ class Support
     }
 
     /**
+     * Accesseur de libSupport.
      * @return string
      */
     public function getLibSupport(): string
@@ -24,8 +26,12 @@ class Support
         return $this->libSupport;
     }
 
-
-
+    /**
+     * Retourne une instance de support à partir d'un id.
+     * @param int $id
+     * @return mixed
+     * @throws Exception
+     */
     public static function createFromId(int $id)
     {
 
@@ -40,7 +46,11 @@ class Support
         return $stmt->fetch();
     }
 
-
+    /**
+     * Retourne sous forme d'instance de livre tout les livres du format.
+     * @return array
+     * @throws Exception
+     */
     public function getLivres()
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
@@ -53,8 +63,5 @@ class Support
 
         $stmt->execute([":id" => $this->idSupport]);
         return $stmt->fetchAll();
-
-
     }
-
 }

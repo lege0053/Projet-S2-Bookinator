@@ -3,12 +3,17 @@ declare(strict_types=1);
 
 class StatusCommande
 {
-
     private int $idStatus;
     private String $libStatus;
 
-    public function __construct() {}
+    private function __construct() {}
 
+    /**
+     * Reoturne une instance de StatusCommande à partir d'un id.
+     * @param int $idStatus
+     * @return mixed
+     * @throws Exception
+     */
     public static function createFromId(int $idStatus) {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -22,6 +27,7 @@ class StatusCommande
     }
 
     /**
+     * Accesseur de idStatus.
      * @return int
      */
     public function getIdStatus(): int
@@ -30,6 +36,7 @@ class StatusCommande
     }
 
     /**
+     * Accesseur de libStatus.
      * @return String
      */
     public function getLibStatus(): string

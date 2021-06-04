@@ -8,9 +8,10 @@ class Auteur
     private string $prnm;
     private string $dateNais;
 
-    public function __construct() {}
+    private function __construct() {}
 
     /**
+     * Accesseur de l'idAuteur.
      * @return int
      */
     public function getIdAuteur(): int
@@ -19,6 +20,7 @@ class Auteur
     }
 
     /**
+     * Accesseur du nom de l'auteur.
      * @return string
      */
     public function getNom(): string
@@ -27,6 +29,7 @@ class Auteur
     }
 
     /**
+     * Accesseur du prénom de l'auteur.
      * @return string
      */
     public function getPrnm(): string
@@ -35,6 +38,7 @@ class Auteur
     }
 
     /**
+     * Accesseur de la date de naissance.
      * @return string
      */
     public function getDateNais(): string
@@ -42,6 +46,12 @@ class Auteur
         return $this->dateNais;
     }
 
+    /**
+     * Retourne une instance de la classe Auteur à partir d'un id.
+     * @param int $id
+     * @return mixed
+     * @throws Exception
+     */
     public static function createFromId(int $id)
     {
 
@@ -56,6 +66,11 @@ class Auteur
         return $stmt->fetch();
     }
 
+    /**
+     * Retourne un ensemble d'instance de tout les livres de l'auteur.
+     * @return array
+     * @throws Exception
+     */
     public function getLivres() {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *

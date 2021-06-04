@@ -6,8 +6,14 @@ class Editeur
     private int $idEditeur;
     private String $libEditeur;
 
-    public function __construct() {}
+    private function __construct() {}
 
+    /**
+     * Retourne une instance de la classe editeur à partir d'un id.
+     * @param int $idEditeur
+     * @return mixed
+     * @throws Exception
+     */
     public static function createFromId(int $idEditeur) {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -21,6 +27,7 @@ class Editeur
     }
 
     /**
+     * Accesseur de l'idEditeur.
      * @return int
      */
     public function getIdEditeur(): int
@@ -29,6 +36,7 @@ class Editeur
     }
 
     /**
+     * Accesseur du libEditeur.
      * @return String
      */
     public function getLibEditeur(): string
@@ -36,6 +44,11 @@ class Editeur
         return $this->libEditeur;
     }
 
+    /**
+     * Retourne sous forme d'instance de la classe livre l'ensemble des livres édité par l'éditeur.
+     * @return array
+     * @throws Exception
+     */
     public function getLivres() {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *

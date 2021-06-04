@@ -17,11 +17,10 @@ class Utilisateur
     private String $photoProfil;
     private int $isAdmin;
 
-    public function __construct()
-    {
-    }
+    private function __construct(){}
 
     /**
+     * Retourne une instance de la classe Utilisateur à partir d'un id.
      * @param int $idUtilisateur
      * @return mixed
      */
@@ -39,6 +38,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur du CP.
      * @return String
      */
     public function getCP(): string
@@ -47,6 +47,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur de la Date de naissance.
      * @return String
      */
     public function getDateNais(): String
@@ -55,6 +56,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur de l'idUtilisateur.
      * @return int
      */
     public function getIdUtilisateur(): int
@@ -63,6 +65,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur de isAdmin.
      * @return int
      */
     public function getIsAdmin(): int
@@ -71,6 +74,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur du mail.
      * @return String
      */
     public function getMail(): string
@@ -79,6 +83,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur du mot de passe.
      * @return String
      */
     public function getMdp(): string
@@ -87,6 +92,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur du nom.
      * @return String
      */
     public function getNom(): string
@@ -95,6 +101,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur de la photo de profil.
      * @return String
      */
     public function getPhotoProfil(): string
@@ -103,6 +110,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur du prénom.
      * @return String
      */
     public function getPrnm(): string
@@ -111,6 +119,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur du pseudo.
      * @return String
      */
     public function getPseudo(): string
@@ -119,6 +128,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur de la rue.
      * @return String
      */
     public function getRue(): string
@@ -127,6 +137,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur du téléphone.
      * @return String
      */
     public function getTel(): string
@@ -135,6 +146,7 @@ class Utilisateur
     }
 
     /**
+     * Accesseur de la ville/
      * @return String
      */
     public function getVille(): string
@@ -142,6 +154,11 @@ class Utilisateur
         return $this->ville;
     }
 
+    /**
+     * Retourne sous formes d'instance de Commande tout les commandes de l'utilisateur.
+     * @return array
+     * @throws Exception
+     */
     public function getCommandes() {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -155,6 +172,11 @@ class Utilisateur
         return $req->fetchAll();
     }
 
+    /**
+     * Retourne sous forme d'instance de Livre tout les livre en favoris de l'utilisateur.
+     * @return array
+     * @throws Exception
+     */
     public function getFavoris() {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *

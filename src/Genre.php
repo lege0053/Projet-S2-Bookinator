@@ -1,14 +1,15 @@
 <?php
-
+declare(strict_types=1);
 
 class Genre
 {
     private int $idGenre;
     private string $libGenre;
 
-    public function __construct(){}
+    private function __construct(){}
 
     /**
+     * Accesseur de l'idGenre.
      * @return int
      */
     public function getIdGenre(): int
@@ -17,6 +18,7 @@ class Genre
     }
 
     /**
+     * Accesseur de libGenre.
      * @return string
      */
     public function getLibGenre(): string
@@ -24,6 +26,12 @@ class Genre
         return $this->libGenre;
     }
 
+    /**
+     * Retourne une instance de genre à partir d'un id.
+     * @param int $id
+     * @return mixed
+     * @throws Exception
+     */
     public static function createFromId(int $id)
     {
 
@@ -38,6 +46,11 @@ class Genre
         return $stmt->fetch();
     }
 
+    /**
+     * Retourne sous forme d'instance de livre les livres de ce genre.
+     * @return array
+     * @throws Exception
+     */
     public function getLivres()
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
@@ -50,8 +63,5 @@ class Genre
 
         $stmt->execute([":id" => $this->idGenre]);
         return $stmt->fetchAll();
-
-
     }
-
 }
