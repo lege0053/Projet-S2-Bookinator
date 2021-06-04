@@ -1,6 +1,6 @@
 # Projets du S2 : 
 **Documents Importants :**  
-[Cahier des charges, Plan Projet](https://docs.google.com/document/d/1mMDruBJj4eRi81Vk2Cn5_lgzwhYYycQwmuRKFBrgvjY/edit#)  
+[Cahier des charges](https://docs.google.com/document/d/1mMDruBJj4eRi81Vk2Cn5_lgzwhYYycQwmuRKFBrgvjY/edit#)  
 [Maquette Figma](https://www.figma.com/file/o3G6N9qFhRvI0yEHWXxuKN/Untitled?node-id=0%3A1)  
 
 # Première Semaine : 
@@ -15,4 +15,10 @@ Travail de 8h15 à 12h15, ajout du MCD amélioré au dépot GIT (nouvelle branch
 **Mercredi 2 Juin :** 
 Matin : Création du Diagramme de Cas d'Utilisation, continuité de la maquette Figma. Reflexion sur la BD.  
 Réunion à 14h : État du projet par Mr Gillard.  
-Travail jusqu'à 17h30 : Correction sur le MCD puis création du MLD (Thibaut), amélioration de la maquette figma (Lucie, Nicolas), perfectionnement du cahier des charges en mettant tout ce qui est en rapport avec le plan projet (PBS, RBS, WBS, PERT, GANTT) dans un seul autre pdf (Marine).
+Travail jusqu'à 17h30 : Correction sur le MCD puis création du MLD (Thibaut), amélioration de la maquette figma (Lucie, Nicolas), perfectionnement du cahier des charges en mettant tout ce qui est en rapport avec le plan projet (PBS, RBS, WBS, PERT, GANTT) dans un seul autre pdf (Marine).  
+
+**Jeudi 2 Juin :** 
+Création du MPD et création de quelque classe de départ pour le site web.  
+
+**Vendredi 3 Juin :**
+Modification des classes de départ, travail sur le site web, demande d'une base de donnée auprès de la bulle. Annulation et report de la réunion de 14h à lundi 9h.
