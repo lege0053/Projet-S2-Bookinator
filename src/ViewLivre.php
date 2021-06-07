@@ -73,9 +73,9 @@ function affichageLivre(string $isbn):string
             </tr>
         </table>
         <span>Description :</span>
-        <span class='p-3 border-radius-5 description-background description-text'>{$livre->getDescription()}</span>
+        <span class='p-3 border-radius-10 description-background description-text'>{$livre->getDescription()}</span>
     </div>
-    <img src='./src/ViewCouverture.php?id={$livre->getIdCouv()}'>
+    <img alt='' src='./src/ViewCouverture.php?id={$livre->getIdCouv()}'>
 </div>
 ";
     return $retour;
@@ -88,16 +88,20 @@ function affichageAppreciations(string $isbn):string
     $retour="<div class='d-flex flex-column justify-content-center'>";
     foreach ($listeAppreciations as $elmt)
     {
-        $utilisateur=Utilisateur::createFromId($elmt->getIdUtilisateur())->getPseudo();
-        if($utilisateur==null)
-            $utilisateur=Utilisateur::createFromId($elmt->getIdUtilisateur())->getNom()." ".Utilisateur::createFromId($elmt->getIdUtilisateur())->getPrenom();
+        $utilisateur=Utilisateur::createFromId($elmt->getIdUtilisateur());
+        $userPseudo=$utilisateur->getPseudo();
+        if($userPseudo==null)
+            $userPseudo=$utilisateur->getNom()." ".$utilisateur->getPrenom();
         $retour.="
-<div class='d-flex flex-column'>
-    <div class='d-flex flex-row justify-content-between'>
-        <span>$utilisateur</span>
-        <span>{$elmt->getNote()}</span>
+<div class='m-1 d-flex flex-column font-size-24 border-radius-10 main-background'>
+    <div class='p-4 d-flex flex-row justify-content-between'>
+        <div>
+            <img width='50' height='50' class='border-radius-100' alt='' src='./src/ViewPdP.php?id={$utilisateur->getIdUtilisateur()}'>
+            <span class='white-text-color'>$userPseudo</span>
+        </div>
+        <span class='booki-link'>{$elmt->getNote()}</span>
     </div>
-    <span>{$elmt->getCommentaire()}</span>
+    <span class='m-4 p-3 d-flex border-radius-5 second-main-background font-size-20 white-text-color'>{$elmt->getCommentaire()}</span>
 </div>
 ";
     }
