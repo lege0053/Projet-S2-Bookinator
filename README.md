@@ -17,8 +17,19 @@ Matin : Création du Diagramme de Cas d'Utilisation, continuité de la maquette 
 Réunion à 14h : État du projet par Mr Gillard.  
 Travail jusqu'à 17h30 : Correction sur le MCD puis création du MLD (Thibaut), amélioration de la maquette figma (Lucie, Nicolas), perfectionnement du cahier des charges en mettant tout ce qui est en rapport avec le plan projet (PBS, RBS, WBS, PERT, GANTT) dans un seul autre pdf (Marine).  
 
-**Jeudi 2 Juin :** 
+**Jeudi 3 Juin :** 
 Création du MPD et création de quelque classe de départ pour le site web.  
 
-**Vendredi 3 Juin :**
+**Vendredi 4 Juin :**
 Modification des classes de départ, travail sur le site web, demande d'une base de donnée auprès de la bulle. Annulation et report de la réunion de 14h à lundi 9h.
+
+# Seconde Semaine : 
+**Lundi 7 Juin :** 
+Réunion à 9h : Améliorations à faire sur le typage et la gestion des exceptions.  
+Travail de jusqu'à 12h puis de 13h à 17h30.  
+Répartition des pages :  
+* Page de recherche : Nicolas.  
+* Page de profil : Marine.  
+* Page des favoris : Maxence.  
+* Page d'un livre : Thibaut.  
+* Page connexion : Lucie.  
