@@ -124,7 +124,7 @@ class Utilisateur
      */
     public function getPseudo(): string
     {
-        return $this->pseudo;
+        return $this->pseudo == null ? "" : $this->ville;
     }
 
     /**

@@ -5,7 +5,7 @@ require "autoload.php";
 require "src/Utils.php";
 require "src/ViewLivre.php";
 
-$id='2709642522';
+$id='9782723488525';
 if(isset($_POST['idArticle']) && !empty($_POST['idArticle']) && ctype_digit($_POST['idArticle']))
     $id=$_POST['idArticle'];
 

@@ -204,7 +204,7 @@ class Livre
         $valeur=$stat->fetch()['AVG(note)'];
         if($valeur==null)
             $valeur=-1;
-        return $valeur;
+        return (float)($valeur);
     }
 
     /**
