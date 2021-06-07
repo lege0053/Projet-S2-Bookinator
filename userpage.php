@@ -54,15 +54,16 @@ $html = <<<HTML
     <!--Formulaire-->        
         <div class="d-flex flex-column main-background padding-button border-radius-5">
             <form action="profil_trmt.php" method="post" class="padding-button">
-                <div class="d-flex flex-row">
+                 <div class="form-group"></div> 
+                 <div class="d-flex flex-row">
                     <div class="form-group d-flex flex-column margin-right">
                         <div class="white-text-color">Nom</div>
                         <input type="text" name="nom" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getNom()}" required>
                     </div>
-                </div>
-                <div class="form-group d-flex flex-column">
-                    <div class="white-text-color">Prénom</div>
-                    <input type="text" name="prnm" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getPrenom()}" required>
+                    <div class="form-group d-flex flex-column">
+                        <div class="white-text-color">Prénom</div>
+                        <input type="text" name="prnm" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getPrenom()}" required>
+                    </div>
                 </div>
                 <div class="form-group d-flex flex-column">
                      <div class="white-text-color">Adresse Mail</div>
@@ -92,11 +93,11 @@ $html = <<<HTML
                 </div>
                 <div class="form-group d-flex flex-column">
                     <div class="white-text-color">Modifier le mot de passe</div>
-                    <input type="password" name="Mdp" class="form-control main-color-background font-size-10 dark-text" value="{$user->getMdp()}">
+                    <input type="password" name="Mdp" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getMdp()}">
                 </div>
                 <div class="d-flex flex-row justify-content-center">
                     <div class="form-group d-inline-flex">
-                        <button type="submit" class="form_submit font-size-15 main-color-background dark-text border-radius-5 padding-button font-weight-bold button margin-topbottom-art">Sauvegarder</button>
+                        <button type="submit" class="form_submit font-size-15 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Sauvegarder</button>
                     </div>
                 </div>
             </form>
