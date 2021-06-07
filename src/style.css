@@ -40,7 +40,10 @@
 }
 
 .description-text {
-    color: #DADADA;
+    color: #616161;
+}
+.description-background {
+    background-color: #DADADA;
 }
 
 .footer {
