@@ -20,11 +20,12 @@ class Livre
 
     /**
      * Retourne une instance de la classe Livre à portir d'un id.
-     * @param int $ISBN
+     * @param string $ISBN
      * @return mixed
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
-    public static function createFromId(int $ISBN) {
+    public static function createFromId(string $ISBN):self //throw InvalidArgumentException
+    {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Livre
@@ -33,7 +34,10 @@ class Livre
 
         $req->setFetchMode(PDO::FETCH_CLASS, Livre::class);
         $req->execute([$ISBN]);
-        return $req->fetch();
+        $livre=$req->fetch();
+        if(!$livre)
+            throw new InvalidArgumentException("ISBN non existant dans la base de donnée.");
+        return $livre;
     }
 
     /**
@@ -148,7 +152,7 @@ class Livre
      * Retourne sous forme d'instance de genre les genres du livre.
      * @return mixed
      */
-    public function getGenres()
+    public function getGenres():array
     {
         $stat = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -165,9 +169,8 @@ class Livre
     /**
      * Retourne sous forme d'appréciation les appréciations du livre.
      * @return array
-     * @throws Exception
      */
-    public function getAppreciations()
+    public function getAppreciations():array
     {
         $stat = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -177,20 +180,19 @@ class Livre
                 SQL);
         $stat->setFetchMode(PDO::FETCH_CLASS, Appreciation::class);
         $stat->execute([$this->ISBN]);
-        return $stat->fetchAll();
+        return $stat->fetchAll();;
     }
 
-    public function getNbAppreciations()
+    public function getNbAppreciations():int
     {
         return count($this->getAppreciations());
     }
 
     /**
      * Retourne la note moyenne d'un livre en fonction de toutes ses appréciations.
-     * @return mixed
-     * @throws Exception
+     * @return float
      */
-    public function getNoteMoyenne()
+    public function getNoteMoyenne():float
     {
         $stat = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT AVG(note)
@@ -199,24 +201,37 @@ class Livre
                 WHERE a.ISBN = ?
                 SQL);
         $stat->execute([$this->ISBN]);
-        return $stat->fetch();
+        $valeur=$stat->fetch()['AVG(note)'];
+        if($valeur==null)
+            $valeur=-1;
+        return $valeur;
     }
 
     /**
      * Retourne les auteurs du livre sous forme d'instance de Auteur.
      * @return array
-     * @throws Exception
      */
-    public function getAuteurs()
+    public function getAuteurs():array
     {
         $stat = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
-                FROM auteur a
-                    INNER JOIN ecrire e ON a.idAuteur = e.idAuteur
+                FROM Auteur a
+                    INNER JOIN Ecrire e ON a.idAuteur = e.idAuteur
                 WHERE e.ISBN = ?
                 SQL);
         $stat->setFetchMode(PDO::FETCH_CLASS, Auteur::class);
         $stat->execute([$this->ISBN]);
+        return $stat->fetchAll();
+    }
+
+    public static function getAll():array
+    {
+        $stat = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Livre
+                SQL);
+        $stat->setFetchMode(PDO::FETCH_CLASS, Livre::class);
+        $stat->execute();
         return $stat->fetchAll();
     }
 }
