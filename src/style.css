@@ -31,6 +31,10 @@
     background-color: #353535;
 }
 
+.second-main-background {
+    background-color: #525252;
+}
+
 .main-color-background {
     background-color: #E1B74A;
 }
@@ -56,6 +60,10 @@
 .booki-link:hover {
     color: #E1B74A;
     text-decoration: underline;
+}
+
+.border-radius-100 {
+    border-radius: 100px;
 }
 
 .border-radius-10 {

@@ -20,7 +20,7 @@ $form = <<<HTML
                 <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required>
             </div>
             <div class="form-group">
-                <button type="submit" class="form_submit">Connexion</button>
+                <button type="submit" class="form-submit">Connexion</button>
             </div>
         </form>
         
