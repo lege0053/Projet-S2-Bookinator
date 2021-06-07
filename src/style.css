@@ -121,6 +121,10 @@
 .margin-right {
     margin-right: 10px;
 }
+.margin-topbottom-art {
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
 
 .square-button {
     height: 36px;

@@ -28,8 +28,8 @@ function affichageLivre(string $isbn):string
     $editeur=Editeur::createFromId($livre->getIdEditeur())->getLibEditeur();
 
     $retour="
-<div class='d-flex flex-column-reverse flex-md-row font-size-24'>
-    <div class='m-1 d-flex flex-column'>
+<div class='d-flex flex-column-reverse flex-md-row font-size-24 align-items-center justify-content-md-center margin-topbottom-art'>
+    <div class='m-1 d-flex flex-column w-75'>
         <div class='d-flex flex-row justify-content-between'>
             <span>{$livre->getTitre()}</span>";
 
@@ -45,7 +45,7 @@ function affichageLivre(string $isbn):string
         <table>
             <tr>
                 <td>Prix</td>
-                <td class='booki-link'>{$livre->getPrix()} €</td>
+                <td class='d-flex flex-fill booki-link'>{$livre->getPrix()} €</td>
             </tr>
             <tr>
                 <td>Éditeur</td>
@@ -85,7 +85,7 @@ function affichageAppreciations(string $isbn):string
 {
     $livre=Livre::createFromId($isbn);
     $listeAppreciations=$livre->getAppreciations();
-    $retour="<div class='d-flex flex-column justify-content-center'>";
+    $retour="<div class='d-flex flex-column'>";
     foreach ($listeAppreciations as $elmt)
     {
         $utilisateur=Utilisateur::createFromId($elmt->getIdUtilisateur());
@@ -93,7 +93,7 @@ function affichageAppreciations(string $isbn):string
         if($userPseudo==null)
             $userPseudo=$utilisateur->getNom()." ".$utilisateur->getPrenom();
         $retour.="
-<div class='m-1 d-flex flex-column font-size-24 border-radius-10 main-background'>
+<div class='m-3 d-flex flex-column font-size-24 border-radius-10 main-background w-75 align-self-center'>
     <div class='p-4 d-flex flex-row justify-content-between'>
         <div>
             <img width='50' height='50' class='border-radius-100' alt='' src='./src/ViewPdP.php?id={$utilisateur->getIdUtilisateur()}'>
