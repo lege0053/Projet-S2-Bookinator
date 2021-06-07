@@ -43,7 +43,7 @@ class Utilisateur
      */
     public function getCP(): string
     {
-        return $this->CP;
+        return $this->CP == null ? "" : $this->CP;
     }
 
     /**
@@ -106,7 +106,7 @@ class Utilisateur
      */
     public function getPhotoProfil(): string
     {
-        return $this->photoProfil;
+        return $this->photoProfil == null ? "" : $this->photoProfil;
     }
 
     /**
@@ -133,7 +133,7 @@ class Utilisateur
      */
     public function getRue(): string
     {
-        return $this->rue;
+        return $this->rue == null ? "" : $this->rue;
     }
 
     /**
@@ -142,7 +142,7 @@ class Utilisateur
      */
     public function getTel(): string
     {
-        return $this->tel;
+        return $this->tel == null ? "" : $this->tel;
     }
 
     /**
@@ -151,7 +151,7 @@ class Utilisateur
      */
     public function getVille(): string
     {
-        return $this->ville;
+        return $this->ville == null ? "" : $this->ville;
     }
 
     /**
