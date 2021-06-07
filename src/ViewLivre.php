@@ -75,7 +75,7 @@ function affichageLivre(string $isbn):string
         <span>Description :</span>
         <span class='p-3 border-radius-10 description-background description-text'>{$livre->getDescription()}</span>
     </div>
-    <img alt='' src='./src/ViewCouverture.php?id={$livre->getIdCouv()}'>
+    <img class='' alt='' src='./src/ViewCouverture.php?id={$livre->getIdCouv()}'>
 </div>
 ";
     return $retour;
@@ -93,15 +93,15 @@ function affichageAppreciations(string $isbn):string
         if($userPseudo==null)
             $userPseudo=$utilisateur->getNom()." ".$utilisateur->getPrenom();
         $retour.="
-<div class='m-3 d-flex flex-column font-size-24 border-radius-10 main-background w-75 align-self-center'>
-    <div class='p-4 d-flex flex-row justify-content-between'>
+<div class='m-3 p-4 d-flex flex-column font-size-24 border-radius-10 main-background w-75 align-self-center'>
+    <div class='d-flex flex-row justify-content-between'>
         <div>
             <img width='50' height='50' class='border-radius-100' alt='' src='./src/ViewPdP.php?id={$utilisateur->getIdUtilisateur()}'>
             <span class='white-text-color'>$userPseudo</span>
         </div>
         <span class='booki-link'>{$elmt->getNote()}</span>
     </div>
-    <span class='m-4 p-3 d-flex border-radius-5 second-main-background font-size-20 white-text-color'>{$elmt->getCommentaire()}</span>
+    <span class='p-3 d-flex border-radius-5 second-main-background font-size-20 white-text-color' style='margin-top: 10px;'>{$elmt->getCommentaire()}</span>
 </div>
 ";
     }
