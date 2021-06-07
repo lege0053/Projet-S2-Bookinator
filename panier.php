@@ -36,7 +36,7 @@ $html=<<<HTML
     <div class="d-flex flex-column">
         <div class="d-flex flex-row">
             <div class="d-flex flex-grow-1 main-color-background padding-button border-radius-5 font-weight-bold justify-content-center">
-                <div class="d-flex font-size-36 dark-text align-self-center"> Panier</div>
+                <div class="d-flex font-size-36 dark-text align-self-center">Panier</div>
                 <form action="" method="post">
                     <button type="submit" class="btn font-size-15 bg-danger dark-text border-radius-5 padding-button font-weight-bold button">Vider</button>
                 </form>
