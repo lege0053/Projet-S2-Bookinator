@@ -29,6 +29,7 @@ Réunion à 9h : Améliorations à faire sur le typage et la gestion des excepti
 Travail de jusqu'à 12h puis de 13h à 17h30.  
 Répartition des pages :  
 * Page de recherche : Nicolas.  
+* Page d'ajout de livre : Nicolas.
 * Page de profil : Marine.  
 * Page des favoris : Maxence.  
 * Page d'un livre : Thibaut.  
