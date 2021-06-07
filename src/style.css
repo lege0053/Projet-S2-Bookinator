@@ -118,6 +118,7 @@
 .margin-left {
     margin-left: 10px;
 }
+
 .margin-right {
     margin-right: 10px;
 }
@@ -127,3 +128,7 @@
     width: 36px;
 }
 
+.button-no-outline {
+    outline: 0;
+    border: 0;
+}

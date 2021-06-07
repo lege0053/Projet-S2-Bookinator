@@ -9,7 +9,7 @@ init_php_session();
 $books = [];
 
 $form = <<<HTML
-    <form class="m-2 d-flex flex-column justify-content-center align-items-center" action="addBook_trmt.php" method="post">
+    <form class="m-2 d-flex flex-column justify-content-center align-items-center" action="addBook_trmt.php" method="post" enctype="multipart/form-data">
         <div class="d-flex form-group w-100">
             <input type="file" name="couverture" class="flex-fill form-control" accept="image/png, image/jpeg" required>
         </div>
@@ -23,10 +23,7 @@ $form = <<<HTML
             <input type="text" name="prix" class="flex-fill form-control" placeholder="Prix" required>
         </div>
         <div class="d-flex form-group w-100">
-            <input type="text" name="editeur" class="flex-fill form-control" placeholder="Editeur" required>
-        </div>
-        <div class="d-flex form-group w-100">
-            <input type="text" name="auteur" class="flex-fill form-control" placeholder="Auteur" required>
+            <input type="text" name="nbPages" class="flex-fill form-control" placeholder="Nombre de Page" required>
         </div>
         <div class="d-flex form-group w-100">
             <input type="text" name="datePublication" class="flex-fill form-control" placeholder="Année Publication" required>
@@ -41,7 +38,22 @@ $form = <<<HTML
             <input type="text" name="description" class="flex-fill form-control" placeholder="Description" required>
         </div>
         <div class="d-flex form-group w-100">
-            <button type="submit" class="flex-fill main-color-background p-3">Ajouter Livre</button>
+            <input type="text" name="editeur" class="flex-fill form-control" placeholder="Editeur" required>
+        </div>
+        <div class="d-flex form-group w-100">
+            <input type="text" name="nomAuteur" class="flex-fill form-control" placeholder="Nom Auteur" required>
+        </div>
+        <div class="d-flex form-group w-100">
+            <input type="text" name="prenomAuteur" class="flex-fill form-control" placeholder="Prénom Auteur" required>
+        </div>
+        <div class="d-flex form-group w-100">
+            <input type="text" name="format" class="flex-fill form-control" placeholder="Format" required>
+        </div>
+        <div class="d-flex form-group w-100">
+            <input type="text" name="support" class="flex-fill form-control" placeholder="Support" required>
+        </div>
+        <div class="d-flex form-group w-100">
+            <button type="submit" class="button-no-outline flex-fill main-color-background p-3">Ajouter Livre</button>
         </div>
     </form>
 HTML;
