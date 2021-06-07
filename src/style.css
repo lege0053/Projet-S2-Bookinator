@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
 * {
-    font-family: Comfortaa;
+    font-family: 'Comfortaa', cursive;
 }
+.font-size-36{
+    font-size: 36px;
+}
+
 .font-size-24{
     font-size: 24px;
 }
@@ -11,6 +17,10 @@
 
 .white-text-color {
     color: #F5F5F5;
+}
+
+.white-background-color {
+    background-color: #F5F5F5;
 }
 
 .main-text-color {
@@ -69,5 +79,36 @@
 .panier-button {
     padding: 6px;
     margin-right: 12px;
+}
+
+.header {
+    background: center no-repeat url("../img/background.jpg");
+    background-size: 100% auto;
+    height: 61vh;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
+}
+
+.research-button {
+    border: 0px;
+    outline: 0;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.dackdrop-blur {
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+}
+
+.margin-left {
+    margin-left: 10px;
+}
+.margin-right {
+    margin-right: 10px;
+}
+
+.square-button {
+    height: 36px;
+    width: 36px;
 }
 

@@ -12,7 +12,7 @@ $form = <<<HTML
     <div class="login-form">
     
         <form action="connexion_trmt.php" method="post">
-            <h2 class="form-title">Se Connection</h2>
+            <h2 class="form-title">Se Connecter</h2>
             <div class="form-group">
                 <input type="email" name="mail" class="form-control" placeholder="Email" required>
             </div>
