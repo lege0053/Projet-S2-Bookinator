@@ -85,15 +85,15 @@ $html = <<<HTML
                 </div>
                 <div class="form-group d-flex flex-column">
                       <div class="white-text-color">Adresse</div>
-                      <input type="text" name="Adresse" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getRue()}">
+                      <input type="text" name="adresse" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getRue()}">
                 </div>
                 <div class="form-group d-flex flex-column">
                       <div class="white-text-color">Numéro Téléphone</div>
-                      <input type="number" name="Tel" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getTel()}">
+                      <input type="number" name="tel" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getTel()}">
                 </div>
                 <div class="form-group d-flex flex-column">
                     <div class="white-text-color">Modifier le mot de passe</div>
-                    <input type="password" name="Mdp" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getMdp()}">
+                    <input type="password" name="mdp" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getMdp()}">
                 </div>
                 <div class="d-flex flex-row justify-content-center">
                     <div class="form-group d-inline-flex">
