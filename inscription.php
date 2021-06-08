@@ -44,37 +44,37 @@ $form = <<<HTML
                 </div> 
                 <div class="form-group d-flex flex-column">
                      <div class="white-text-color">Pseudo (définitif)</div>
-                     <input type="email" name="Pseudo" class="form-control second-main-background font-size-10 white-text-color" required>
+                     <input type="email" name="Pseudo" class="form-control second-main-background font-size-10 white-text-color" style="outline: 0; border:0;" required>
                 </div>
                 <div class="d-flex flex-row">
                     <div class="form-group d-flex flex-column margin-right">
                         <div class="white-text-color">Nom</div>
-                        <input type="text" name="nom" class="form-control second-main-background font-size-10 white-text-color" required>
+                        <input type="text" name="nom" class="form-control second-main-background font-size-10 white-text-color" style="outline: 0; border:0;" required>
                     </div>
                     <div class="form-group d-flex flex-column">
                         <div class="white-text-color">Prénom</div>
-                        <input type="text" name="prnm" class="form-control second-main-background font-size-10 white-text-color" required>
+                        <input type="text" name="prnm" class="form-control second-main-background font-size-10 white-text-color" style="outline: 0; border:0;" required>
                     </div>
                 </div>
                 <div class="form-group d-flex flex-column">
                      <div class="white-text-color">Adresse Mail</div>
-                     <input type="email" name="mail" class="form-control second-main-background font-size-10 white-text-color" required>
+                     <input type="email" name="mail" class="form-control second-main-background font-size-10 white-text-color" style="outline: 0; border:0;" required>
                 </div>
                 <div class="form-group d-flex flex-column">
                      <div class="white-text-color">Confirmation Adresse Mail</div>
-                     <input type="email" name="repeat_mail" class="form-control second-main-background font-size-10 white-text-color" required>
+                     <input type="email" name="repeat_mail" class="form-control second-main-background font-size-10 white-text-color" style="outline: 0; border:0;" required>
                 </div>
                 <div class="form-group d-flex flex-column">
                     <div class="white-text-color">Mot de passe</div>
-                    <input type="password" name="Mdp" class="form-control second-main-background font-size-10 dark-text" required>
+                    <input type="password" name="Mdp" class="form-control second-main-background font-size-10 dark-text" style="outline: 0; border:0;" required>
                 </div>
                <div class="form-group d-flex flex-column">
                     <div class="white-text-color">Confirmation Mot de passe</div>
-                    <input type="password" name="Mdp" class="form-control second-main-background font-size-10 dark-text" required>
+                    <input type="password" name="Mdp" class="form-control second-main-background font-size-10 dark-text" style="outline: 0; border:0;" required>
                 </div>
                 <div class="d-flex flex-row justify-content-center">
                     <div class="form-group d-inline-flex">
-                        <button type="submit" class="form_submit font-size-15 main-color-background dark-text border-radius-5 padding-button font-weight-bold button ">S'inscrire</button>
+                        <button type="submit" class="form_submit font-size-15 main-color-background dark-text border-radius-5 padding-button font-weight-bold button " style="outline: 0; border:0;">S'inscrire</button>
                     </div>
                 </div>
             </form>
