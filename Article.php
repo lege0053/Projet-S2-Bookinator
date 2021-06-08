@@ -10,7 +10,7 @@ $id='9782723488525';
 if(isset($_GET['idArticle']) && !empty($_GET['idArticle']) && ctype_digit($_GET['idArticle']))
     $id=$_GET['idArticle'];
 
-$webPage = new WebPage("Article choisi");
+$webPage = new WebPage("Bookinator - ".Livre::createFromId($id)->getTitre());
 $webPage->appendContent(getHeader());
 $webPage->appendCssUrl("src/style.css");
 

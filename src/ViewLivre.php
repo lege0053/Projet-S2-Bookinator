@@ -115,8 +115,11 @@ function affichageAppreciations(string $isbn):string
 function affichageConnecte(string $isbn):string
 {
     $retour="
-    <div class ='d-flex flex-md-row flex-column justify-content-md-around align-items-center w-75'>
-    <a href='addToPanier.php?id=$isbn' class='font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Ajouter au panier</a>
+    <div class='d-flex justify-content-md-center'>
+        <div class ='d-flex flex-column flex-md-row w-75'>
+            <a href='addToPanier.php?id=$isbn' class='d-flex flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Ajouter au panier</a>
+            <a href='addCommentaire.php?id=$isbn' class='d-flex flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Rédiger une appréciation</a>
+        </div>
     </div>
     ";
     return $retour;
