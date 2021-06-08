@@ -5,8 +5,8 @@ function affichageLivre(string $isbn):string
 {
     $livre=Livre::createFromId($isbn);
 
-    $listeAuteur=$livre->getAuteurs();
 
+    $listeAuteur=$livre->getAuteurs();
     $nomsAuteurs='';
     for($i=0; $i<count($listeAuteur);$i++)
     {
@@ -15,8 +15,8 @@ function affichageLivre(string $isbn):string
             $nomsAuteurs.=", ";
     }
 
-    $listeGenre=$livre->getGenres();
 
+    $listeGenre=$livre->getGenres();
     $nomsGenres='';
     for($i=0; $i<count($listeGenre);$i++)
     {
@@ -25,7 +25,25 @@ function affichageLivre(string $isbn):string
             $nomsGenres.=", ";
     }
 
+
     $editeur=Editeur::createFromId($livre->getIdEditeur())->getLibEditeur();
+
+
+    if(isLogged())
+    {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     $retour="
 <div class='d-flex flex-column-reverse flex-md-row font-size-24 align-items-center justify-content-md-center margin-topbottom-art'>

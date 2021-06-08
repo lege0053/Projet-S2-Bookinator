@@ -4,6 +4,7 @@ declare(strict_types=1);
 require "autoload.php";
 require "src/Utils.php";
 require "src/ViewLivre.php";
+init_php_session();
 
 $id='9782723488525';
 if(isset($_POST['idArticle']) && !empty($_POST['idArticle']) && ctype_digit($_POST['idArticle']))

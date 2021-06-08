@@ -24,7 +24,7 @@ class Utilisateur
      * @param int $idUtilisateur
      * @return mixed
      */
-    public static function createFromId(int $idUtilisateur)
+    public static function createFromId(int $idUtilisateur):self
     {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
@@ -34,7 +34,10 @@ class Utilisateur
 
         $req->setFetchMode(PDO::FETCH_CLASS, Utilisateur::class);
         $req->execute([$idUtilisateur]);
-        return $req->fetch();
+        $retour=$req->fetch();
+        if(!$retour)
+            throw new InvalidArgumentException("L'utilisateur n'est pas dans la base de donnée.");
+        return $retour;
     }
 
     /**
@@ -124,7 +127,7 @@ class Utilisateur
      */
     public function getPseudo(): string
     {
-        return $this->pseudo == null ? "" : $this->ville;
+        return $this->pseudo == null ? "" : $this->pseudo;
     }
 
     /**
@@ -157,9 +160,8 @@ class Utilisateur
     /**
      * Retourne sous formes d'instance de Commande tout les commandes de l'utilisateur.
      * @return array
-     * @throws Exception
      */
-    public function getCommandes() {
+    public function getCommandes():array {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Commande cmd 
@@ -175,9 +177,8 @@ class Utilisateur
     /**
      * Retourne sous forme d'instance de Livre tout les livre en favoris de l'utilisateur.
      * @return array
-     * @throws Exception
      */
-    public function getFavoris() {
+    public function getFavoris():array {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Favoris fav 
@@ -188,5 +189,43 @@ class Utilisateur
         $req->setFetchMode(PDO::FETCH_CLASS, Livre::class);
         $req->execute([$this->idUtilisateur]);
         return $req->fetchAll();
+    }
+
+    public function getPanier():array{
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Commande cmd 
+                    INNER JOIN Utilisateur u ON u.idUtilisateur = cmd.idUtilisateur
+                WHERE u.idUtilisateur = ?
+                AND idStatus=3
+                SQL);
+        $req->setFetchMode(PDO::FETCH_CLASS, Commande::class);
+        $req->execute([$this->idUtilisateur]);
+        $retour=$req->fetchAll();
+        if(count($retour)>1)
+        {
+            $nb=count($retour);
+            throw new UnexpectedValueException("La fonction retourne + d'une commande en cours : $nb ");
+        }
+        if(!$retour)
+        {
+            $req = MyPDO::getInstance()->prepare(<<<SQL
+                INSERT INTO Commande(idCmd, idUtilisateur, idStatus, prixCmd, dateCmd, villeLivraison, CPLivraison, rueLivraison)
+                VALUES(null, $this->idUtilisateur, 3, 0, SYSDATE, " ", " ", " ")
+                SQL);
+            $req->execute();
+
+            $req2 = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Commande cmd 
+                    INNER JOIN Utilisateur u ON u.idUtilisateur = cmd.idUtilisateur
+                WHERE u.idUtilisateur = ?
+                AND idStatus=3
+                SQL);
+            $req2->setFetchMode(PDO::FETCH_CLASS, Commande::class);
+            $req2->execute([$this->idUtilisateur]);
+            $retour=$req2->fetch();
+        }
+        return $retour;
     }
 }
