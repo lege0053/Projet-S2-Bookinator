@@ -29,8 +29,17 @@ Réunion à 9h : Améliorations à faire sur le typage et la gestion des excepti
 Travail de jusqu'à 12h puis de 13h à 17h30.  
 Répartition des pages :  
 * Page de recherche : Nicolas.  
-* Page d'ajout de livre : Nicolas.
+* Page d'ajout de livre : Nicolas.  
 * Page de profil : Marine.  
 * Page des favoris : Maxence.  
-* Page d'un livre : Thibaut.  
+* Page d'un livre + ajout panier : Thibaut.  
 * Page connexion : Lucie.  
+
+**Mardi 8 juin :**
+Développement.  
+Réunion à 15h : Petite démonstration.  
+Typage des classes et gestion d'erreur.  
+Répartition des pages :  
+* Page d'affichage du panier : Lucie.  
+* Page de changement d'email et de mot de passe : Marine.  
+* Page d'ajout de commentaire : Thibaut.  
