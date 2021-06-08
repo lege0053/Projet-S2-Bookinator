@@ -162,6 +162,7 @@ class Commande
                               FROM Contenu
                               WHERE idCmd=?)
         SQL);
+        $req->setFetchMode(PDO::FETCH_CLASS, Livre::class);
         $req->execute([$this->idCmd]);
         return $req->fetchAll();
     }

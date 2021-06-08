@@ -8,6 +8,34 @@ init_php_session();
 $webPage = new WebPage("Panier");
 $webPage->appendContent(getHeader());
 $webPage->appendCssUrl("src/style.css");
+$Commande=Utilisateur::createFromId($_SESSION['idUtilisateur'])->getPanier();
+
+$panier = $Commande->getLivres();
+
+$livre="";
+foreach ($panier as $livres){
+    $livre.= <<<HTML
+    <div class="d-flex flex-row main-background border-radius-5 m-4">
+    
+       <div class=""><img height="200" src="./src/ViewCouverture.php?id={$livres->getIdCouv()}" style="border-radius: 5px 0px 0px 5px;"> </div> 
+       <div class="second-main-background white-text-color m-2 p-2 border-radius-5">{$livres->getTitre()}</div>
+       
+       
+       <div class="d-flex flex-column align-items-center">
+           <div class="second-main-background booki-link border-radius-5 m-3 p-3 flex-fill">{$livres->getPrix()} € </div>
+          
+            <button type="submit" class="btn font-size-15 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</button>
+         
+       </div>
+       
+       
+       
+    </div>
+  
+
+HTML;
+
+}
 
 $html=<<<HTML
 <div class="d-flex flex-row justify-content-center margin-topbottom-art">
@@ -42,6 +70,11 @@ $html=<<<HTML
                 </form>
             </div>
         </div>
+        
+        <div>
+            $livre
+        
+        </div>
         <div class="d-flex flex-row justify-content-center">
             <div class="form-group d-inline-flex">
                 <button class="btn font-size-15 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Commander</button>
@@ -49,7 +82,10 @@ $html=<<<HTML
         </div>
     </div>
 </div>
+
+
 HTML;
+
 
 $webPage->appendContent($html);
 $webPage->appendContent(getFooter());
