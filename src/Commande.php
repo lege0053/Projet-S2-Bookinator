@@ -20,7 +20,7 @@ class Commande
      * @return mixed
      * @throws Exception
      */
-    public static function createFromId(int $idCmd) {
+    public static function createFromId(int $idCmd):self {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Commande
@@ -126,5 +126,18 @@ class Commande
                 WHERE idCmd=?
         SQL);
         $req2->execute([$this->idCmd,$this->idCmd]);
+    }
+
+    public function getLivres():array
+    {
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT * 
+                FROM Livre
+                WHERE ISBN IN(SELECT ISBN
+                              FROM Contenu
+                              WHERE idCmd=?)
+        SQL);
+        $req->execute([$this->idCmd]);
+        return $req->fetchAll();
     }
 }
