@@ -53,10 +53,9 @@ $html = <<<HTML
         </div>
     <!--Formulaire-->        
         <div class="d-flex flex-column main-background padding-button border-radius-5">
-            <form action="profil_trmt.php" method="post" class="padding-button">
-                 <div class="form-group"></div> 
-                 <div class="d-flex flex-row">
-                    <div class="form-group d-flex flex-column margin-right">
+            <form action="profil_trmt.php" method="post" class="p-3">
+                 <div class="d-flex flex-row mt-3 justify-content-between">
+                    <div class="form-group d-flex flex-column">
                         <div class="white-text-color">Nom</div>
                         <input type="text" name="nom" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getNom()}" required>
                     </div>
@@ -65,16 +64,8 @@ $html = <<<HTML
                         <input type="text" name="prnm" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getPrenom()}" required>
                     </div>
                 </div>
-                <div class="form-group d-flex flex-column">
-                     <div class="white-text-color">Adresse Mail</div>
-                     <input type="email" name="mail" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getMail()}" required>
-                </div>
-                <div class="form-group d-flex flex-column">
-                     <div class="white-text-color">Confirmation Adresse Mail</div>
-                     <input type="email" name="repeat_mail" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getMail()}" required>
-                </div>
-                <div class="d-flex flex-row">
-                     <div class="form-group d-flex flex-column margin-right">
+                <div class="d-flex flex-row justify-content-between">
+                     <div class="form-group d-flex flex-column ">
                         <div class="white-text-color">Ville</div>
                         <input type="text" name="ville" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getVille()}">
                      </div>
@@ -91,9 +82,9 @@ $html = <<<HTML
                       <div class="white-text-color">Numéro Téléphone</div>
                       <input type="number" name="tel" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getTel()}">
                 </div>
-                <div class="form-group d-flex flex-column">
-                    <div class="white-text-color">Modifier le mot de passe</div>
-                    <input type="password" name="mdp" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getMdp()}">
+                <div class="form-group d-inline-flex">
+                    <a href="editMail.php" class="form-title padding-button">Modifier l'adresse mail</a>
+                    <a href="editMdp.php" class="form-title padding-button">Modifier le mot de passe</a>
                 </div>
                 <div class="d-flex flex-row justify-content-center">
                     <div class="form-group d-inline-flex">
@@ -109,5 +100,3 @@ HTML;
 $webPage->appendContent($html);
 $webPage->appendContent(getFooter());
 echo $webPage->toHTML();
-
-
