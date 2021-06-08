@@ -140,7 +140,17 @@
 }
 
 .book-card {
-    width: 200px;
-    height: 240px;
+    width: 280px;
     margin: 30px;
+}
+
+.book-card img{
+    border-radius: 5px 0px 0px 0px;
+}
+
+.bottom-card {
+    border-radius: 0px 0px 5px 5px;
+}
+.bottom-card span {
+    margin: 2px;
 }
