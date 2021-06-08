@@ -229,9 +229,24 @@ class Livre
         $stat = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Livre
+                ORDER BY titre
                 SQL);
         $stat->setFetchMode(PDO::FETCH_CLASS, Livre::class);
         $stat->execute();
         return $stat->fetchAll();
+    }
+
+
+    public static function getResearch(array $author, array $years, array $editeurs, array $genres, array $languages) {
+
+        $stat = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Livre
+                ORDER BY titre
+                SQL);
+        $stat->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $stat->execute();
+        return $stat->fetchAll();
+
     }
 }
