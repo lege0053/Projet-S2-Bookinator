@@ -115,15 +115,37 @@ class Commande
 
     public function addContenu($isbn)
     {
-        $req = MyPDO::getInstance()->prepare(<<<SQL
-                INSERT INTO Contenu(idCmd, ISBN)
-                VALUES(?, ?)
+        $reqQte=MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Contenu
+                WHERE idCmd=?
+                AND ISBN=?
         SQL);
-        $req->execute([$this->idCmd, $isbn]);
+
+        $reqQte->execute([$this->idCmd, $isbn]);
+        $test=$reqQte->fetch();
+        if(!$test)
+        {
+            $req = MyPDO::getInstance()->prepare(<<<SQL
+                INSERT INTO Contenu(idCmd, ISBN, qte)
+                VALUES(?, ?, 1)
+            SQL);
+            $req->execute([$this->idCmd, $isbn]);
+        }
+        else
+        {
+            $reqModifQte=MyPDO::getInstance()->prepare(<<<SQL
+                UPDATE Contenu
+                SET qte=qte+1
+                WHERE idCmd=?
+                AND ISBN=?
+            SQL);
+            $reqModifQte->execute([$this->idCmd, $isbn]);
+        }
 
         $req2 = MyPDO::getInstance()->prepare(<<<SQL
                 UPDATE Commande
-                SET prixCmd=(SELECT SUM(liv.prix)
+                SET prixCmd=(SELECT SUM(liv.prix*ctn.qte)
                             FROM Contenu ctn INNER JOIN Livre liv ON liv.ISBN=ctn.ISBN
                             WHERE ctn.idCmd=?)
                 WHERE idCmd=?
