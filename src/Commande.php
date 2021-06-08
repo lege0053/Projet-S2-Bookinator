@@ -109,4 +109,22 @@ class Commande
         $req->execute([$this->idStatus]);
         return $req->fetch();
     }
+
+    public function addContenu($isbn)
+    {
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+                INSERT INTO Contenu(idCmd, ISBN)
+                VALUES(?, ?)
+        SQL);
+        $req->execute([$this->idCmd, $isbn]);
+
+        $req2 = MyPDO::getInstance()->prepare(<<<SQL
+                UPDATE Commande
+                SET prixCmd=(SELECT SUM(liv.prix)
+                            FROM Contenu ctn INNER JOIN Livre liv ON liv.ISBN=ctn.ISBN
+                            WHERE ctn.idCmd=?)
+                WHERE idCmd=?
+        SQL);
+        $req2->execute([$this->idCmd,$this->idCmd]);
+    }
 }
