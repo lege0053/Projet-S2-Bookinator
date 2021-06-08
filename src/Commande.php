@@ -29,7 +29,10 @@ class Commande
 
         $req->setFetchMode(PDO::FETCH_CLASS, Commande::class);
         $req->execute([$idCmd]);
-        return $req->fetch();
+        $retour=$req->fetch();
+        if(!$retour)
+            throw new InvalidArgumentException("La commande n'est pas dans la base de donnée.");
+        return $retour;
     }
 
     /**
@@ -100,7 +103,7 @@ class Commande
      * @return mixed
      * @throws Exception
      */
-    public function getStatus(){
+    public function getStatus():array{
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT libStatus
                 FROM Commande

@@ -237,7 +237,7 @@ class Livre
     }
 
 
-    public static function getResearch(array $author, array $years, array $editeurs, array $genres, array $languages) {
+    public static function getResearch(array $author, array $years, array $editeurs, array $genres, array $languages):array {
 
         $stat = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *

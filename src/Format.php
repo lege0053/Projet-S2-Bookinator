@@ -52,7 +52,7 @@ class Format
      * @return mixed
      * @throws Exception
      */
-    public static function createFromId(int $id)
+    public static function createFromId(int $id):self
     {
 
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
@@ -63,7 +63,11 @@ class Format
         $stmt->setFetchMode(PDO::FETCH_CLASS, Format::class );
 
         $stmt->execute([":id" => $id]);
-        return $stmt->fetch();
+
+        $retour=$stmt->fetch();
+        if(!$retour)
+            throw new InvalidArgumentException("Le format n'est pas dans la base de donnée.");
+        return $retour;
     }
 
     /**

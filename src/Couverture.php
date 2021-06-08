@@ -14,7 +14,7 @@ class Couverture
      * @return mixed
      * @throws Exception
      */
-    public static function createFromId(int $idCouv) {
+    public static function createFromId(int $idCouv) :self{
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Couverture
@@ -23,7 +23,10 @@ class Couverture
 
         $req->setFetchMode(PDO::FETCH_CLASS, Couverture::class);
         $req->execute([$idCouv]);
-        return $req->fetch();
+        $retour=$req->fetch();
+        if(!$retour)
+            throw new InvalidArgumentException("La couverture n'est pas dans la base de donnée.");
+        return $retour;
     }
 
     /**

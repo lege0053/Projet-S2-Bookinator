@@ -52,7 +52,7 @@ class Auteur
      * @return mixed
      * @throws Exception
      */
-    public static function createFromId(int $id)
+    public static function createFromId(int $id):self
     {
 
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
@@ -63,7 +63,11 @@ class Auteur
         $stmt->setFetchMode(PDO::FETCH_CLASS, Auteur::class );
 
         $stmt->execute([":id" => $id]);
-        return $stmt->fetch();
+
+        $retour=$stmt->fetch();
+        if(!$retour)
+            throw new InvalidArgumentException("L'auteur n'est pas dans la base de donnée.");
+        return $retour;
     }
 
     /**
@@ -71,7 +75,7 @@ class Auteur
      * @return array
      * @throws Exception
      */
-    public function getLivres() {
+    public function getLivres():array {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Ecrire e 

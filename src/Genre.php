@@ -32,7 +32,7 @@ class Genre
      * @return mixed
      * @throws Exception
      */
-    public static function createFromId(int $id)
+    public static function createFromId(int $id):self
     {
 
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
@@ -43,7 +43,11 @@ class Genre
         $stmt->setFetchMode(PDO::FETCH_CLASS, Genre::class );
 
         $stmt->execute([":id" => $id]);
-        return $stmt->fetch();
+
+        $retour=$stmt->fetch();
+        if(!$retour)
+            throw new InvalidArgumentException("Le genre n'est pas dans la base de donnée.");
+        return $retour;
     }
 
     /**
@@ -51,7 +55,7 @@ class Genre
      * @return array
      * @throws Exception
      */
-    public function getLivres()
+    public function getLivres():array
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
         SELECT * 

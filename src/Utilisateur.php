@@ -7,14 +7,14 @@ class Utilisateur
     private String $nom;
     private String $prnm;
     private String $dateNais;
-    private $tel;
+    private string $tel;
     private String $mail;
-    private $ville;
-    private $CP;
-    private $rue;
-    private $pseudo;
+    private string $ville;
+    private string $CP;
+    private string $rue;
+    private string $pseudo;
     private String $mdp;
-    private $photoProfil;
+    private string $photoProfil;
     private int $isAdmin;
 
     private function __construct(){}

@@ -18,7 +18,7 @@ class Appreciation
      * @return mixed
      * @throws Exception
      */
-    public static function createFromId(int $idAppreciation) {
+    public static function createFromId(int $idAppreciation):self {
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Appreciation
@@ -27,7 +27,10 @@ class Appreciation
 
         $req->setFetchMode(PDO::FETCH_CLASS, Appreciation::class);
         $req->execute([$idAppreciation]);
-        return $req->fetch();
+        $retour=$req->fetch();
+        if(!$retour)
+            throw new InvalidArgumentException("L'appréciation n'est pas dans la base de donnée.");
+        return $retour;
     }
 
     /**

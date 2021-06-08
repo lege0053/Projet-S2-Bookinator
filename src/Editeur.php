@@ -14,7 +14,7 @@ class Editeur
      * @return mixed
      * @throws Exception
      */
-    public static function createFromId(int $idEditeur) {
+    public static function createFromId(int $idEditeur) :self{
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Editeur
@@ -23,7 +23,11 @@ class Editeur
 
         $req->setFetchMode(PDO::FETCH_CLASS, Editeur::class);
         $req->execute([$idEditeur]);
-        return $req->fetch();
+
+        $retour=$req->fetch();
+        if(!$retour)
+            throw new InvalidArgumentException("L'éditeur' n'est pas dans la base de donnée.");
+        return $retour;
     }
 
     /**
@@ -49,7 +53,7 @@ class Editeur
      * @return array
      * @throws Exception
      */
-    public function getLivres() {
+    public function getLivres() :array{
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Editeur e 
