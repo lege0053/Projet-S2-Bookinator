@@ -83,8 +83,8 @@ $html = <<<HTML
                       <input type="number" name="tel" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getTel()}">
                 </div>
                 <div class="form-group d-inline-flex">
-                    <a href="editMail.php" class="form-title padding-button">Modifier l'adresse mail</a>
-                    <a href="editMdp.php" class="form-title padding-button">Modifier le mot de passe</a>
+                    <a href="editMail.php" class="form-title booki-link padding-button">Modifier l'adresse mail</a>
+                    <a href="editMdp.php" class="form-title booki-link padding-button">Modifier le mot de passe</a>
                 </div>
                 <div class="d-flex flex-row justify-content-center">
                     <div class="form-group d-inline-flex">
