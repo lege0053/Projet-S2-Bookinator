@@ -142,10 +142,21 @@
 .book-card {
     width: 280px;
     margin: 30px;
+    text-decoration: none;
+}
+.book-card:hover{
+    text-decoration: none;
 }
 
 .book-card img{
     border-radius: 5px 0px 0px 0px;
+}
+.book-card span{
+    color: #2F2F2F;
+}
+.book-card span:hover{
+    text-decoration: none;
+    color: #2F2F2F;
 }
 
 .bottom-card {

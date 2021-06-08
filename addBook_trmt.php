@@ -100,8 +100,6 @@ if(!$exist) {
     $addCouverture->execute([$contents]);
     $couvertureId = $mypdo->lastInsertId();
 
-    var_dump($couvertureId);
-
     // Ajout du Livre //
 
     $addLivre = $mypdo->prepare(<<<SQL
