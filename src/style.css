@@ -26,7 +26,7 @@
 }
 
 .main-text-color {
-    color: #D0D0D0;
+    color: #e1b74a;
 }
 
 .main-background {
@@ -151,10 +151,10 @@
 .book-card img{
     border-radius: 5px 0px 0px 0px;
 }
-.book-card span{
+.book-card .infos{
     color: #2F2F2F;
 }
-.book-card span:hover{
+.book-card .infos:hover{
     text-decoration: none;
     color: #2F2F2F;
 }
