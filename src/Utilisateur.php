@@ -191,7 +191,7 @@ class Utilisateur
         return $req->fetchAll();
     }
 
-    public function getPanier():array{
+    public function getPanier():Commande{
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Commande cmd 
@@ -201,17 +201,18 @@ class Utilisateur
                 SQL);
         $req->setFetchMode(PDO::FETCH_CLASS, Commande::class);
         $req->execute([$this->idUtilisateur]);
-        $retour=$req->fetchAll();
-        if(count($retour)>1)
+        $retourReq=$req->fetchAll();
+        $retourFinal=$retourReq[0];
+        if(count($retourReq)>1)
         {
-            $nb=count($retour);
+            $nb=count($retourReq);
             throw new UnexpectedValueException("La fonction retourne + d'une commande en cours : $nb ");
         }
-        if(!$retour)
+        if(!$retourReq)
         {
             $req = MyPDO::getInstance()->prepare(<<<SQL
                 INSERT INTO Commande(idCmd, idUtilisateur, idStatus, prixCmd, dateCmd, villeLivraison, CPLivraison, rueLivraison)
-                VALUES(null, $this->idUtilisateur, 3, 0, SYSDATE, " ", " ", " ")
+                VALUES(null, $this->idUtilisateur, 3, 0, SYSDATE(), " ", " ", " ")
                 SQL);
             $req->execute();
 
@@ -224,8 +225,8 @@ class Utilisateur
                 SQL);
             $req2->setFetchMode(PDO::FETCH_CLASS, Commande::class);
             $req2->execute([$this->idUtilisateur]);
-            $retour=$req2->fetch();
+            $retourFinal=$req2->fetch();
         }
-        return $retour;
+        return $retourFinal;
     }
 }

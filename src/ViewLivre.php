@@ -29,22 +29,6 @@ function affichageLivre(string $isbn):string
     $editeur=Editeur::createFromId($livre->getIdEditeur())->getLibEditeur();
 
 
-    if(isLogged())
-    {
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
     $retour="
 <div class='d-flex flex-column-reverse flex-md-row font-size-24 align-items-center justify-content-md-center margin-topbottom-art'>
     <div class='m-1 d-flex flex-column w-75'>
@@ -93,7 +77,7 @@ function affichageLivre(string $isbn):string
         <span>Description :</span>
         <span class='p-3 border-radius-10 description-background description-text'>{$livre->getDescription()}</span>
     </div>
-    <img class='' alt='' src='./src/ViewCouverture.php?id={$livre->getIdCouv()}'>
+    <img alt='' src='./src/ViewCouverture.php?id={$livre->getIdCouv()}'>
 </div>
 ";
     return $retour;
@@ -125,5 +109,15 @@ function affichageAppreciations(string $isbn):string
     }
     $retour.="</div>";
 
+    return $retour;
+}
+
+function affichageConnecte(string $isbn):string
+{
+    $retour="
+    <div class ='d-flex flex-md-row flex-column justify-content-md-around align-items-center w-75'>
+    <a href='addToPanier.php?id=$isbn' class='font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Ajouter au panier</a>
+    </div>
+    ";
     return $retour;
 }
