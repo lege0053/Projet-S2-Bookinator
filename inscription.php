@@ -44,7 +44,7 @@ $form = <<<HTML
                 </div> 
                 <div class="form-group d-flex flex-column">
                      <div class="white-text-color">Pseudo (définitif)</div>
-                     <input type="email" name="Pseudo" class="form-control second-main-background font-size-10 white-text-color" style="outline: 0; border:0;" required>
+                     <input type="text" name="Pseudo" class="form-control second-main-background font-size-10 white-text-color" style="outline: 0; border:0;" required>
                 </div>
                 <div class="d-flex flex-row">
                     <div class="form-group d-flex flex-column margin-right">
