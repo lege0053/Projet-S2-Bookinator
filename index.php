@@ -11,11 +11,12 @@ $genres = [];
 $years = [];
 $editeurs = [];
 $languages = [];
+$research = "";
 $livres = Livre::getAll();
 
 if( (isset($_GET['author']) && !empty($_GET['author'])) || (isset($_GET['genre']) && !empty($_GET['genre']))
 || (isset($_GET['year']) && !empty($_GET['year'])) || (isset($_GET['editeur']) && !empty($_GET['editeur']))
-|| (isset($_GET['langue']) && !empty($_GET['langue']))) {
+|| (isset($_GET['langue']) && !empty($_GET['langue'])) || (isset($_GET['research']) && !empty($_GET['research']))) {
     if(isset($_GET['author']) && !empty($_GET['author'])){
         $authors = $_GET['author'];
     }
@@ -31,7 +32,10 @@ if( (isset($_GET['author']) && !empty($_GET['author'])) || (isset($_GET['genre']
     if(isset($_GET['langue']) && !empty($_GET['langue'])){
         $languages = $_GET['langue'];
     }
-    $livres = Livre::getResearch($authors, $years, $editeurs, $genres, $languages);
+    if(isset($_GET['research']) && !empty($_GET['research'])){
+        $research = $_GET['research'];
+    }
+    $livres = Livre::getResearch($research, $authors, $years, $editeurs, $genres, $languages);
 }
 
 
@@ -42,8 +46,13 @@ $research = <<<HTML
             $header
             <form class="d-flex justify-content-center flex-column flex-fill align-items-center" action="index.php" method="get">
                 <span class="font-size-36 white-text-color">Rechercher</span>
-                <div class="form-group research-button d-flex w-50">
-                    <input type="text" name="research" class="research-button flex-fill white-background-color">
+                <div class="form-group research-button d-flex w-50 white-background-color button-no-outline border-radius-100">
+                    <button type="submit" class="button-no-outline bg-transparent margin-left">
+                        <svg width="36" height="36" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.9461 3.64285C25.5353 3.64285 29.9366 5.4659 33.1816 8.71095C36.4267 11.956 38.2497 16.3572 38.2497 20.9464C38.2497 24.7386 37.0294 28.2449 34.962 31.0972L46.5573 42.6925C47.0586 43.1865 47.35 43.855 47.3706 44.5585C47.3912 45.2621 47.1395 45.9465 46.6679 46.469C46.1963 46.9915 45.5413 47.3119 44.8393 47.3634C44.1373 47.4148 43.4425 47.1933 42.8998 46.7451L42.6922 46.5575L31.097 34.9623C28.1466 37.1049 24.5924 38.256 20.9461 38.25C16.357 38.25 11.9557 36.4269 8.71068 33.1819C5.46563 29.9368 3.64258 25.5356 3.64258 20.9464C3.64258 16.3572 5.46563 11.956 8.71068 8.71095C11.9557 5.4659 16.357 3.64285 20.9461 3.64285ZM20.9461 9.10714C17.8062 9.10714 14.7948 10.3545 12.5745 12.5748C10.3542 14.7951 9.10686 17.8064 9.10686 20.9464C9.10686 24.0864 10.3542 27.0978 12.5745 29.3181C14.7948 31.5384 17.8062 32.7857 20.9461 32.7857C24.0861 32.7857 27.0975 31.5384 29.3178 29.3181C31.5381 27.0978 32.7854 24.0864 32.7854 20.9464C32.7854 17.8064 31.5381 14.7951 29.3178 12.5748C27.0975 10.3545 24.0861 9.10714 20.9461 9.10714Z" fill="#2F2F2F"/>
+                        </svg>
+                    </button>
+                    <input type="text" name="research" class="flex-fill button-no-outline bg-transparent">
                 </div>
                 <div class="d-flex justify-content-start w-50">
                     <span class="font-size-24 white-text-color">Filtre(s) :</span>

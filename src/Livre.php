@@ -237,13 +237,95 @@ class Livre
     }
 
 
-    public static function getResearch(array $author, array $years, array $editeurs, array $genres, array $languages):array {
+    public static function getResearch(String $research, array $authors, array $years, array $editeurs, array $genres, array $languages):array {
 
-        $stat = MyPDO::getInstance()->prepare(<<<SQL
-                SELECT *
-                FROM Livre
-                ORDER BY titre
-                SQL);
+        $sql = <<<SQL
+                SELECT l.ISBN, l.titre, l.datePublication, l.nbPages, l.langue, l.description, l.prix, l.qte, l.idEditeur, l.idCouv, l.idFormat, l.idSupport
+                FROM Livre l
+                    LEFT JOIN Ecrire e ON l.ISBN = e.ISBN
+                    LEFT JOIN Auteur a ON e.idAuteur = a.idAuteur
+                    LEFT JOIN Editeur ed ON l.idEditeur = ed.idEditeur
+                    LEFT JOIN AvoirGenre ag ON ag.ISBN = l.ISBN
+                    LEFT JOIN Genre g ON ag.idGenre = g.idGenre
+                WHERE (UPPER(l.titre) LIKE UPPER('%{$research}%')
+                    OR UPPER(a.nom) LIKE UPPER('%{$research}%')
+                    OR UPPER(a.prnm) LIKE UPPER('%{$research}%')
+                    OR UPPER(l.ISBN) = UPPER('%{$research}%'))
+        SQL;
+
+        // Auteurs
+
+        if(!empty($authors)){
+            $authorSQL = " AND (";
+            for($i = 0; $i < count($authors); $i++){
+                $authorSQL .= "UPPER(a.nom) LIKE UPPER('%{$authors[$i]}%') OR UPPER(a.prnm) LIKE UPPER('%{$authors[$i]}%')";
+                if($i < count($authors)-1){
+                    $authorSQL .= " OR ";
+                }
+            }
+            $authorSQL .= ")";
+            $sql .= $authorSQL;
+        }
+
+        // Années
+
+        if(!empty($years)){
+            $yearSQL = " AND (";
+            for($i = 0; $i < count($years); $i++){
+                $yearSQL .= "l.dateParution = {$years[$i]}";
+                if($i < count($years)-1){
+                    $yearSQL .= " OR ";
+                }
+            }
+            $yearSQL .= ")";
+            $sql .= $yearSQL;
+        }
+
+        // Editeurs
+
+        if(!empty($editeurs)){
+            $editeurSQL = " AND (";
+            for($i = 0; $i < count($editeurs); $i++){
+                $editeurSQL .= "UPPER(ed.libEditeur) LIKE UPPER('%{$editeurs[$i]}%')";
+                if($i < count($editeurs)-1){
+                    $editeurSQL .= " OR ";
+                }
+            }
+            $editeurSQL .= ")";
+            $sql .= $editeurSQL;
+        }
+
+        // Genres
+
+        if(!empty($genres)){
+            $genreSQL = " AND (";
+            for($i = 0; $i < count($genres); $i++){
+                $genreSQL .= "UPPER(ed.libGenre) LIKE UPPER('%{$genres[$i]}%')";
+                if($i < count($genres)-1){
+                    $genreSQL .= " OR ";
+                }
+            }
+            $genreSQL .= ")";
+            $sql .= $genreSQL;
+        }
+
+        // Langages
+
+        if(!empty($languages)) {
+            $languageSQL = " AND (";
+            for ($i = 0; $i < count($languages); $i++) {
+                $languageSQL .= "UPPER(l.langue) = UPPER('{$languages[$i]}')";
+                if ($i < count($languages) - 1) {
+                    $languageSQL .= " OR ";
+                }
+            }
+            $languageSQL .= ")";
+            $sql .= $languageSQL;
+        }
+        $sql .= ' ORDER BY l.titre';
+
+
+        $stat = MyPDO::getInstance()->prepare($sql);
         $stat->setFetchMode(PDO::FETCH_CLASS, self::class);
         $stat->execute();
         return $stat->fetchAll();
