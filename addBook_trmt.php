@@ -43,7 +43,7 @@ if(!$exist) {
     if (!$authorId) {
         $addAuthor = $mypdo->prepare(<<<SQL
             INSERT INTO Auteur(nom, prnm, dateNais)
-            VALUES(?,?, TO_DATE('01/01/1980', 'DD/MM/YYYY'))
+            VALUES(?,?, '1980-01-01')
         SQL
         );
         $addAuthor->execute([$nomAuteur, $prenomAuteur]);
@@ -125,7 +125,7 @@ if(!$exist) {
     SQL
     );
     $req->execute([$genre]);
-    $genreId = $req->fetch()['idGenre'];
+    $genreId = $req->fetch();
     if (!$genreId) {
         $addGenre = $mypdo->prepare(<<<SQL
             INSERT INTO Genre(libGenre)
@@ -133,8 +133,9 @@ if(!$exist) {
         SQL
         );
         $addGenre->execute([$genre]);
-        $genreId = $genreId->fetchColumn()['idGenre'];
-    }
+        $genreId = $mypdo->lastInsertId();
+    }else
+        $genreId = $genreId['idGenre'];
 
     $addEcrire = $mypdo->prepare(<<<SQL
         INSERT INTO AvoirGenre(ISBN, idGenre)
