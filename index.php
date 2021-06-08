@@ -3,10 +3,37 @@ declare(strict_types=1);
 
 require "autoload.php";
 require "src/Utils.php";
+require "src/ViewResearchBook.php";
 init_php_session();
 
+$authors = [];
+$genres = [];
+$years = [];
+$editeurs = [];
+$languages = [];
+$livres = Livre::getAll();
 
-$books = [];
+if( (isset($_GET['author']) && !empty($_GET['author'])) || (isset($_GET['genre']) && !empty($_GET['genre']))
+|| (isset($_GET['year']) && !empty($_GET['year'])) || (isset($_GET['editeur']) && !empty($_GET['editeur']))
+|| (isset($_GET['langue']) && !empty($_GET['langue']))) {
+    if(isset($_GET['author']) && !empty($_GET['author'])){
+        $authors = $_GET['author'];
+    }
+    if(isset($_GET['genre']) && !empty($_GET['genre'])){
+        $genres = $_GET['genre'];
+    }
+    if(isset($_GET['year']) && !empty($_GET['year'])){
+        $years = $_GET['year'];
+    }
+    if(isset($_GET['editeur']) && !empty($_GET['editeur'])){
+        $editeurs = $_GET['editeur'];
+    }
+    if(isset($_GET['langue']) && !empty($_GET['langue'])){
+        $languages = $_GET['langue'];
+    }
+    $livres = Livre::getResearch($authors, $years, $editeurs, $genres, $languages);
+}
+
 
 $header = getIndexHeader();
 $research = <<<HTML
@@ -23,7 +50,7 @@ $research = <<<HTML
                     <div class="flex-fill">
                         <div class="d-flex flex-column flex-fill">
                             <div class="d-flex flex-fill">
-                                <select id="filter-list" class="flex-fill">
+                                <select id="filter-list" class="white-background-color flex-fill button-no-outline">
                                   <option value="author">Auteur</option>
                                   <option value="editeur">Editeur</option>
                                   <option value="genre">Genre</option>
@@ -38,7 +65,6 @@ $research = <<<HTML
                                 </div>
                             </div>
                             <div id="filters" class="d-flex flex-column flex-fill">
-                            
                             </div>
                         </div>
                         
@@ -50,6 +76,17 @@ $research = <<<HTML
 HTML;
 
 $content = <<<HTML
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-center">
+HTML;
+
+foreach ($livres as $livre){
+    $content .= printResearchBook($livre->getISBN());
+}
+
+$content .= <<<HTML
+        </div>
+    </div>
 HTML;
 
 $webPage = new WebPage("Bookinator");

@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 
 * {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: bold;
 }
 .font-size-36{
     font-size: 36px;
@@ -135,4 +137,10 @@
 .button-no-outline {
     outline: 0;
     border: 0;
+}
+
+.book-card {
+    width: 200px;
+    height: 240px;
+    margin: 30px;
 }

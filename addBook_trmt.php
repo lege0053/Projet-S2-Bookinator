@@ -87,14 +87,17 @@ if(!$exist) {
 
     // Ajout de la Couverture //
     $image = $_FILES['couverture']['tmp_name'];
-    $image = base64_encode(file_get_contents(addslashes($image)));
+    $data = fopen($image, 'rb');
+    $size = $_FILES['couverture']['size'];
+    $contents = fread($data, $size);
+    fclose($data);
 
     $addCouverture = $mypdo->prepare(<<<SQL
         INSERT INTO Couverture(png)
         VALUES(?)
     SQL
     );
-    $addCouverture->execute([$image]);
+    $addCouverture->execute([$contents]);
     $couvertureId = $mypdo->lastInsertId();
 
     var_dump($couvertureId);
