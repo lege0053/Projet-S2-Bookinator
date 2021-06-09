@@ -56,10 +56,10 @@ $form = <<<HTML
         <div class="d-flex m-5 p-5 main-background flex-column align-items-center border-radius-10 login-form justify-content-center ">
         
             <form action="addSignalement_trmt.php?$url" class="d-flex flex-column" method="post">
-                <h2 class="d-flex form-title justify-content-center white-text-color">Rédiger Une Appréciation</h2>
+                <h2 class="d-flex form-title justify-content-center white-text-color">Signalement</h2>
                 <div class="d-flex flex-column form-group ">
                     <div class="white-text-color m-0">Veuillez décrire votre problème : </div>
-                    <input type="text" name="contenu" class="form-control second-main-background " style="outline: 0; border:0;" required>
+                    <input type="text" name="contenu" class="form-control second-main-background " style="outline: 0; border:0;" maxlength="500" required>
                 </div>
                 <div class="d-flex form-group justify-content-center">
                     <button type="submit" class="font-size-20 main-color-background dark-text border-radius-5 padding-button font-weight-bold" style="outline: 0; border:0;">Envoyer</button>

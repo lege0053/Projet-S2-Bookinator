@@ -44,9 +44,7 @@ $lastSig=MyPDO::getInstance()->prepare(<<<SQL
     SQL);
 $lastSig->execute();
 $lastSig=$lastSig->fetchAll();
-var_dump($lastSig);
 $idSignalement=$lastSig[0]['idSignalement'];
-var_dump($idSignalement);
 if($isBookReport)
 {
     $req2=MyPDO::getInstance()->prepare(<<<SQL

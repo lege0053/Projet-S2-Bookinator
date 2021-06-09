@@ -49,7 +49,7 @@ $form = <<<HTML
                 </div>
                 <div class="form-group d-flex flex-column">
                     <div class="white-text-color m-0" >Commentaire</div>
-                    <input type="text" name="commentaire" class="form-control second-main-background" style="outline: 0; border:0;">
+                    <input type="text" name="commentaire" class="form-control second-main-background" style="outline: 0; border:0;" maxlength="500">
                 </div>
                 <div class="d-flex form-group justify-content-center">
                     <button type="submit" class="font-size-20 main-color-background dark-text border-radius-5 padding-button font-weight-bold" style="outline: 0; border:0;">Envoyer</button>
