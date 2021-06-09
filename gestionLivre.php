@@ -84,8 +84,7 @@ $research = <<<HTML
 HTML;
 
 $content = <<<HTML
-    <div class="container">
-        <div class="d-flex flex-wrap justify-content-center">
+    <div class="d-flex flex-column">
 HTML;
 
 foreach ($livres as $livre){
@@ -93,7 +92,6 @@ foreach ($livres as $livre){
 }
 
 $content .= <<<HTML
-        </div>
     </div>
 HTML;
 

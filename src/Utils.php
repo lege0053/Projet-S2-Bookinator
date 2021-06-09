@@ -52,7 +52,7 @@ function getIndexHeader() : String
         HTML;
         if(isAdmin()) {
             $header .= <<<HTML
-                    <a href="inscription.php" class="font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Espace Admin</a>
+                    <a href="gestionLivre.php" class="font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Espace Admin</a>
             HTML;
         }
         $header .= <<<HTML
@@ -99,7 +99,7 @@ function getHeader() : String
         HTML;
         if(isAdmin()) {
             $header .= <<<HTML
-                    <a href="inscription.php" class="font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Espace Admin</a>
+                    <a href="gestionLivre.php" class="font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Espace Admin</a>
             HTML;
         }
         $header .= <<<HTML
