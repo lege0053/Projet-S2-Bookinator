@@ -239,7 +239,7 @@ class Livre
 
     public static function getResearch(String $research, array $authors, array $years, array $editeurs, array $genres, array $languages, int $page):array {
 
-        $offset = 1 + $page * 30;
+        $offset = $page * 30;
         $amount = 30;
 
         $sql = <<<SQL
