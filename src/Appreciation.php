@@ -6,7 +6,7 @@ class Appreciation
     private int $idAppreciation;
     private String $commentaire;
     private int $note;
-    private String $date;
+    private String $dateApp;
     private int $idUtilisateur;
     private String $ISBN;
 
@@ -66,7 +66,7 @@ class Appreciation
      */
     public function getDate(): string
     {
-        return $this->date;
+        return $this->dateApp;
     }
 
     /**
@@ -87,6 +87,12 @@ class Appreciation
         return $this->note;
     }
 
+    /**
+     * Permet de déterminer si une appréciation se trouve dans la base de donnée ou non.
+     * @param $isbn
+     * @param $idUtilisateur
+     * @return bool
+     */
     public static function exist($isbn, $idUtilisateur):bool
     {
         $retour=true;

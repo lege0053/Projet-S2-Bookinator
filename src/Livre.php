@@ -237,7 +237,10 @@ class Livre
     }
 
 
-    public static function getResearch(String $research, array $authors, array $years, array $editeurs, array $genres, array $languages):array {
+    public static function getResearch(String $research, array $authors, array $years, array $editeurs, array $genres, array $languages, int $page):array {
+
+        $offset = 1 + $page * 30;
+        $amount = 30;
 
         $sql = <<<SQL
                 SELECT l.ISBN, l.titre, l.datePublication, l.nbPages, l.langue, l.description, l.prix, l.qte, l.idEditeur, l.idCouv, l.idFormat, l.idSupport
@@ -272,7 +275,7 @@ class Livre
         if(!empty($years)){
             $yearSQL = " AND (";
             for($i = 0; $i < count($years); $i++){
-                $yearSQL .= "l.dateParution = {$years[$i]}";
+                $yearSQL .= "l.datePublication = {$years[$i]}";
                 if($i < count($years)-1){
                     $yearSQL .= " OR ";
                 }
@@ -300,7 +303,7 @@ class Livre
         if(!empty($genres)){
             $genreSQL = " AND (";
             for($i = 0; $i < count($genres); $i++){
-                $genreSQL .= "UPPER(ed.libGenre) LIKE UPPER('%{$genres[$i]}%')";
+                $genreSQL .= "UPPER(g.libGenre) LIKE UPPER('%{$genres[$i]}%')";
                 if($i < count($genres)-1){
                     $genreSQL .= " OR ";
                 }
@@ -322,7 +325,7 @@ class Livre
             $languageSQL .= ")";
             $sql .= $languageSQL;
         }
-        $sql .= ' ORDER BY l.titre';
+        $sql .= ' ORDER BY l.titre LIMIT 30 OFFSET '.$offset;
 
 
         $stat = MyPDO::getInstance()->prepare($sql);
