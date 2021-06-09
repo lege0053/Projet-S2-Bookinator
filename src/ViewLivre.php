@@ -109,7 +109,7 @@ function affichageAppreciations(string $isbn):string
         </div>
         <span class='booki-link'>{$elmt->getNote()}</span>
     </div>
-    <span class='p-3 d-flex border-radius-5 second-main-background font-size-20 white-text-color' style='margin-top: 10px;'>{$elmt->getCommentaire()}</span>
+    <textarea class='p-3 d-flex border-radius-5 second-main-background font-size-20 white-text-color' cols='300' rows='6' style='margin-top: 10px;' disabled>{$elmt->getCommentaire()}</textarea>
 </div>
 ";
     }
