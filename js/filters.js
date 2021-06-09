@@ -1,6 +1,6 @@
 
 function addFilter() {
-    var types = { 'year' : "Année", 'author' : "Auteur", 'editeur' : "Editeur", 'genre' : "Genre", 'language' : "Langue"};
+    var types = { 'year' : "Année", 'author' : "Auteur", 'editeur' : "Editeur", 'genre' : "Genre", 'langue' : "Langue"};
     var filterList = document.getElementById("filter-list");
     filterType = filterList.value;
     var filterId = document.getElementById("filters").childElementCount + 1;
