@@ -86,4 +86,19 @@ class Appreciation
     {
         return $this->note;
     }
+
+    public static function exist($isbn, $idUtilisateur):bool
+    {
+        $retour=true;
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Appreciation
+                WHERE ISBN=?
+                AND idUtilisateur=?
+        SQL);
+        $req->execute([$isbn, $idUtilisateur]);
+        if(!$req->fetch())
+            $retour=false;
+        return $retour;
+    }
 }

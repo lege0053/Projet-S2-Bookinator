@@ -117,8 +117,17 @@ function affichageConnecte(string $isbn):string
     $retour="
     <div class='d-flex justify-content-md-center'>
         <div class ='d-flex flex-column flex-md-row w-75'>
-            <a href='addToPanier.php?id=$isbn' class='d-flex flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Ajouter au panier</a>
-            <a href='addCommentaire.php?id=$isbn' class='d-flex flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Rédiger une appréciation</a>
+            <a href='addToPanier.php?id=$isbn' class='d-flex flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Ajouter au panier</a>";
+
+    if(Appreciation::exist($isbn, $_SESSION['idUtilisateur']))
+    {
+        $retour.="<a href='' class='d-flex flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Merci de votre retour !</a>";
+    }
+    else
+    {
+        $retour.="<a href='addCommentaire.php?id=$isbn' class='d-flex flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Rédiger une appréciation</a>";
+    }
+    $retour.="                               
         </div>
     </div>
     ";
