@@ -165,6 +165,6 @@ class Commande
         $req->setFetchMode(PDO::FETCH_CLASS, Livre::class);
         $req->execute([$this->idCmd]);
         return $req->fetchAll();
-        
+
     }
 }
