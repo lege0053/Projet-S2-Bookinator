@@ -40,12 +40,11 @@ function printResearchBook(String $ISBN) {
 
 function printResearchBookAdmin(String $ISBN) {
     $book=Livre::createFromId($ISBN);
-
-    $authors = $book->getAuteurs();
     $tabAuteurs = $book->getAuteurs();
     $auteurs = "";
+
     for ($i = 0; $i < count($tabAuteurs); $i++) {
-        $auteurs .= "{$tabAuteurs[$i]->getNom()} {$tabAuteurs[$i]->getPrnm()}";
+        $auteurs .= "{$tabAuteurs[$i]->getPrnm()} {$tabAuteurs[$i]->getNom()}";
         if ($i < count($tabAuteurs) - 1) {
             $auteurs .= ",";
         }
@@ -53,9 +52,7 @@ function printResearchBookAdmin(String $ISBN) {
 
     $note = $book->getNoteMoyenne();
     if($note == -1)
-    {
         $note = "Aucune note";
-    }
 
     $livreHTML = <<<HTML
     <div class="d-flex flex-row main-background border-radius-5 m-4">
@@ -64,22 +61,18 @@ function printResearchBookAdmin(String $ISBN) {
        <div class="d-flex second-main-background flex-column flex-fill m-2 p-2 border-radius-5">
            <div class=" white-text-color ">{$book->getTitre()}</div>
            <div class="d-flex white-text-color"> De : {$auteurs} </div>
-           <div class="d-flex main-text-color flex-fill align-items-end">Prix : {$book->getPrix()}</div>
+           <div class="d-flex main-text-color flex-fill align-items-end">Prix : {$book->getPrix()} €</div>
        </div>
        
        <div class="d-flex flex-column align-items-end">
-            <form action="editBook.php" method="post">
-                <button type="submit" class="btn font-size-15 main-color-background dark-text border-radius-5 font-weight-bold button">Éditer</button>
-            </form>
-            <form action="deleteBook.php" method="post">
-                <button type="submit" class="btn font-size-15 bg-danger dark-text border-radius-5 font-weight-bold button">Supprimer</button>
-            </form>    
-         
+           <button type="submit" class="btn font-size-15 main-color-background dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Éditer</button>
+          
+            <button type="submit" class="btn font-size-15 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</button>
        </div>
-       
     </div>
-                    
+
     HTML;
+
 
     return $livreHTML;
 
