@@ -56,7 +56,6 @@ function printResearchBookAdmin(String $ISBN) {
 
     $livreHTML = <<<HTML
     <div class="d-flex flex-row main-background border-radius-5 m-4">
-    
        <div class=""><img height="200" src="./src/ViewCouverture.php?id={$book->getIdCouv()}" style="border-radius: 5px 0px 0px 5px;"> </div> 
        <div class="d-flex second-main-background flex-column flex-fill m-2 p-2 border-radius-5">
            <div class=" white-text-color ">{$book->getTitre()}</div>
@@ -64,10 +63,11 @@ function printResearchBookAdmin(String $ISBN) {
            <div class="d-flex main-text-color flex-fill align-items-end">Prix : {$book->getPrix()} €</div>
        </div>
        
-       <div class="d-flex flex-column align-items-end">
-           <button type="submit" class="btn font-size-15 main-color-background dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Éditer</button>
-          
-            <button type="submit" class="btn font-size-15 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</button>
+       <div class="d-flex flex-column justify-content-center  align-items-end-center">
+            <a href="editBook.php" class="btn font-size-15 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Éditer </a>
+            <form action="deleteBook_trmt.php" method="post">
+                <button type="submit" class="btn font-size-15 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</button>
+            </form>
        </div>
     </div>
 

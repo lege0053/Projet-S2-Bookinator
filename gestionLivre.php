@@ -170,11 +170,16 @@ $content = <<<HTML
             </form>
         </div>
     </div>
-    <div class="container d-flex flex-column align-items-center">
-        <div class="d-flex flex-wrap justify-content-center">
-            $booksContent
+    <div class="d-flex flex-row justify-content-center margin-topbottom-art">
+        <div class="d-flex flex-column">
+            <div class="d-flex flex-row justify-content-center">
+                <div class="d-inline-flex">
+                    <a href="addBook.php" class="btn font-size-36 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Ajouter un article</a>
+                </div>
+            </div>       
+            <div>$booksContent</div>       
+            <div class="d-flex flex-row justify-content-center">$paginator</div>
         </div>
-        $paginator
     </div>
 HTML;
 
