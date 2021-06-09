@@ -9,7 +9,7 @@ init_php_session();
 $books = [];
 
 $form = <<<HTML
-    <form class="m-2 d-flex flex-column justify-content-center align-items-center" action="addBook_trmt.php" method="post" enctype="multipart/form-data">
+    <form class="m-2 d-flex flex-column justify-content-center align-items-center" action="trmt/addBook_trmt.php" method="post" enctype="multipart/form-data">
         <div class="d-flex form-group w-100">
             <input type="file" name="couverture" class="flex-fill form-control" accept="image/png, image/jpeg" required>
         </div>
