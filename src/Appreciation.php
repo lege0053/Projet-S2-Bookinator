@@ -6,7 +6,7 @@ class Appreciation
     private int $idAppreciation;
     private String $commentaire;
     private int $note;
-    private String $date;
+    private String $dateApp;
     private int $idUtilisateur;
     private String $ISBN;
 
@@ -66,7 +66,7 @@ class Appreciation
      */
     public function getDate(): string
     {
-        return $this->date;
+        return $this->dateApp;
     }
 
     /**
