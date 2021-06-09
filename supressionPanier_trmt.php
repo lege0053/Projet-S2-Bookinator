@@ -21,8 +21,6 @@ $req->execute([$isbn]);
 $qte = $req->fetch();
 $qte=(int)($qte['qte']);
 
-var_dump($qte);
-
 if($qte > 1)
 {
     $supQte = MyPDO::getInstance()->prepare(<<<SQL
