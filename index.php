@@ -15,7 +15,18 @@ $research = "";
 $filterId = 1;
 $filterList = "";
 $livres = Livre::getAll();
+$max = count($livres);
+$page = 1;
+$booksContent = "";
+$paginator = "";
 
+if(isset($_GET['page']) && !empty($_GET['page']) && ctype_digit($_GET['page'])){
+    if(!((int)($_GET['page']) <= 0)){
+        $page = (int)($_GET['page']);
+    }
+}
+
+// Listes des Filtres ainsi que listes des livres à afficher //
 
 if( (isset($_GET['author']) && !empty($_GET['author'])) || (isset($_GET['genre']) && !empty($_GET['genre']))
 || (isset($_GET['year']) && !empty($_GET['year'])) || (isset($_GET['editeur']) && !empty($_GET['editeur']))
@@ -67,12 +78,54 @@ if( (isset($_GET['author']) && !empty($_GET['author'])) || (isset($_GET['genre']
     if(isset($_GET['research']) && !empty($_GET['research'])){
         $research = $_GET['research'];
     }
-    $livres = Livre::getResearch($research, $authors, $years, $editeurs, $genres, $languages);
+    $livres = Livre::getResearch($research, $authors, $years, $editeurs, $genres, $languages, $page-1);
+    if(count($livres) == 0){
+        $livres = $livres = Livre::getResearch($research, $authors, $years, $editeurs, $genres, $languages, 0);
+    }
 }
+
+// Contenue pour les livres //
+
+foreach ($livres as $livre){
+    $booksContent .= printResearchBook($livre->getISBN());
+}
+
+// Paginateur //
+
+$query = $_GET;
+$query['page']=$page-1;
+$pred = http_build_query($query);
+$query['page']=$page+1;
+$next = http_build_query($query);
+$query['page']=0;
+$first = http_build_query($query);
+$query['page']=intdiv($max, 30)+1;
+$last = http_build_query($query);
+
+$paginator .= <<<HTML
+                <div class='d-flex main-background justify-content-between border-radius-100 w-75 m-4' style="padding-left: 10px; padding-right: 10px;">
+                   <a class='font-size-20 p-2' href='{$_SERVER['PHP_SELF']}?$first'>
+                       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.3863 23.9998C10.7552 24.0006 10.1431 23.784 9.65295 23.3865L2.85295 17.7732C2.58629 17.5609 2.37094 17.2912 2.22293 16.9842C2.07491 16.6771 1.99805 16.3407 1.99805 15.9998C1.99805 15.659 2.07491 15.3226 2.22293 15.0155C2.37094 14.7085 2.58629 14.4388 2.85295 14.2265L9.65295 8.61318C10.0623 8.28517 10.5556 8.07876 11.0766 8.01747C11.5976 7.95618 12.1253 8.04247 12.5996 8.26651C13.0119 8.44822 13.3631 8.74475 13.6113 9.12067C13.8596 9.4966 13.9944 9.93604 13.9996 10.3865V21.6132C13.9944 22.0637 13.8596 22.5031 13.6113 22.879C13.3631 23.255 13.0119 23.5515 12.5996 23.7332C12.2185 23.9065 11.805 23.9974 11.3863 23.9998Z" fill="#D0D0D0"/>
+                        <path d="M25.3882 24.0016C24.7572 24.0023 24.1451 23.7857 23.6549 23.3882L16.8549 17.7749C16.5882 17.5626 16.3729 17.2929 16.2249 16.9859C16.0769 16.6789 16 16.3424 16 16.0016C16 15.6607 16.0769 15.3243 16.2249 15.0172C16.3729 14.7102 16.5882 14.4405 16.8549 14.2282L23.6549 8.61489C24.0643 8.28688 24.5576 8.08047 25.0785 8.01918C25.5995 7.95789 26.1272 8.04418 26.6016 8.26822C27.0138 8.44993 27.365 8.74645 27.6133 9.12238C27.8615 9.49831 27.9963 9.93775 28.0016 10.3882V21.6149C27.9963 22.0654 27.8615 22.5048 27.6133 22.8807C27.365 23.2567 27.0138 23.5532 26.6016 23.7349C26.2204 23.9082 25.8069 23.9991 25.3882 24.0016Z" fill="#D0D0D0"/>
+                        </svg>
+                   </a>
+                   <a class='font-size-20 no-decoration booki-link p-2' href='{$_SERVER['PHP_SELF']}?$pred'>Précédent</a>
+                   <span class='font-size-20 main-text-color p-2'>$page</span>
+                   <a class='font-size-20 no-decoration booki-link p-2' href='{$_SERVER['PHP_SELF']}?$next'>Suivant</a>
+                   <a class='font-size-20 p-2' href='{$_SERVER['PHP_SELF']}?$last'>
+                       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <path d="M20.6137 8.00015C21.2448 7.9994 21.8569 8.21598 22.347 8.61348L29.147 14.2268C29.4137 14.4391 29.6291 14.7088 29.7771 15.0158C29.9251 15.3229 30.002 15.6593 30.002 16.0002C30.002 16.341 29.9251 16.6774 29.7771 16.9845C29.6291 17.2915 29.4137 17.5612 29.147 17.7735L22.347 23.3868C21.9377 23.7148 21.4444 23.9212 20.9234 23.9825C20.4024 24.0438 19.8747 23.9575 19.4004 23.7335C18.9881 23.5518 18.6369 23.2553 18.3887 22.8793C18.1404 22.5034 18.0056 22.064 18.0004 21.6135L18.0004 10.3868C18.0056 9.93635 18.1404 9.4969 18.3887 9.12098C18.6369 8.74505 18.9882 8.44853 19.4004 8.26682C19.7815 8.09349 20.195 8.00262 20.6137 8.00015Z" fill="#D0D0D0"/>
+                       <path d="M6.61176 7.99844C7.24284 7.99769 7.85494 8.21427 8.3451 8.61177L15.1451 14.2251C15.4118 14.4374 15.6271 14.7071 15.7751 15.0141C15.9231 15.3211 16 15.6576 16 15.9984C16 16.3393 15.9231 16.6757 15.7751 16.9828C15.6271 17.2898 15.4118 17.5595 15.1451 17.7718L8.3451 23.3851C7.93572 23.7131 7.44243 23.9195 6.92145 23.9808C6.40047 24.0421 5.87275 23.9558 5.39843 23.7318C4.9862 23.5501 4.63498 23.2535 4.38673 22.8776C4.13847 22.5017 4.00367 22.0622 3.99843 21.6118L3.99843 10.3851C4.00367 9.93464 4.13847 9.49519 4.38673 9.11927C4.63498 8.74334 4.9862 8.44682 5.39843 8.26511C5.77959 8.09178 6.19305 8.00091 6.61176 7.99844Z" fill="#D0D0D0"/>
+                       </svg>
+                   </a>  
+               </div>
+HTML;
+
 
 
 $header = getIndexHeader();
-$research = <<<HTML
+$content = <<<HTML
     <div class="header">
         <div class="d-flex flex-column dackdrop-blur h-100">
             $header
@@ -115,26 +168,17 @@ $research = <<<HTML
             </form>
         </div>
     </div>
-HTML;
-
-$content = <<<HTML
-    <div class="container">
+    <div class="container d-flex flex-column align-items-center">
         <div class="d-flex flex-wrap justify-content-center">
-HTML;
-
-foreach ($livres as $livre){
-    $content .= printResearchBook($livre->getISBN());
-}
-
-$content .= <<<HTML
+            $booksContent
         </div>
+        $paginator
     </div>
 HTML;
 
 $webPage = new WebPage("Bookinator");
 $webPage->appendCssUrl("src/style.css");
 $webPage->appendJsUrl("src/filters.js");
-$webPage->appendContent($research);
 $webPage->appendContent($content);
 $webPage->appendContent(getFooter());
 

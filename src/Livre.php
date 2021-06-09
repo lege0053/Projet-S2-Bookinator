@@ -237,7 +237,10 @@ class Livre
     }
 
 
-    public static function getResearch(String $research, array $authors, array $years, array $editeurs, array $genres, array $languages):array {
+    public static function getResearch(String $research, array $authors, array $years, array $editeurs, array $genres, array $languages, int $page):array {
+
+        $offset = 1 + $page * 30;
+        $amount = 30;
 
         $sql = <<<SQL
                 SELECT l.ISBN, l.titre, l.datePublication, l.nbPages, l.langue, l.description, l.prix, l.qte, l.idEditeur, l.idCouv, l.idFormat, l.idSupport
@@ -322,7 +325,7 @@ class Livre
             $languageSQL .= ")";
             $sql .= $languageSQL;
         }
-        $sql .= ' ORDER BY l.titre';
+        $sql .= ' ORDER BY l.titre LIMIT 30 OFFSET '.$offset;
 
 
         $stat = MyPDO::getInstance()->prepare($sql);
