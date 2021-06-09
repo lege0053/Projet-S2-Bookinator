@@ -64,7 +64,7 @@ foreach ($panier as $livres) {
            <div class="second-main-background main-text-color font-size-15 padding-button  border-radius-5 align-items-center flex-fill  "> {$prix} € </div>
           
           
-           <a href="supression_trmt.php?ISBN={$livres->getISBN()}" class="btn font-size-15 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</a>
+           <a href="supressionPanier_trmt.php?ISBN={$livres->getISBN()}" class="btn font-size-15 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</a>
           
        </div>
        
