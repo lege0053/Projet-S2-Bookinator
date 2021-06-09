@@ -87,6 +87,12 @@ class Appreciation
         return $this->note;
     }
 
+    /**
+     * Permet de déterminer si une appréciation se trouve dans la base de donnée ou non.
+     * @param $isbn
+     * @param $idUtilisateur
+     * @return bool
+     */
     public static function exist($isbn, $idUtilisateur):bool
     {
         $retour=true;

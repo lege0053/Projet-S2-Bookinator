@@ -9,14 +9,7 @@ $id='9782723488525';
 if(isset($_GET['isbn']) && !empty($_GET['isbn']) && ctype_digit($_GET['isbn']))
     $id=$_GET['isbn'];
 
-$add = MyPDO::getInstance()->prepare(<<<SQL
-        SElECT * FROM Appreciation
-        WHERE ISBN= ?
-        AND idUtilisateur=?
-    SQL);
-$add->execute([$id, $_SESSION['idUtilisateur']]);
-$test=$add->fetch();
-if(!$test)
+if(!Appreciation::exist($id, $_SESSION['idUtilisateur']))
 {
     $req=MyPDO::getInstance()->prepare(<<<SQL
         INSERT INTO Appreciation(idAppreciation, commentaire, note, dateApp, idUtilisateur, ISBN)
