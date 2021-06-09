@@ -33,7 +33,8 @@ Répartition des pages :
 * Page de profil : Marine.  
 * Page des favoris : Maxence.  
 * Page d'un livre + ajout panier : Thibaut.  
-* Page connexion : Lucie.  
+* Page connexion : Nicolas & Lucie.  
+* Page d'inscription : Nicolas & Marine.
 
 **Mardi 8 juin :**
 Développement.  
@@ -43,3 +44,14 @@ Répartition des pages :
 * Page d'affichage du panier : Lucie.  
 * Page de changement d'email et de mot de passe : Marine.  
 * Page d'ajout de commentaire : Thibaut.  
+
+**Mercredi 9 Juin :** 
+Développement.  
+Répartition des pages : 
+* Page d'ajout des signalements : Thibaut.
+* Page gestion des livres : Marine.
+* Page d'édition d'un livre : Nicolas.
+
+Non attribués actuellement : 
+* Liste des commandes : ???
+* Info d'une commande (dérive de page panier).
