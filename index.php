@@ -151,7 +151,7 @@ $content = <<<HTML
                                   <option value="editeur">Editeur</option>
                                   <option value="genre">Genre</option>
                                   <option value="year">Année</option>
-                                  <option value="language">Langue</option>
+                                  <option value="langue">Langue</option>
                                 </select>
                                 <div class="font-size-24 border-radius-5 main-color-background square-button d-flex justify-content-center align-items-center" onclick="addFilter()">
                                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
