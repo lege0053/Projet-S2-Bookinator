@@ -243,7 +243,7 @@ class Livre
         $amount = 30;
 
         $sql = <<<SQL
-                SELECT l.ISBN, l.titre, l.datePublication, l.nbPages, l.langue, l.description, l.prix, l.qte, l.idEditeur, l.idCouv, l.idFormat, l.idSupport
+                SELECT DISTINCT l.ISBN, l.titre, l.datePublication, l.nbPages, l.langue, l.description, l.prix, l.qte, l.idEditeur, l.idCouv, l.idFormat, l.idSupport
                 FROM Livre l
                     LEFT JOIN Ecrire e ON l.ISBN = e.ISBN
                     LEFT JOIN Auteur a ON e.idAuteur = a.idAuteur
