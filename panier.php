@@ -13,29 +13,66 @@ $Commande=Utilisateur::createFromId($_SESSION['idUtilisateur'])->getPanier();
 $panier = $Commande->getLivres();
 
 $livre="";
-foreach ($panier as $livres){
-    $livre.= <<<HTML
+
+
+
+
+
+foreach ($panier as $livres) {
+
+
+    $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT qte
+                FROM Contenu 
+                WHERE ISBN=?
+
+    SQL
+    );
+    $req->execute([$livres->getISBN()]);
+    $qte = $req->fetch();
+
+    $tabAuteurs = $livres->getAuteurs();
+    $auteurs = "";
+    for ($i = 0; $i < count($tabAuteurs); $i++) {
+
+        $auteurs .= "{$tabAuteurs[$i]->getNom()} {$tabAuteurs[$i]->getPrnm()}";
+
+        if ($i < count($tabAuteurs) - 1) {
+            $auteurs .= ",";
+        }
+
+    }
+
+
+    $qteInt=(int)($qte['qte']);
+    $prix=$livres->getPrix()*$qteInt;
+
+    $livre .= <<<HTML
     <div class="d-flex flex-row main-background border-radius-5 m-4">
     
        <div class=""><img height="200" src="./src/ViewCouverture.php?id={$livres->getIdCouv()}" style="border-radius: 5px 0px 0px 5px;"> </div> 
-       <div class="second-main-background white-text-color m-2 p-2 border-radius-5">{$livres->getTitre()}</div>
+       <div class="d-flex second-main-background flex-column flex-fill m-2 p-2 border-radius-5">
+           <div class=" white-text-color ">{$livres->getTitre()}</div>
+           <div class="d-flex white-text-color"> De : {$auteurs} </div>
+           <div class=" main-text-color ">Quantité : {$qte['qte']}</div>
+           <div class="d-flex white-text-color flex-fill align-items-end">Langue : {$livres->getLangue()}</div>
+       </div>
        
        
-       <div class="d-flex flex-column align-items-center">
-           <div class="second-main-background booki-link border-radius-5 m-3 p-3 flex-fill">{$livres->getPrix()} € </div>
+       <div class="d-flex flex-column align-items-end">
+           <div class="second-main-background main-text-color border-radius-5 m-3 p-3 flex-fill">{$prix} € </div>
           
             <button type="submit" class="btn font-size-15 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</button>
          
        </div>
        
-       
-       
     </div>
   
 
 HTML;
-
 }
+
+
 
 $html=<<<HTML
 <div class="d-flex flex-row justify-content-center margin-topbottom-art">
@@ -64,7 +101,7 @@ $html=<<<HTML
     <div class="d-flex flex-column">
         <div class="d-flex flex-row">
             <div class="d-flex flex-grow-1 main-color-background padding-button border-radius-5 font-weight-bold justify-content-center">
-                <div class="d-flex font-size-36 dark-text align-self-center">Panier</div>
+                <div class="d-flex font-size-36 dark-text ">Panier</div>
                 <form action="" method="post">
                     <button type="submit" class="btn font-size-15 bg-danger dark-text border-radius-5 padding-button font-weight-bold button">Vider</button>
                 </form>
