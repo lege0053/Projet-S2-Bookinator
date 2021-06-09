@@ -14,8 +14,7 @@ $languages = [];
 $research = "";
 $filterId = 1;
 $filterList = "";
-$livres = Livre::getAll();
-$max = count($livres);
+$livres = Livre::getResearch($research, $authors, $years, $editeurs, $genres, $languages, 0);
 $page = 1;
 $booksContent = "";
 $paginator = "";
@@ -23,6 +22,7 @@ $paginator = "";
 if(isset($_GET['page']) && !empty($_GET['page']) && ctype_digit($_GET['page'])){
     if(!((int)($_GET['page']) <= 0)){
         $page = (int)($_GET['page']);
+        $livres = Livre::getResearch($research, $authors, $years, $editeurs, $genres, $languages, $page-1);
     }
 }
 
@@ -79,10 +79,12 @@ if( (isset($_GET['author']) && !empty($_GET['author'])) || (isset($_GET['genre']
         $research = $_GET['research'];
     }
     $livres = Livre::getResearch($research, $authors, $years, $editeurs, $genres, $languages, $page-1);
+
     if(count($livres) == 0){
         $livres = $livres = Livre::getResearch($research, $authors, $years, $editeurs, $genres, $languages, 0);
     }
 }
+$max = count($livres);
 
 // Contenue pour les livres //
 
@@ -97,7 +99,7 @@ $query['page']=$page-1;
 $pred = http_build_query($query);
 $query['page']=$page+1;
 $next = http_build_query($query);
-$query['page']=0;
+$query['page']=1;
 $first = http_build_query($query);
 $query['page']=intdiv($max, 30)+1;
 $last = http_build_query($query);
