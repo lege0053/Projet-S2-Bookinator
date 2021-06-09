@@ -272,7 +272,7 @@ class Livre
         if(!empty($years)){
             $yearSQL = " AND (";
             for($i = 0; $i < count($years); $i++){
-                $yearSQL .= "l.dateParution = {$years[$i]}";
+                $yearSQL .= "l.datePublication = {$years[$i]}";
                 if($i < count($years)-1){
                     $yearSQL .= " OR ";
                 }
@@ -300,7 +300,7 @@ class Livre
         if(!empty($genres)){
             $genreSQL = " AND (";
             for($i = 0; $i < count($genres); $i++){
-                $genreSQL .= "UPPER(ed.libGenre) LIKE UPPER('%{$genres[$i]}%')";
+                $genreSQL .= "UPPER(g.libGenre) LIKE UPPER('%{$genres[$i]}%')";
                 if($i < count($genres)-1){
                     $genreSQL .= " OR ";
                 }

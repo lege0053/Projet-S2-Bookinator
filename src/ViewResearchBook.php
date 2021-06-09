@@ -10,6 +10,7 @@ function printResearchBook(String $ISBN) {
     $note = $book->getNoteMoyenne();
     if($note == -1)
         $note = "Aucune note";
+
     $livreHTML = <<<HTML
         <a href="./article.php?idArticle=$ISBN" class="no-decoration dark-text border-radius-5 main-background d-flex flex-column book-card">
             <div class="d-flex">

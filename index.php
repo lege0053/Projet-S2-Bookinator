@@ -12,25 +12,57 @@ $years = [];
 $editeurs = [];
 $languages = [];
 $research = "";
+$filterId = 1;
+$filterList = "";
 $livres = Livre::getAll();
+
 
 if( (isset($_GET['author']) && !empty($_GET['author'])) || (isset($_GET['genre']) && !empty($_GET['genre']))
 || (isset($_GET['year']) && !empty($_GET['year'])) || (isset($_GET['editeur']) && !empty($_GET['editeur']))
 || (isset($_GET['langue']) && !empty($_GET['langue'])) || (isset($_GET['research']) && !empty($_GET['research']))) {
     if(isset($_GET['author']) && !empty($_GET['author'])){
         $authors = $_GET['author'];
+
+        foreach($authors as $author){
+            $value = $author;
+            $filterList .= "<div id='$filterId' class='d-flex flex-row' style='margin-top: 3px;'> <div class='border-radius-5 margin-left margin-right w-25 white-background-color font-size-20 d-flex justify-content-center align-items-center'>Auteur</div> <input value='$value' type='text' name='author[]'class='border-radius-5 margin-right flex-fill white-background-color d-flex justify-content-center align-items-center button-no-outline'> <div class='font-size-24 border-radius-5 main-color-background square-button d-flex justify-content-center align-items-center' onClick='removeFilter(\"$filterId\")'> <svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><rect width='48' height='48' rx='5' fill='#E1534A'/><path d='M18.801 29.296C18.097 29.296 17.505 29.072 17.025 28.624C16.577 28.176 16.353 27.6 16.353 26.896C16.353 26.16 16.577 25.568 17.025 25.12C17.505 24.672 18.097 24.448 18.801 24.448H29.505C30.209 24.448 30.785 24.672 31.233 25.12C31.681 25.568 31.905 26.16 31.905 26.896C31.905 27.6 31.681 28.176 31.233 28.624C30.785 29.072 30.209 29.296 29.505 29.296H18.801Z' fill='#2F2F2F'/></svg></div> </div>";
+            $filterId +=1;
+        }
     }
     if(isset($_GET['genre']) && !empty($_GET['genre'])){
         $genres = $_GET['genre'];
+
+        foreach($genres as $genre){
+            $value = $genre;
+            $filterList .= "<div id='$filterId' class='d-flex flex-row' style='margin-top: 3px;'> <div class='border-radius-5 margin-left margin-right w-25 white-background-color font-size-20 d-flex justify-content-center align-items-center'>Genre</div> <input value='$value' type='text' name='genre[]'class='border-radius-5 margin-right flex-fill white-background-color d-flex justify-content-center align-items-center button-no-outline'> <div class='font-size-24 border-radius-5 main-color-background square-button d-flex justify-content-center align-items-center' onClick='removeFilter(\"$filterId\")'> <svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><rect width='48' height='48' rx='5' fill='#E1534A'/><path d='M18.801 29.296C18.097 29.296 17.505 29.072 17.025 28.624C16.577 28.176 16.353 27.6 16.353 26.896C16.353 26.16 16.577 25.568 17.025 25.12C17.505 24.672 18.097 24.448 18.801 24.448H29.505C30.209 24.448 30.785 24.672 31.233 25.12C31.681 25.568 31.905 26.16 31.905 26.896C31.905 27.6 31.681 28.176 31.233 28.624C30.785 29.072 30.209 29.296 29.505 29.296H18.801Z' fill='#2F2F2F'/></svg></div> </div>";
+            $filterId +=1;
+        }
     }
     if(isset($_GET['year']) && !empty($_GET['year'])){
         $years = $_GET['year'];
+
+        foreach($years as $year){
+            $value = $year;
+            $filterList .= "<div id='$filterId' class='d-flex flex-row' style='margin-top: 3px;'> <div class='border-radius-5 margin-left margin-right w-25 white-background-color font-size-20 d-flex justify-content-center align-items-center'>Année</div> <input value='$value' type='text' name='year[]'class='border-radius-5 margin-right flex-fill white-background-color d-flex justify-content-center align-items-center button-no-outline'> <div class='font-size-24 border-radius-5 main-color-background square-button d-flex justify-content-center align-items-center' onClick='removeFilter(\"$filterId\")'> <svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><rect width='48' height='48' rx='5' fill='#E1534A'/><path d='M18.801 29.296C18.097 29.296 17.505 29.072 17.025 28.624C16.577 28.176 16.353 27.6 16.353 26.896C16.353 26.16 16.577 25.568 17.025 25.12C17.505 24.672 18.097 24.448 18.801 24.448H29.505C30.209 24.448 30.785 24.672 31.233 25.12C31.681 25.568 31.905 26.16 31.905 26.896C31.905 27.6 31.681 28.176 31.233 28.624C30.785 29.072 30.209 29.296 29.505 29.296H18.801Z' fill='#2F2F2F'/></svg></div> </div>";
+            $filterId +=1;
+        }
     }
     if(isset($_GET['editeur']) && !empty($_GET['editeur'])){
         $editeurs = $_GET['editeur'];
+        foreach($editeurs as $editeur){
+            $value = $editeur;
+            $filterList .= "<div id='$filterId' class='d-flex flex-row' style='margin-top: 3px;'> <div class='border-radius-5 margin-left margin-right w-25 white-background-color font-size-20 d-flex justify-content-center align-items-center'>Editeur</div> <input value='$value' type='text' name='editeur[]'class='border-radius-5 margin-right flex-fill white-background-color d-flex justify-content-center align-items-center button-no-outline'> <div class='font-size-24 border-radius-5 main-color-background square-button d-flex justify-content-center align-items-center' onClick='removeFilter(\"$filterId\")'> <svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><rect width='48' height='48' rx='5' fill='#E1534A'/><path d='M18.801 29.296C18.097 29.296 17.505 29.072 17.025 28.624C16.577 28.176 16.353 27.6 16.353 26.896C16.353 26.16 16.577 25.568 17.025 25.12C17.505 24.672 18.097 24.448 18.801 24.448H29.505C30.209 24.448 30.785 24.672 31.233 25.12C31.681 25.568 31.905 26.16 31.905 26.896C31.905 27.6 31.681 28.176 31.233 28.624C30.785 29.072 30.209 29.296 29.505 29.296H18.801Z' fill='#2F2F2F'/></svg></div> </div>";
+            $filterId +=1;
+        }
     }
     if(isset($_GET['langue']) && !empty($_GET['langue'])){
         $languages = $_GET['langue'];
+
+        foreach($languages as $language){
+            $value = $language;
+            $filterList .= "<div id='$filterId' class='d-flex flex-row' style='margin-top: 3px;'> <div class='border-radius-5 margin-left margin-right w-25 white-background-color font-size-20 d-flex justify-content-center align-items-center'>Langue</div> <input value='$value' type='text' name='language[]'class='border-radius-5 margin-right flex-fill white-background-color d-flex justify-content-center align-items-center button-no-outline'> <div class='font-size-24 border-radius-5 main-color-background square-button d-flex justify-content-center align-items-center' onClick='removeFilter(\"$filterId\")'> <svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><rect width='48' height='48' rx='5' fill='#E1534A'/><path d='M18.801 29.296C18.097 29.296 17.505 29.072 17.025 28.624C16.577 28.176 16.353 27.6 16.353 26.896C16.353 26.16 16.577 25.568 17.025 25.12C17.505 24.672 18.097 24.448 18.801 24.448H29.505C30.209 24.448 30.785 24.672 31.233 25.12C31.681 25.568 31.905 26.16 31.905 26.896C31.905 27.6 31.681 28.176 31.233 28.624C30.785 29.072 30.209 29.296 29.505 29.296H18.801Z' fill='#2F2F2F'/></svg></div> </div>";
+            $filterId +=1;
+        }
     }
     if(isset($_GET['research']) && !empty($_GET['research'])){
         $research = $_GET['research'];
@@ -52,14 +84,14 @@ $research = <<<HTML
                         <path d="M20.9461 3.64285C25.5353 3.64285 29.9366 5.4659 33.1816 8.71095C36.4267 11.956 38.2497 16.3572 38.2497 20.9464C38.2497 24.7386 37.0294 28.2449 34.962 31.0972L46.5573 42.6925C47.0586 43.1865 47.35 43.855 47.3706 44.5585C47.3912 45.2621 47.1395 45.9465 46.6679 46.469C46.1963 46.9915 45.5413 47.3119 44.8393 47.3634C44.1373 47.4148 43.4425 47.1933 42.8998 46.7451L42.6922 46.5575L31.097 34.9623C28.1466 37.1049 24.5924 38.256 20.9461 38.25C16.357 38.25 11.9557 36.4269 8.71068 33.1819C5.46563 29.9368 3.64258 25.5356 3.64258 20.9464C3.64258 16.3572 5.46563 11.956 8.71068 8.71095C11.9557 5.4659 16.357 3.64285 20.9461 3.64285ZM20.9461 9.10714C17.8062 9.10714 14.7948 10.3545 12.5745 12.5748C10.3542 14.7951 9.10686 17.8064 9.10686 20.9464C9.10686 24.0864 10.3542 27.0978 12.5745 29.3181C14.7948 31.5384 17.8062 32.7857 20.9461 32.7857C24.0861 32.7857 27.0975 31.5384 29.3178 29.3181C31.5381 27.0978 32.7854 24.0864 32.7854 20.9464C32.7854 17.8064 31.5381 14.7951 29.3178 12.5748C27.0975 10.3545 24.0861 9.10714 20.9461 9.10714Z" fill="#2F2F2F"/>
                         </svg>
                     </button>
-                    <input type="text" name="research" class="flex-fill button-no-outline bg-transparent">
+                    <input type="text" name="research" class="flex-fill button-no-outline bg-transparent" value="$research">
                 </div>
                 <div class="d-flex justify-content-start w-50">
                     <span class="font-size-24 white-text-color">Filtre(s) :</span>
                     <div class="flex-fill">
                         <div class="d-flex flex-column flex-fill">
                             <div class="d-flex flex-fill">
-                                <select id="filter-list" class="white-background-color flex-fill button-no-outline">
+                                <select id="filter-list" class="margin-left margin-right white-background-color flex-fill button-no-outline border-radius-5">
                                   <option value="author">Auteur</option>
                                   <option value="editeur">Editeur</option>
                                   <option value="genre">Genre</option>
@@ -74,6 +106,7 @@ $research = <<<HTML
                                 </div>
                             </div>
                             <div id="filters" class="d-flex flex-column flex-fill">
+                                $filterList
                             </div>
                         </div>
                         
