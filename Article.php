@@ -6,18 +6,30 @@ require "src/Utils.php";
 require "src/ViewLivre.php";
 init_php_session();
 
-$id='9782723488525';
+$id='';
 if(isset($_GET['idArticle']) && !empty($_GET['idArticle']) && ctype_digit($_GET['idArticle']))
     $id=$_GET['idArticle'];
 
-$webPage = new WebPage("Bookinator - ".Livre::createFromId($id)->getTitre());
-$webPage->appendContent(getHeader());
-$webPage->appendCssUrl("src/style.css");
+try{
+    if(Livre::createFromId($id)->getQte()==0)
+    {
+        header('Location: index.php');
+    }
+    else
+    {
+        $webPage = new WebPage("Bookinator - ".Livre::createFromId($id)->getTitre());
+        $webPage->appendContent(getHeader());
+        $webPage->appendCssUrl("src/style.css");
 
-$webPage->appendContent(affichageLivre($id));
-if(isLogged())
-    $webPage->appendContent(affichageConnecte($id));
-$webPage->appendContent(affichageAppreciations($id));
+        $webPage->appendContent(affichageLivre($id));
+        if(isLogged())
+            $webPage->appendContent(affichageConnecte($id));
+        $webPage->appendContent(affichageAppreciations($id));
 
-$webPage->appendContent(getFooter());
-echo $webPage->toHTML();
+        $webPage->appendContent(getFooter());
+        echo $webPage->toHTML();
+    }
+}catch(Exception $e)
+{
+    header('Location: index.php');
+}
