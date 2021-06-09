@@ -10,7 +10,7 @@ function affichageLivre(string $isbn):string
     $nomsAuteurs='';
     for($i=0; $i<count($listeAuteur);$i++)
     {
-        $nomsAuteurs.="<a href='' class='booki-link'>{$listeAuteur[$i]->getNom()} {$listeAuteur[$i]->getPrnm()}</a>";
+        $nomsAuteurs.="<a href='index.php?author[]={$listeAuteur[$i]->getNom()}' class='booki-link'>{$listeAuteur[$i]->getNom()} {$listeAuteur[$i]->getPrnm()}</a>";
         if($i!=count($listeAuteur)-1 && count($listeAuteur)!=1)
             $nomsAuteurs.=", ";
     }
@@ -20,7 +20,7 @@ function affichageLivre(string $isbn):string
     $nomsGenres='';
     for($i=0; $i<count($listeGenre);$i++)
     {
-        $nomsGenres.="<a href='' class='booki-link'>{$listeGenre[$i]->getLibGenre()}</a>";
+        $nomsGenres.="<a href='index.php?genre[]={$listeGenre[$i]->getLibGenre()}' class='booki-link'>{$listeGenre[$i]->getLibGenre()}</a>";
         if($i!=count($listeGenre)-1 && count($listeGenre)!=1)
             $nomsGenres.=", ";
     }
@@ -51,12 +51,12 @@ function affichageLivre(string $isbn):string
         <table>
             <tr>
                 <td>Prix</td>
-                <td class='booki-link'>{$livre->getPrix()} €</td>
+                <td class='main-text-color'>{$livre->getPrix()} €</td>
              
             </tr>
             <tr>
                 <td>Éditeur</td>
-                <td><a href='' class='booki-link'>$editeur</a></td>
+                <td><a href='index.php?editeur[]=$editeur' class='booki-link'>$editeur</a></td>
             </tr>
             <tr>
                 <td>Auteur</td>
@@ -64,7 +64,7 @@ function affichageLivre(string $isbn):string
             </tr>
             <tr>
                 <td>Année de publication</td>
-                <td class='booki-link'>{$livre->getDatePublication()}</td>               
+                <td><a href='index.php?year[]={$livre->getDatePublication()}'  class='booki-link'>{$livre->getDatePublication()}</a></td>               
             </tr>
             <tr>
                 <td>Genre</td>
@@ -72,7 +72,7 @@ function affichageLivre(string $isbn):string
             </tr>
             <tr>
                <td>Langue</td>
-               <td><a href='' class='booki-link'>{$livre->getLangue()}</a></td>               
+               <td><a href='index.php?langue[]={$livre->getLangue()}' class='booki-link'>{$livre->getLangue()}</a></td>               
             </tr>
             <tr>
                 <td>ISBN</td>
@@ -83,7 +83,7 @@ function affichageLivre(string $isbn):string
         <span>Description :</span>
         <span class='p-3 border-radius-10 description-background description-text'>{$livre->getDescription()}</span>
     </div>
-    <img alt='' src='./src/ViewCouverture.php?id={$livre->getIdCouv()}'>
+    <img alt='' src='./src/ViewCouverture.php?id={$livre->getIdCouv()}' height='560'>
 </div>
 ";
     return $retour;
