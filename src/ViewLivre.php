@@ -28,6 +28,10 @@ function affichageLivre(string $isbn):string
 
     $editeur=Editeur::createFromId($livre->getIdEditeur())->getLibEditeur();
 
+    $favori='<td></td>';
+    if(isLogged())
+        $favori="<td><a href='addFavoris_trmt.php?isbn=$isbn' class='d-flex justify-content-center flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button' style='height:50px; width: 50px;'><3</a></td>";
+
 
     $retour="
 <div class='d-flex flex-column-reverse flex-md-row font-size-24 align-items-center justify-content-md-center margin-topbottom-art'>
@@ -47,7 +51,8 @@ function affichageLivre(string $isbn):string
         <table>
             <tr>
                 <td>Prix</td>
-                <td class='d-flex flex-fill booki-link'>{$livre->getPrix()} €</td>
+                <td class='booki-link'>{$livre->getPrix()} €</td>
+             
             </tr>
             <tr>
                 <td>Éditeur</td>
@@ -55,23 +60,24 @@ function affichageLivre(string $isbn):string
             </tr>
             <tr>
                 <td>Auteur</td>
-                <td>$nomsAuteurs</td>
+                <td>$nomsAuteurs</td>            
             </tr>
             <tr>
                 <td>Année de publication</td>
-                <td class='booki-link'>{$livre->getDatePublication()}</td>
+                <td class='booki-link'>{$livre->getDatePublication()}</td>               
             </tr>
             <tr>
                 <td>Genre</td>
-                <td>$nomsGenres</td>
+                <td>$nomsGenres</td>                
             </tr>
             <tr>
                <td>Langue</td>
-               <td><a href='' class='booki-link'>{$livre->getLangue()}</a></td>
+               <td><a href='' class='booki-link'>{$livre->getLangue()}</a></td>               
             </tr>
             <tr>
                 <td>ISBN</td>
                 <td class='booki-link'>{$livre->getISBN()}</td>
+                $favori
             </tr>
         </table>
         <span>Description :</span>
@@ -115,8 +121,8 @@ function affichageAppreciations(string $isbn):string
 function affichageConnecte(string $isbn):string
 {
     $retour="
-    <div class='d-flex justify-content-md-center'>
-        <div class ='d-flex flex-column flex-md-row w-75'>
+    <div class='d-flex justify-content-center'>
+        <div class ='d-flex flex-column  flex-md-row w-75'>
             <a href='addToPanier.php?id=$isbn' class='d-flex flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Ajouter au panier</a>";
 
     if(Appreciation::exist($isbn, $_SESSION['idUtilisateur']))
