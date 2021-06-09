@@ -45,19 +45,18 @@ $form = <<<HTML
                 <h2 class="d-flex form-title justify-content-center white-text-color">Rédiger Une Appréciation</h2>
                 <div class="d-flex flex-column form-group ">
                     <div class="white-text-color m-0">Note</div>
-                    <input type="number" name="note" min="0" max="5" step="1" class="form-control second-main-background " style="outline: 0; border:0;" required>
+                    <input type="number" name="note" min="0" max="5" step="1" class="form-control second-main-background " style="outline: 0; border:0; color:black;" required>
                 </div>
                 <div class="form-group d-flex flex-column">
                     <div class="white-text-color m-0" >Commentaire</div>
-                    <input type="text" name="commentaire" class="form-control second-main-background" style="outline: 0; border:0;" maxlength="500">
+                    <textarea name="commentaire" class="form-control second-main-background" style="outline: 0; border:0; color:black;" maxlength="500" cols="300" rows="20"></textarea>
                 </div>
                 <div class="d-flex form-group justify-content-center">
                     <button type="submit" class="font-size-20 main-color-background dark-text border-radius-5 padding-button font-weight-bold" style="outline: 0; border:0;">Envoyer</button>
                 </div>
             </form>
         </div>
-
- </div>  
+ </div>
 HTML;
 
 
