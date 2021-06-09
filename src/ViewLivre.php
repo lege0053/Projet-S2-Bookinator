@@ -41,7 +41,7 @@ function affichageLivre(string $isbn):string
 
     if($livre->getNoteMoyenne()!=-1)
         $retour.="
-            <span class='booki-link'>({$livre->getNbAppreciations()} avis) {$livre->getNoteMoyenne()}/5</span>";
+            <a href='#avis' class='booki-link'>({$livre->getNbAppreciations()} avis) {$livre->getNoteMoyenne()}/5</a>";
     else
         $retour.="
             <span class='booki-link'>({$livre->getNbAppreciations()} avis) Aucune note</span>";
@@ -93,7 +93,7 @@ function affichageAppreciations(string $isbn):string
 {
     $livre=Livre::createFromId($isbn);
     $listeAppreciations=$livre->getAppreciations();
-    $retour="<div class='d-flex flex-column'>";
+    $retour="<div id='avis' class='d-flex flex-column'>";
     foreach ($listeAppreciations as $elmt)
     {
         $utilisateur=Utilisateur::createFromId($elmt->getIdUtilisateur());
