@@ -16,5 +16,12 @@ $supPanier = MyPDO::getInstance()->prepare(<<<SQL
     SQL);
 $supPanier->execute([$user]);
 
+$req2 = MyPDO::getInstance()->prepare(<<<SQL
+            UPDATE Commande
+            SET prixCmd=?
+            WHERE idCmd=?
+SQL);
+$req2->execute([0, $user]);
+
 header('Location: panier.php');
 
