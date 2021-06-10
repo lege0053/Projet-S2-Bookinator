@@ -43,7 +43,7 @@ $form = <<<HTML
 
         <div class="d-flex m-5 p-5 main-background flex-column align-items-center border-radius-10 login-form justify-content-center ">
         
-            <form action="addCommentaire_trmt.php" class="d-flex flex-column" method="post">
+            <form action="trmt/addCommentaire_trmt.php" class="d-flex flex-column" method="post">
                 <h2 class="d-flex form-title justify-content-center white-text-color">Rédiger Une Appréciation</h2>
                 <div class="d-flex flex-column form-group ">
                     <div class="white-text-color m-0">Note</div>
