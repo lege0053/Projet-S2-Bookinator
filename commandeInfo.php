@@ -86,7 +86,7 @@ $html = <<<HTML
 <div class="d-flex flex-row justify-content-center margin-topbottom-art">
     <!--Bouton retour-->
     <div class="d-flex flex-column align-items-start padding-button">
-        <a href="index.php">
+        <div onclick="history.back()">
             <svg width="60" height="60" viewBox="0 0 108 108" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d)">
                     <rect x="4" width="100" height="100" rx="50" fill="#E1B74A"/>
@@ -104,7 +104,7 @@ $html = <<<HTML
                     </filter>
                 </defs>
             </svg>
-        </a>
+        </div>
         <div class="d-flex flex-column w-100 justify-content-center"  style="margin-bottom: 30px;"> 
             <div class="d-flex flex-column flex-fill main-background padding-button h-100 border-radius-10 container p-3 m-0">
                 <div class="row p-2">
