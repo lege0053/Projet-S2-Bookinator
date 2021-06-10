@@ -161,7 +161,7 @@ function affichageConnecte(string $isbn):string
 {
     $retour="
     <div class='d-flex justify-content-center'>
-        <div class ='d-flex flex-column  flex-md-row w-75'>
+        <div class ='d-flex flex-column flex-md-row w-75 pb-4'>
             <a href='addToPanier.php?id=$isbn' class='justify-content-center d-flex flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Ajouter au panier</a>";
 
     if(Appreciation::exist($isbn, $_SESSION['idUtilisateur']))

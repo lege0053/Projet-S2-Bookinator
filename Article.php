@@ -24,7 +24,7 @@ try{
         $webPage->appendContent(affichageLivre($id));
         if(isLogged())
             $webPage->appendContent(affichageConnecte($id));
-        $webPage->appendContent(affichageAppreciations($id));
+            $webPage->appendContent(affichageAppreciations($id));
 
         $webPage->appendContent(getFooter());
         echo $webPage->toHTML();
