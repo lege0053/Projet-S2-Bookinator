@@ -71,6 +71,22 @@ class Format
     }
 
     /**
+     * Retourne la liste de tous les Format.
+     * @return array
+     */
+    public static function getAll() : array
+    {
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+            SELECT * 
+            FROM Format
+            ORDER BY libFormat
+        SQL);
+        $req->setFetchMode(PDO::FETCH_CLASS, Format::class );
+        $req->execute();
+        return $req->fetchAll();
+    }
+
+    /**
      * Retourne sous formes d'instance de livre tout les livres de ce format.
      * @return array
      * @throws Exception

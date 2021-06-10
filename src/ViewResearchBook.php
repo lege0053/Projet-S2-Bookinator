@@ -24,8 +24,11 @@ function printResearchBook(String $ISBN) {
                 <span>{$book->getTitre()}</span>
                 <span>De : 
     HTML;
-    foreach($authors as $author){
-        $livreHTML .= $author->getPrnm()." ".$author->getNom();
+    for($i = 0; $i < count($authors); $i++){
+        $livreHTML .= $authors[$i]->getPrnm()." ".$authors[$i]->getNom();
+        if($i < count($authors) -1){
+            $livreHTML .= ", ";
+        }
     }
     $livreHTML .= <<<HTML
                 </span>

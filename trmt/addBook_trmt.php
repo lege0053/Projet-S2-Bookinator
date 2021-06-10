@@ -1,25 +1,37 @@
 <?php
 declare(strict_types=1);
 
-require 'autoload.php';
+require '../autoload.php';
+require '../src/Utils.php';
+
+init_php_session();
+
+if(!isLogged()){
+    header('Location: index.php');
+}
+if(!isAdmin()){
+    header('Location: index.php');
+}
 
 $isbn = $_POST['isbn'];
 $titre = $_POST['titre'];
 $prix = $_POST['prix'];
 $nbPages = $_POST['nbPages'];
 $editeur = $_POST['editeur'];
-$nomAuteur = $_POST['nomAuteur'];
-$prenomAuteur = $_POST['prenomAuteur'];
+$nomAuteurList = $_POST['nomAuteur'];
+$prenomAuteurList = $_POST['prenomAuteur'];
 $datePublication = $_POST['datePublication'];
-$genre = $_POST['genre'];
+$genreList = $_POST['genre'];
 $langue = $_POST['langue'];
 $description = $_POST['description'];
 $idFormat = $_POST['format'];
 $idSupport = $_POST['support'];
+$qte = $_POST['qte'];
 
 $mypdo = MyPDO::getInstance();
 
-$authorId = 1;
+$authorId = [];
+$genreId = [];
 $editeurId = 1;
 $couvertureId = 1;
 
@@ -32,30 +44,33 @@ $req->execute([$isbn]);
 $exist = $req->fetch();
 
 if(!$exist) {
-    $req = $mypdo->prepare(<<<SQL
-        SELECT idAuteur FROM Auteur
-        WHERE UPPER(nom) = UPPER(?)
-        AND UPPER(prnm) = UPPER(?)
-    SQL
-    );
-    $req->execute([$nomAuteur, $prenomAuteur]);
-    $authorId = $req->fetch();
-    if (!$authorId) {
-        $addAuthor = $mypdo->prepare(<<<SQL
-            INSERT INTO Auteur(nom, prnm, dateNais)
-            VALUES(?,?, '1980-01-01')
-        SQL
-        );
-        $addAuthor->execute([$nomAuteur, $prenomAuteur]);
-
+    for($i = 0; $i < count($nomAuteurList); $i++)
+    {
         $req = $mypdo->prepare(<<<SQL
         SELECT idAuteur FROM Auteur
         WHERE UPPER(nom) = UPPER(?)
         AND UPPER(prnm) = UPPER(?)
-        SQL
-        );
-        $req->execute([$nomAuteur, $prenomAuteur]);
-        $authorId = $req->fetch();
+        SQL);
+        $req->execute([$nomAuteurList[$i], $prenomAuteurList[$i]]);
+        $idExist = $req->fetch();
+        if (!$idExist) {
+            $addAuthor = $mypdo->prepare(<<<SQL
+            INSERT INTO Auteur(nom, prnm, dateNais)
+            VALUES(?,?, '1980-01-01')
+            SQL);
+
+            $addAuthor->execute([$nomAuteurList[$i], $prenomAuteurList[$i]]);
+
+            $req = $mypdo->prepare(<<<SQL
+            SELECT idAuteur FROM Auteur
+            WHERE UPPER(nom) = UPPER(?)
+            AND UPPER(prnm) = UPPER(?)
+            SQL);
+            $req->execute([$nomAuteurList[$i], $prenomAuteurList[$i]]);
+            $authorId[] = $idExist['idAuteur'];
+        }else{
+            $authorId[] = $idExist['idAuteur'];
+        }
     }
 
 
@@ -107,42 +122,56 @@ if(!$exist) {
         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     SQL
     );
-    $addLivre->execute([$isbn, $titre, $datePublication, $nbPages, $langue, $description, $prix, 50, $editeurId['idEditeur'], $couvertureId, $idFormat, $idSupport]);
+    $addLivre->execute([$isbn, $titre, $datePublication, $nbPages, $langue, $description, $prix, $qte, $editeurId['idEditeur'], $couvertureId, $idFormat, $idSupport]);
 
     // Ajout Ecrire //
-    $addEcrire = $mypdo->prepare(<<<SQL
+
+    for($i = 0; $i < count($nomAuteurList); $i++)
+    {
+
+        $addEcrire = $mypdo->prepare(<<<SQL
         INSERT INTO Ecrire(ISBN, idAuteur)
         VALUES(?, ?)
-    SQL
-    );
-    $addEcrire->execute([$isbn, $authorId['idAuteur']]);
+        SQL);
+        $addEcrire->execute([$isbn, $authorId[$i]]);
+    }
 
 
     // Ajout Genre //
 
-    $req = $mypdo->prepare(<<<SQL
+    for($i = 0; $i < count($genreList); $i++)
+    {
+        $req = $mypdo->prepare(<<<SQL
         SELECT idGenre FROM Genre
         WHERE UPPER(libGenre) = UPPER(?)
-    SQL
-    );
-    $req->execute([$genre]);
-    $genreId = $req->fetch();
-    if (!$genreId) {
-        $addGenre = $mypdo->prepare(<<<SQL
+        SQL);
+        $req->execute([$genreList[$i]]);
+        $genreExist = $req->fetch();
+
+        if (!$genreExist) {
+            $addGenre = $mypdo->prepare(<<<SQL
             INSERT INTO Genre(libGenre)
             VALUES(?)
         SQL
-        );
-        $addGenre->execute([$genre]);
-        $genreId = $mypdo->lastInsertId();
-    }else
-        $genreId = $genreId['idGenre'];
+            );
+            $addGenre->execute([$genreList[$i]]);
 
-    $addEcrire = $mypdo->prepare(<<<SQL
+            $req = $mypdo->prepare(<<<SQL
+            SELECT idGenre FROM Genre
+            WHERE UPPER(libGenre) = UPPER(?)
+            SQL);
+            $req->execute([$genreList[$i]]);
+            $genreId[] = $req->fetch()['idGenre'];
+        }
+        else{
+            $genreId[] = $genreExist['idGenre'];
+        }
+
+        $addGenre = $mypdo->prepare(<<<SQL
         INSERT INTO AvoirGenre(ISBN, idGenre)
         VALUES(?, ?)
-    SQL
-    );
-    $addEcrire->execute([$isbn, $genreId]);
+        SQL);
+        $addGenre->execute([$isbn, $genreId[$i]]);
+    }
 }
-header('Location: addBook.php');
+header('Location: ../addBook.php');

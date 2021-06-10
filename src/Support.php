@@ -50,6 +50,22 @@ class Support
     }
 
     /**
+     * Retourne la liste de tous les support.
+     * @return array
+     */
+    public static function getAll() : array
+    {
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+            SELECT * 
+            FROM Support
+            ORDER BY libSupport
+        SQL);
+        $req->setFetchMode(PDO::FETCH_CLASS, self::class );
+        $req->execute();
+        return $req->fetchAll();
+    }
+
+    /**
      * Retourne sous forme d'instance de livre tout les livres du format.
      * @return array
      * @throws Exception
