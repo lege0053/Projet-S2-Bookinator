@@ -32,7 +32,12 @@ function affichageLivre(string $isbn):string
     if(isLogged())
     {
         $favori="<td class='d-flex flex-row'>
-<a href='addFavoris_trmt.php?isbn=$isbn' class='d-flex justify-content-center align-items-center font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button' style='height:50px; width: 50px;'><3</a>
+<a href='addFavoris_trmt.php?isbn=$isbn' class='d-flex justify-content-center align-items-center font-size-24 border-radius-5 padding-button button'>
+    <svg width='50' height='50' viewBox='0 0 88 88' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        <rect width='88' height='88' rx='5' fill='#E1B74A'/>
+        <path d='M64.5137 25.9775C63.1352 24.5893 61.4959 23.4872 59.6901 22.7347C57.8843 21.9822 55.9475 21.594 53.9912 21.5925C50.2907 21.5931 46.7254 22.9832 44.0012 25.4875C41.2772 22.9827 37.7117 21.5926 34.0112 21.5925C32.0525 21.5945 30.1136 21.9839 28.306 22.7382C26.4984 23.4924 24.8578 24.5967 23.4787 25.9875C17.5962 31.895 17.5987 41.135 23.4837 47.0175L44.0012 67.535L64.5187 47.0175C70.4037 41.135 70.4062 31.895 64.5137 25.9775Z' fill='#2F2F2F'/>
+    </svg>
+</a>
 <a href='addSignalement.php?isbn=$isbn' class='d-flex justify-content-center align-items-center'><svg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'>
                         <path d='M21.7543 2.34259C18.8115 0.38662 15.2787 -0.38085 11.7948 0.177827C11.7341 0.178975 11.6735 0.184827 11.6128 0.195326C7.9295 0.834447 4.71503 2.86977 2.56077 5.92559C0.408855 8.98261 -0.425114 12.6939 0.212913 16.3785C0.319059 16.9861 0.46715 17.5985 0.653795 18.1933C1.42476 20.6974 1.23462 23.3812 0.119618 25.7501C-0.0751751 26.1606 -0.0110279 26.6482 0.281763 26.9969C0.5745 27.3457 1.03873 27.4903 1.48191 27.3713L6.71065 25.9437C8.92441 27.299 11.4238 28 13.9758 28C14.9031 28 15.8373 27.9078 16.7669 27.72C20.4328 26.9817 23.5913 24.8613 25.6604 21.7483C29.9327 15.3218 28.1809 6.61726 21.7543 2.34259ZM23.7184 20.4572C21.9934 23.0523 19.3609 24.8194 16.3074 25.434C13.2562 26.0487 10.1444 25.4375 7.54811 23.7114C7.35452 23.5831 7.12938 23.5166 6.90194 23.5166C6.79929 23.5166 6.6955 23.5306 6.594 23.5586L3.0343 24.5301C3.63497 22.2371 3.59062 19.8087 2.8815 17.5005C2.72406 16.9978 2.59926 16.4858 2.51177 15.9796C1.97989 12.9098 2.67506 9.81658 4.46888 7.26923C6.23241 4.76509 8.85085 3.08436 11.8566 2.52333C11.9126 2.52098 11.9674 2.51518 12.0234 2.50583C14.9731 1.99615 17.9706 2.62947 20.4643 4.28685C25.8202 7.84776 27.2792 15.1013 23.7184 20.4572Z' fill='#E2574C'/>
                         <path d='M14.0042 6.8855C13.3593 6.8855 12.8379 7.40688 12.8379 8.05185V15.05C12.8379 15.6949 13.3593 16.2163 14.0042 16.2163C14.6492 16.2163 15.1706 15.6938 15.1706 15.05V8.05185C15.1706 7.40688 14.6493 6.8855 14.0042 6.8855Z' fill='#E2574C'/>
@@ -45,7 +50,7 @@ function affichageLivre(string $isbn):string
 
 
     $retour="
-<div class='d-flex flex-column-reverse flex-md-row font-size-24 align-items-center justify-content-md-center margin-topbottom-art'>
+<div class='d-flex flex-column-reverse flex-md-row font-size-24 align-items-center justify-content-md-center p-5'>
     <div class='m-1 d-flex flex-column w-75'>
         <div class='d-flex flex-row justify-content-between'>
             <span>{$livre->getTitre()}</span>";
@@ -94,7 +99,7 @@ function affichageLivre(string $isbn):string
         <span>Description :</span>
         <span class='p-3 border-radius-10 description-background description-text'>{$livre->getDescription()}</span>
     </div>
-    <img alt='' src='./src/ViewCouverture.php?id={$livre->getIdCouv()}' height='560'>
+    <img alt='' src='./src/ViewCouverture.php?id={$livre->getIdCouv()}' height='560' class='p-2'>
 </div>
 ";
     return $retour;
@@ -126,10 +131,8 @@ function affichageAppreciations(string $isbn):string
         }
 
         $userPseudo=$utilisateur->getPseudo();
-        if($userPseudo==null){
+        if($userPseudo==null)
             $userPseudo=$utilisateur->getNom()." ".$utilisateur->getPrenom();
-        }
-
         $retour.="
 <div class='m-3 p-4 d-flex flex-column font-size-24 border-radius-10 main-background w-75 align-self-center'>
     <div class='d-flex flex-row justify-content-between'>
