@@ -105,11 +105,11 @@ class Commande
      */
     public function getStatus():array{
         $req = MyPDO::getInstance()->prepare(<<<SQL
-                SELECT sc.idStatus, sc.libStatus
-                FROM Commande c
-                    INNER JOIN StatusCommande sc ON c.idStatus = sc.idStatus
+                SELECT idStatus, libStatus
+                FROM StatusCommande
+                WHERE idStatus=?
         SQL);
-        $req->execute();
+        $req->execute([$this->idStatus]);
         $retour = $req->fetch();
         if(!$retour)
             throw new InvalidArgumentException("Aucune ligne trouvée.");
