@@ -52,6 +52,11 @@ Répartition des pages :
 * Page gestion des livres : Marine.
 * Page d'édition d'un livre : Nicolas.
 
-Non attribués actuellement : 
-* Liste des commandes : ???
-* Info d'une commande (dérive de page panier).
+
+**Jeudi 10 Juin :** 
+Développement.  
+Répartition des pages : 
+* Page d'affichage de tout les signalement (coté admin) : Marine.
+* Page d'affichage d'une commande : Lucie + Nicolas.
+* Page d'affichage de toute les commandes d'un client : Thibaut.  
+Finition du projet.
