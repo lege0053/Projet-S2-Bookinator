@@ -37,7 +37,7 @@ function getIndexHeader() : String
     $header = <<<HTML
         <div class="d-flex align-items-center p-1 justify-content-between">
             <div class="d-flex align-items-center">
-                <div class="font-size-24 white-text-color m-1"><img class="logo m-2" src="img/logo-48.png" width="48">Bookinator</div>
+                <a href="index.php" class="font-size-24 white-text-color m-1 no-decoration"><img class="logo m-2" src="img/logo-48.png" width="48">Bookinator</a>
              </div>
     HTML;
     if(isLogged()) {
@@ -83,7 +83,7 @@ function getHeader() : String
     $header = <<<HTML
         <div class="d-flex main-background align-items-center p-1 justify-content-between">
             <div class="d-flex align-items-center">
-                <div class="font-size-24 white-text-color m-1"><img class="logo m-2" src="img/logo-48.png" width="48">Bookinator</div>
+                <a href="index.php" class="font-size-24 white-text-color m-1 no-decoration"><img class="logo m-2" src="img/logo-48.png" width="48">Bookinator</a>
                 <a href="index.php" class="font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Rechercher</a>
             </div>
     HTML;
