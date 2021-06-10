@@ -5,14 +5,20 @@ require_once "autoload.php";
 require_once "src/Utils.php";
 init_php_session();
 
-$id='9782723488525';
-if(isset($_GET['isbn']) && !empty($_GET['isbn']) && ctype_digit($_GET['isbn']))
+$id='';
+if(isset($_GET['isbn']) && !empty($_GET['isbn']) && ctype_digit($_GET['isbn']) && Livre::exist($_GET['isbn']) && isLogged())
     $id=$_GET['isbn'];
-
-$req=MyPDO::getInstance()->prepare(<<<SQL
+else
+    header('Location: index.php');
+try{
+    $req=MyPDO::getInstance()->prepare(<<<SQL
     INSERT INTO Favoris(ISBN, idUtilisateur)
     VALUES(?, ?)
 SQL);
-$req->execute([$id, $_SESSION['idUtilisateur'] ]);
+    $req->execute([$id, $_SESSION['idUtilisateur'] ]);
 
-header('Location: Article.php?idArticle='.$id);
+    header('Location: Article.php?idArticle='.$id);
+}catch (Exception $e){
+    echo "<script>window.alert('Erreur : $e')</script>";
+    echo "<script>window.location.href='Article.php?idArticle=$id'</script>";
+}
