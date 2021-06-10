@@ -191,7 +191,7 @@ HTML;
 
 $webPage = new WebPage("Bookinator");
 $webPage->appendCssUrl("src/style.css");
-$webPage->appendJsUrl("src/filters.js");
+$webPage->appendJsUrl("js/filters.js");
 $webPage->appendContent($content);
 $webPage->appendContent(getFooter());
 
