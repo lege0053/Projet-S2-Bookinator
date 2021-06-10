@@ -89,7 +89,10 @@ $max = count($livres);
 // Contenue pour les livres //
 
 foreach ($livres as $livre){
-    $booksContent .= printResearchBook($livre->getISBN());
+    if($livre->getQte() > 0) {
+        $booksContent .= printResearchBook($livre->getISBN());
+    }
+
 }
 
 // Paginateur //
