@@ -202,12 +202,12 @@ class Utilisateur
         $req->setFetchMode(PDO::FETCH_CLASS, Commande::class);
         $req->execute([$this->idUtilisateur]);
         $retourReq=$req->fetchAll();
-        $retourFinal=$retourReq[0];
         if(count($retourReq)>1)
         {
             $nb=count($retourReq);
             throw new UnexpectedValueException("La fonction retourne + d'une commande en cours : $nb ");
         }
+        $retourFinal='';
         if(!$retourReq)
         {
             $req = MyPDO::getInstance()->prepare(<<<SQL
@@ -227,6 +227,8 @@ class Utilisateur
             $req2->execute([$this->idUtilisateur]);
             $retourFinal=$req2->fetch();
         }
+        else
+            $retourFinal=$retourReq[0];
         return $retourFinal;
     }
 }
