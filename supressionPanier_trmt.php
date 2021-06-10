@@ -43,8 +43,14 @@ else{
     $supPanier->execute([$isbn,$user]);
 }
 
-
-
+$req2 = MyPDO::getInstance()->prepare(<<<SQL
+                UPDATE Commande
+                SET prixCmd=(SELECT SUM(liv.prix*ctn.qte)
+                            FROM Contenu ctn INNER JOIN Livre liv ON liv.ISBN=ctn.ISBN
+                            WHERE ctn.idCmd=?)
+                WHERE idCmd=?
+        SQL);
+$req2->execute([$user,$user]);
 
 
 header('Location: panier.php');
