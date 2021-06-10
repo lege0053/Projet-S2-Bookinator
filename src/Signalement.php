@@ -64,4 +64,54 @@ class Signalement
             throw new InvalidArgumentException("Le signalement n'est pas dans la base de donnée.");
         return $retour;
     }
+
+    public static function getTypeSig($idSignalement): string {
+        $type='-';
+
+        /** Récupération des signalements Appreciation */
+        $signsApp=MyPDO::getInstance()->prepare(<<<SQL
+            SELECT *
+            FROM SignalementAppreciation
+        SQL);
+        $signsApp->execute();
+        $signsApp=$signsApp->fetchAll();
+
+        /** Récupération des signalements Commande */
+        $signsCmd=MyPDO::getInstance()->prepare(<<<SQL
+            SELECT *
+            FROM SignalementCommande
+        SQL);
+        $signsCmd->execute();
+        $signsCmd=$signsCmd->fetchAll();
+
+        /** Récupération des signalements Livre */
+        $signsLvr=MyPDO::getInstance()->prepare(<<<SQL
+            SELECT *
+            FROM SignalementLivre
+        SQL);
+        $signsLvr->execute();
+        $signsLvr=$signsLvr->fetchAll();
+
+        /** Récupération du type d'appréciation */
+        foreach($signsApp as $singApp)
+        {
+            if($singApp['idSignalement'] == $idSignalement){
+                $type = 'Appreciation';
+            }
+        }
+        foreach($signsCmd as $singCmd)
+        {
+            if($singCmd['idSignalement'] == $idSignalement){
+                $type='Commande';
+            }
+        }
+        foreach($signsLvr as $singLvr)
+        {
+            if($singLvr['idSignalement'] == $idSignalement){
+                $type='Livre';
+            }
+        }
+
+        return $type;
+    }
 }
