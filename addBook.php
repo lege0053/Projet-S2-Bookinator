@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 require "autoload.php";
 require "src/Utils.php";
+require_once "view/ViewAddEditBook.php";
 init_php_session();
 
 if(!isLogged()){
@@ -12,39 +13,8 @@ if(!isAdmin()){
     header('Location: index.php');
 }
 
-$genresListHTML = "";
-$authorListHTML = "";
-$formatList = Format::getAll();
-$formatListHTML = "";
-foreach($formatList as $format)
-{
-    $formatListHTML .= "<option value='{$format->getIdFormat()}'>{$format->getLibFormat()}</option>";
-}
-
-$formatHTML = <<<HTML
-                <div class="d-flex flex-column form-group w-100">
-                    <label for="format" class="white-text-color font-size-20 m-0">Format</label>
-                    <select type="text" id="format" name="format" class="flex-fill p-2 button-no-outline no-decoration white-text-color second-main-background border-radius-5" required>
-                        $formatListHTML
-                    </select>
-                </div>
-HTML;
-
-$supportList = Support::getAll();
-$supportListHTML = "";
-foreach ($supportList as $support){
-    $supportListHTML .= "<option value='{$support->getIdSupport()}'>{$support->getLibSupport()}</option>";
-}
-
-$supportHTML = <<<HTML
-                <div class="d-flex flex-column form-group w-100">
-                    <label for="support" class="white-text-color font-size-20 m-0">Support</label>
-                    <select type="text" id="support" name="support" class="flex-fill p-2 button-no-outline no-decoration white-text-color second-main-background border-radius-5" placeholder="Support" required>
-                        $supportListHTML
-                    </select>
-                </div>
-HTML;
-
+$formatHTML = getFormatListHTML();
+$supportHTML = getSupportListHTML();
 
 $form = <<<HTML
     <form class="m-2 d-flex flex-column justify-content-center align-items-center" action="trmt/addBook_trmt.php" method="post" enctype="multipart/form-data">
@@ -59,7 +29,7 @@ $form = <<<HTML
                         </div>
                         <img id="couverture" class="border-radius-10" src="" height="560px">
                     </label>
-                    <input id="input-couverture" type="file" name="couverture" class="flex-fill form-control d-none" accept="image/png, image/jpeg" onchange="previewFile()" required>
+                    <input id="input-couverture" type="file" name="couverture" class="flex-fill form-control d-none" accept="image/png, image/jpeg" onchange="previewFile('0')" required>
                 </div>
                 <div class="d-flex flex-fill align-items-center justify-content-center flex-column w-100" style="margin-right: 20px;">
                     <div class="d-flex flex-column form-group w-100">
@@ -94,7 +64,6 @@ $form = <<<HTML
                             </div>
                         </div>
                         <div id="genres-list">
-                            $genresListHTML
                         </div>
                     </div>
                     <div class="d-flex flex-column form-group w-100">
@@ -130,7 +99,6 @@ $form = <<<HTML
                         </div>
                     </div>
                     <div id="authors-list" class="d-flex flex-column flex-fill w-100">
-                        $authorListHTML
                     </div>
                 </div>
                 $formatHTML

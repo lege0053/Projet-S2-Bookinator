@@ -12,19 +12,72 @@ $webPage->appendContent(getHeader());
 $webPage->appendCssUrl("src/style.css");
 $Commande = Utilisateur::createFromId($_SESSION['idUtilisateur'])->getCommandes();
 
+$Commande = Utilisateur::createFromId($_SESSION['idUtilisateur'])->getCommandes();
 
 
-var_dump($Commande[0]);
+$CP=$Commande[0]->getCPLivraison();
+$numCmd=$Commande[0]->getIdCmd();
+//$statut=$Commande[0]->getStatus();
+$ville=$Commande[0]->getVilleLivraison();
+$adr=$Commande[0]->getRueLivraison();
+$prix=$Commande[0]->getPrixCmd();
+
+$panier = $Commande[0]->getLivres();
+
+$livre="";
+
+foreach ($panier as $livres) {
+
+
+    $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT qte
+                FROM Contenu 
+                WHERE ISBN=?
+
+    SQL
+    );
+    $req->execute([$livres->getISBN()]);
+    $qte = $req->fetch();
+
+    $tabAuteurs = $livres->getAuteurs();
+    $auteurs = "";
+    for ($i = 0; $i < count($tabAuteurs); $i++) {
+
+
+        $auteurs .= "{$tabAuteurs[$i]->getPrnm()} {$tabAuteurs[$i]->getNom()}";
+
+        if ($i < count($tabAuteurs) - 1) {
+            $auteurs .= ",";
+        }
+
+    }
+
+
+    $qteInt=(int)($qte['qte']);
+    $prixL=$livres->getPrix()*$qteInt;
+
+    $livre .= <<<HTML
+    <div class="d-flex flex-row main-background border-radius-5 m-2">
+    
+       <div class=""> <a href="article.php?idArticle={$livres->getISBN()} ">  <img height="200" src="./src/ViewCouverture.php?id={$livres->getIdCouv()}" style="border-radius: 5px 0px 0px 5px;"></a> </div> 
+       <div class="d-flex second-main-background flex-column flex-fill m-2 p-2 border-radius-5">
+           <div class=" white-text-color ">{$livres->getTitre()}</div>
+           <div class="d-flex white-text-color"> De : {$auteurs} </div>
+           <div class=" main-text-color ">Quantité : {$qte['qte']}</div>
+           <div class="d-flex white-text-color flex-fill align-items-end">Langue : {$livres->getLangue()}</div>
+       </div>
+    </div>
+  
+
+HTML;
+}
 
 
 
 
-//$numCmd=
-//$statut=
-//$ville=
 
 
-//$adr=
+
 
 
 
@@ -49,14 +102,55 @@ $html = <<<HTML
                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
                     </filter>
                 </defs>
-            </svg
+            </svg>
         </a>
-        <div class=""
+        <div class="d-flex flex-column main-background  padding-button h-100 border-radius-5">
+                 <div class="d-flex flex-row justify-content-between ">
+                    <div class="form-group d-flex m-3 flex-fill flex-column">
+                        <div class="white-text-color ">N°Commande</div>
+                        <div class="form-control second-main-background button-no-outline font-size-10 white-text-color"> $numCmd </div>
+                    </div>
+                    <div class=" d-flex m-3 flex-fill flex-column">
+                        <div class="white-text-color">Statue</div>
+                        <div class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> ??????? </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row justify-content-between">
+                     <div class="form-group flex-fill d-flex flex-column ">
+                        <div class="white-text-color">Adresse de livraison</div>
+                     </div>
+                     <div class="form-group flex-fill d-flex flex-column">
+                         <div class="white-text-color">Prix</div>
+                         <div class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> $prix € </div>
+                     </div>
+                </div>
+                <div class="form-group d-flex flex-column">
+                      <div class="d-flex flex-row justify-content-between">
+                    <div class="form-group d-flex m-3 flex-fill flex-column">
+                        <div class="white-text-color ">Ville</div>
+                        <div class="form-control second-main-background button-no-outline font-size-10 white-text-color"> $ville </div>
+                    </div>
+                    <div class=" d-flex m-3 flex-fill flex-column">
+                        <div class="white-text-color">Code postal</div>
+                        <div class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> ??????? </div>
+                    </div>
+                </div>
+                <div class="form-group d-flex flex-column">
+                      <div class="white-text-color">Adresse</div>
+                      <div  class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> $adr </div>
+                </div> 
+            </div>
+        </div>
+        <div class="d-flex  flex-column">
+            $livre
+        </div>
     </div>
 </div>
+  
 
 
 HTML;
+
 
 
 $webPage->appendContent($html);
