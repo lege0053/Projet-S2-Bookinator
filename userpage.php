@@ -74,30 +74,30 @@ $html = <<<HTML
                  <div class="d-flex flex-row mt-3 justify-content-between">
                     <div class="form-group d-flex flex-column">
                         <div class="white-text-color">Nom</div>
-                        <input type="text" name="nom" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getNom()}" required>
+                        <input type="text" name="nom" class="button-no-outline form-control second-main-background font-size-10 white-text-color" value="{$user->getNom()}" required>
                     </div>
                     <div class="form-group d-flex flex-column">
                         <div class="white-text-color">Prénom</div>
-                        <input type="text" name="prnm" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getPrenom()}" required>
+                        <input type="text" name="prnm" class="button-no-outline form-control second-main-background font-size-10 white-text-color" value="{$user->getPrenom()}" required>
                     </div>
                 </div>
                 <div class="d-flex flex-row justify-content-between">
                      <div class="form-group d-flex flex-column ">
                         <div class="white-text-color">Ville</div>
-                        <input type="text" name="ville" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getVille()}">
+                        <input type="text" name="ville" class="button-no-outline form-control second-main-background font-size-10 white-text-color" value="{$user->getVille()}">
                      </div>
                      <div class="form-group d-flex flex-column">
                          <div class="white-text-color">Code postal</div>
-                         <input type="text" name="CP" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getCP()}">
+                         <input type="text" name="CP" class="button-no-outline form-control second-main-background font-size-10 white-text-color" value="{$user->getCP()}">
                      </div>
                 </div>
                 <div class="form-group d-flex flex-column">
                       <div class="white-text-color">Adresse</div>
-                      <input type="text" name="adresse" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getRue()}">
+                      <input type="text" name="adresse" class="button-no-outline form-control second-main-background font-size-10 white-text-color" value="{$user->getRue()}">
                 </div>
                 <div class="form-group d-flex flex-column">
                       <div class="white-text-color">Numéro Téléphone</div>
-                      <input type="number" name="tel" class="form-control second-main-background font-size-10 white-text-color" value="{$user->getTel()}">
+                      <input type="number" name="tel" class="button-no-outline form-control second-main-background font-size-10 white-text-color" value="{$user->getTel()}">
                 </div>
                 <div class="form-group d-inline-flex">
                     <a href="editMail.php" class="form-title booki-link padding-button">Modifier l'adresse mail</a>
@@ -105,7 +105,7 @@ $html = <<<HTML
                 </div>
                 <div class="d-flex flex-row justify-content-center">
                     <div class="form-group d-inline-flex">
-                        <button type="submit" class="form_submit font-size-15 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Sauvegarder</button>
+                        <button type="submit" class="button-no-outline form_submit font-size-20 main-color-background dark-text border-radius-100 padding-button font-weight-bold button">Sauvegarder</button>
                     </div>
                 </div>
             </form>
