@@ -5,9 +5,6 @@ require_once "autoload.php";
 require "src/Utils.php";
 init_php_session();
 
-if(!isLogged())
-    header('Location: connexion.php');
-
 $webPage = new WebPage("Panier");
 $webPage->appendContent(getHeader());
 $webPage->appendCssUrl("src/style.css");
@@ -108,7 +105,7 @@ $html=<<<HTML
             <div class="d-flex flex-grow-1 main-color-background padding-button border-radius-5 font-weight-bold justify-content-center">
                 <div class="d-flex font-size-36 dark-text ">Panier</div>
                 <form action="" method="post">
-                    <a href="viderPanier_trmt.php" class="btn font-size-15 bg-danger dark-text border-radius-5 padding-button font-weight-bold button">Vider</a>
+                    <a href="viderPanier_trmt.php_trmt.php" class="btn font-size-15 bg-danger dark-text border-radius-5 padding-button font-weight-bold button">Vider</a>
                 </form>
             </div>
         </div>
