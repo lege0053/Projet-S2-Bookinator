@@ -17,7 +17,6 @@ $paginator = "";
 $research = <<<HTML
     <div class="header">
         <div class="d-flex flex-column dackdrop-blur h-100">
-            $header
             <form class="d-flex justify-content-center flex-column flex-fill align-items-center" action="index.php" method="get">
                 <span class="font-size-36 white-text-color">Rechercher</span>
                 <div class="form-group research-button d-flex w-50">
