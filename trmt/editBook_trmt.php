@@ -13,6 +13,7 @@ if(!isAdmin()){
     header('Location: index.php');
 }
 
+$oldISBN = $_GET['oldISBN'];
 $isbn = $_POST['isbn'];
 $titre = $_POST['titre'];
 $prix = $_POST['prix'];
@@ -34,16 +35,17 @@ $authorId = [];
 $genreId = [];
 $editeurId = 1;
 $couvertureId = 1;
+$oldIdCouv = -1;
 
 // Auteur : Si il n'existe pas, on l'ajoute ! Et on récupère son id //
 $req = $mypdo->prepare(<<<SQL
     SELECT ISBN FROM Livre
     WHERE UPPER(ISBN) = UPPER(?)
 SQL);
-$req->execute([$isbn]);
+$req->execute([$oldISBN]);
 $exist = $req->fetch();
 
-if(!$exist) {
+if($exist) {
     for($i = 0; $i < count($nomAuteurList); $i++)
     {
         $req = $mypdo->prepare(<<<SQL
@@ -101,34 +103,120 @@ if(!$exist) {
     }
 
     // Ajout de la Couverture //
-    $image = $_FILES['couverture']['tmp_name'];
-    $data = fopen($image, 'rb');
-    $size = $_FILES['couverture']['size'];
-    $contents = fread($data, $size);
-    fclose($data);
+    if(!empty($_FILES['couverture']['tmp_name']))
+    {
+        $reqCouv = $mypdo->prepare(<<<SQL
+            SELECT idCouv FROM Livre WHERE ISBN = ? 
+        SQL);
+        $reqCouv->execute([$oldISBN]);
+        $oldIdCouv = $reqCouv->fetch()['idCouv'];
 
-    $addCouverture = $mypdo->prepare(<<<SQL
+        $image = $_FILES['couverture']['tmp_name'];
+        $data = fopen($image, 'rb');
+        $size = $_FILES['couverture']['size'];
+        $contents = fread($data, $size);
+        fclose($data);
+
+        $addCouverture = $mypdo->prepare(<<<SQL
         INSERT INTO Couverture(png)
         VALUES(?)
-    SQL
-    );
-    $addCouverture->execute([$contents]);
-    $couvertureId = $mypdo->lastInsertId();
+        SQL);
+        $addCouverture->execute([$contents]);
+        $couvertureId = $mypdo->lastInsertId();
+    }else{
+        $couvertureId = Livre::createFromId($oldISBN)->getIdCouv();
+    }
+
+    // Delete Ecrire
+
+    $reqDelEcrire = $mypdo->prepare(<<<SQL
+        DELETE FROM Ecrire
+        WHERE ISBN = ?
+    SQL);
+    $reqDelEcrire->execute([$oldISBN]);
+
+    // Delete AvoirGenre
+
+    $reqDelAvoirGenre = $mypdo->prepare(<<<SQL
+        DELETE FROM AvoirGenre
+        WHERE ISBN = ?
+    SQL);
+    $reqDelAvoirGenre->execute([$oldISBN]);
+
+    // Favoris
+
+    $reqSelectFavoris = $mypdo->prepare(<<<SQL
+        SELECT idUtilisateur FROM Favoris
+        WHERE ISBN = ?
+    SQL);
+    $reqSelectFavoris->execute([$oldISBN]);
+    $favorisId = $reqSelectFavoris->fetchAll();
+
+    $reqDelFavoris = $mypdo->prepare(<<<SQL
+        DELETE FROM Favoris
+        WHERE ISBN = ?
+    SQL);
+    $reqDelFavoris->execute([$oldISBN]);
+
+    // Signalement Livre
+
+    $reqSignalementLivre = $mypdo->prepare(<<<SQL
+        SELECT idSignalement FROM SignalementLivre
+        WHERE ISBN = ?
+    SQL);
+    $reqSignalementLivre->execute([$oldISBN]);
+    $signalementsId = $reqSignalementLivre->fetchAll();
+
+    $reqDelSignalementLivre = $mypdo->prepare(<<<SQL
+        DELETE FROM SignalementLivre
+        WHERE ISBN = ?
+    SQL);
+    $reqDelSignalementLivre->execute([$oldISBN]);
 
     // Ajout du Livre //
 
     $addLivre = $mypdo->prepare(<<<SQL
-        INSERT INTO Livre(ISBN, titre, datePublication, nbPages, langue, description, prix, qte , idEditeur, idCouv, idFormat, idSupport)
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    SQL
-    );
-    $addLivre->execute([$isbn, $titre, $datePublication, $nbPages, $langue, $description, $prix, $qte, $editeurId['idEditeur'], $couvertureId, $idFormat, $idSupport]);
+        UPDATE Livre
+        SET ISBN = ?,
+            titre = ?,
+            datePublication = ?,
+            nbPages = ?,
+            langue = ?,
+            description = ?,
+            prix = ?,
+            qte = ?,
+            idEditeur = ?,
+            idCouv = ?,
+            idFormat = ?,
+            idSupport = ?
+        WHERE ISBN = ?
+    SQL);
+    $addLivre->execute([$isbn, $titre, $datePublication, $nbPages, $langue, $description, $prix, $qte, $editeurId['idEditeur'], $couvertureId, $idFormat, $idSupport, $oldISBN]);
+
+    // Rajout Favoris //
+
+    foreach($favorisId as $favo){
+        $reqAddFavoris = $mypdo->prepare(<<<SQL
+        INSERT INTO Favoris(idUtilisateur, ISBN)
+        VALUES(?, ?)
+        SQL);
+        $reqAddFavoris->execute([$favo['idUtilisateur'], $isbn]);
+    }
+
+    // Rajout des Signalement
+
+    foreach($signalementsId as $signalement){
+        $reqAddSignalement = $mypdo->prepare(<<<SQL
+        INSERT INTO SignalementLivre(idUtilisateur, ISBN)
+        VALUES(?, ?)
+        SQL);
+        $reqAddSignalement->execute([$signalement['idSignalement'], $isbn]);
+    }
 
     // Ajout Ecrire //
 
     for($i = 0; $i < count($nomAuteurList); $i++)
     {
-
         $addEcrire = $mypdo->prepare(<<<SQL
         INSERT INTO Ecrire(ISBN, idAuteur)
         VALUES(?, ?)
@@ -174,4 +262,4 @@ if(!$exist) {
         $addGenre->execute([$isbn, $genreId[$i]]);
     }
 }
-header('Location: ../addBook.php');
+header('Location: ../editBook.php?isbn='.$isbn);
