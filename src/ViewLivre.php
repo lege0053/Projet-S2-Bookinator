@@ -10,7 +10,7 @@ function affichageLivre(string $isbn):string
     $nomsAuteurs='';
     for($i=0; $i<count($listeAuteur);$i++)
     {
-        $nomsAuteurs.="<a href='index.php?author[]={$listeAuteur[$i]->getNom()}' class='booki-link'>{$listeAuteur[$i]->getNom()} {$listeAuteur[$i]->getPrnm()}</a>";
+        $nomsAuteurs.="<a href='index.php?author[]={$listeAuteur[$i]->getNom()}' class='booki-link'>{$listeAuteur[$i]->getPrnm()} {$listeAuteur[$i]->getNom()}</a>";
         if($i!=count($listeAuteur)-1 && count($listeAuteur)!=1)
             $nomsAuteurs.=", ";
     }
