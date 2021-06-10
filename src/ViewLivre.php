@@ -110,14 +110,31 @@ function affichageAppreciations(string $isbn):string
     foreach ($listeAppreciations as $elmt)
     {
         $utilisateur=Utilisateur::createFromId($elmt->getIdUtilisateur());
+
+        if($utilisateur->getPhotoProfil() == null)
+        {
+            $pdp= <<<HTML
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="30" fill="#525252"/>
+                    <path d="M37.9744 24.3122H34.9384V24.0003C34.9384 22.6068 33.8074 21.4759 32.4139 21.4759H27.5855C26.1915 21.4759 25.0611 22.6068 25.0611 24.0003V24.3122H22.0244C20.6304 24.3122 19.5 25.4426 19.5 26.8367V35.9999C19.5 37.3933 20.6304 38.5243 22.0244 38.5243H37.9756C39.3696 38.5243 40.5 37.3933 40.5 35.9999V26.8367C40.4989 25.4421 39.3685 24.3122 37.9744 24.3122ZM29.9989 35.9056C27.369 35.9056 25.2305 33.7671 25.2305 31.1372C25.2305 28.5079 27.369 26.3688 29.9989 26.3688C32.6288 26.3688 34.7673 28.5073 34.7673 31.1372C34.7673 33.7671 32.6282 35.9056 29.9989 35.9056ZM32.5233 31.1372C32.5233 32.5279 31.3901 33.6617 29.9989 33.6617C28.6076 33.6617 27.4744 32.5279 27.4744 31.1372C27.4744 29.746 28.6076 28.6128 29.9989 28.6128C31.3901 28.6128 32.5233 29.746 32.5233 31.1372Z" fill="#353535"/>
+                </svg>
+            HTML;
+        } else {
+            $pdp = <<<HTML
+                <img alt="" src="./src/ViewPdP.php?id={$utilisateur->getIdUtilisateur()}" height="50" width="50" class="border-radius-100">
+            HTML;
+        }
+
         $userPseudo=$utilisateur->getPseudo();
-        if($userPseudo==null)
+        if($userPseudo==null){
             $userPseudo=$utilisateur->getNom()." ".$utilisateur->getPrenom();
+        }
+
         $retour.="
 <div class='m-3 p-4 d-flex flex-column font-size-24 border-radius-10 main-background w-75 align-self-center'>
     <div class='d-flex flex-row justify-content-between'>
         <div>
-            <img width='50' height='50' class='border-radius-100' alt='' src='./src/ViewPdP.php?id={$utilisateur->getIdUtilisateur()}'>
+            $pdp
             <span class='white-text-color'>$userPseudo</span>
         </div>
         <span class='booki-link'>{$elmt->getNote()}</span>
