@@ -12,7 +12,7 @@ if(!isLogged()){
 }
 
 $idCommande = 0;
-if(isset($_GET['idCmd']) && !empty($_GET['idCmd']) && ctype_digit($_GET['idCmd'])){
+if(isset($_GET['idCmd']) && !empty($_GET['idCmd']) && ctype_digit($_GET['idCmd']) && Commande::exist($_GET['idCmd'], $_SESSION['idUtilisateur'])){
     $idCommande = (int)($_GET['idCmd']);
 }else
     header('Location: index.php');
