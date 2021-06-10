@@ -65,8 +65,9 @@ function printResearchBookAdmin(String $ISBN) {
        
        <div class="d-flex flex-column justify-content-center  align-items-end-center">
             <a href="editBook.php" class="btn font-size-15 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Éditer </a>
-            <form action="deleteBook_trmt.php" method="post">
+            <form action="deleteBookAdmin_trmt.php" method="post">
                 <button type="submit" class="btn font-size-15 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</button>
+                <input id="ISBN" name="ISBN" type="hidden" value="{$book->getISBN()}">
             </form>
        </div>
     </div>

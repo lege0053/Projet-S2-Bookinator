@@ -199,3 +199,4 @@ $webPage->appendContent($content);
 $webPage->appendContent(getFooter());
 
 echo $webPage->toHTML();
+
