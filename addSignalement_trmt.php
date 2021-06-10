@@ -77,7 +77,6 @@ try{
     header('Location: index.php');
 }catch(Exception $e)
 {
-    echo "<script>window.alert('Erreur : $e')</script>";
-    echo "<script>window.location.href='Article.php?idArticle=$id'</script>";
+    header('Location: Article.php?idArticle='.$id);
 }
 

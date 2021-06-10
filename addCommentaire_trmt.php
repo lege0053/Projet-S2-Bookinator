@@ -18,10 +18,14 @@ try{
         VALUES(null, ?,?,SYSDATE(),?,?)
     SQL);
         $req->execute([$_POST['commentaire'], $_POST['note'], $_SESSION['idUtilisateur'], $id]);
+        header('Location: Article.php?idArticle='.$id);
     }
-    header('Location: Article.php?idArticle='.$id);
+    else
+    {
+        echo "<script>window.alert('Vous avez déjà rédigé un commentaire pour ce livre.')</script>";
+        echo "<script>window.location.href='Article.php?idArticle=$id'</script>";
+    }
 }catch(Exception $e){
-    echo "<script>window.alert('Erreur : $e')</script>";
-    echo "<script>window.location.href='Article.php?idArticle=$id'</script>";
+    header('Location: Article.php?idArticle='.$id);
 }
 
