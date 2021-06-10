@@ -182,7 +182,7 @@ class Utilisateur
         $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT *
                 FROM Favoris fav 
-                    INNER JOIN Livres l ON fav.ISBN = l.ISBN
+                    INNER JOIN Livre l ON fav.ISBN = l.ISBN
                 WHERE fav.idUtilisateur = ?
                 ORDER BY l.titre
                 SQL);
