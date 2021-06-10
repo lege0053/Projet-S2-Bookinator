@@ -52,7 +52,19 @@ function getIndexHeader() : String
         HTML;
         if(isAdmin()) {
             $header .= <<<HTML
-                    <a href="gestionLivre.php" class="font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Espace Admin</a>
+                <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+                
+                <div class="dropdown">
+                  <button class="font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Espace Admin
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right main-background">
+                    <a href="gestionLivre.php" class="dropdown-item main-text-color hover-couverture">Livres</a>
+                    <a href="signalementAdmin.php" class="dropdown-item main-text-color hover-couverture" type="button">Signalements</a>
+                  </div>
+                </div>
             HTML;
         }
         $header .= <<<HTML
@@ -99,7 +111,19 @@ function getHeader() : String
         HTML;
         if(isAdmin()) {
             $header .= <<<HTML
-                    <a href="gestionLivre.php" class="font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Espace Admin</a>
+                <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+                
+                <div class="dropdown">
+                  <button class="font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Espace Admin
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right main-background">
+                    <a href="gestionLivre.php" class="dropdown-item main-text-color hover-couverture">Livres</a>
+                    <a href="signalementAdmin.php" class="dropdown-item main-text-color hover-couverture" type="button">Signalements</a>
+                  </div>
+                </div>
             HTML;
         }
         $header .= <<<HTML

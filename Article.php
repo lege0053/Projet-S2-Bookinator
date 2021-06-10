@@ -22,9 +22,10 @@ try{
         $webPage->appendCssUrl("src/style.css");
 
         $webPage->appendContent(affichageLivre($id));
-        if(isLogged())
+        if(isLogged()){
             $webPage->appendContent(affichageConnecte($id));
             $webPage->appendContent(affichageAppreciations($id));
+        }
 
         $webPage->appendContent(getFooter());
         echo $webPage->toHTML();
