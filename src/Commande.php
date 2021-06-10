@@ -105,12 +105,15 @@ class Commande
      */
     public function getStatus():array{
         $req = MyPDO::getInstance()->prepare(<<<SQL
-                SELECT libStatus
-                FROM Commande
-                WHERE idStatus = ?
+                SELECT sc.idStatus, sc.libStatus
+                FROM Commande c
+                    INNER JOIN StatusCommande sc ON c.idStatus = sc.idStatus
         SQL);
-        $req->execute([$this->idStatus]);
-        return $req->fetch();
+        $req->execute();
+        $retour = $req->fetch();
+        if(!$retour)
+            throw new InvalidArgumentException("Aucune ligne trouvée.");
+        return $retour;
     }
 
     public function addContenu($isbn)
