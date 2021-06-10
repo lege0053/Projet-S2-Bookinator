@@ -33,14 +33,14 @@ $formatHTML = getFormatListHTML($livre);
 $supportHTML = getSupportListHTML($livre);
 
 $form = <<<HTML
-    <form class="m-2 d-flex flex-column justify-content-center align-items-center" action="trmt/addBook_trmt.php" method="post" enctype="multipart/form-data">
+    <form class="m-2 d-flex flex-column justify-content-center align-items-center" action="trmt/editBook_trmt.php?oldISBN=$ISBN" method="post" enctype="multipart/form-data">
         <div class="container main-background border-radius-10 m-5">
             <div class="d-flex flex-column flex-md-row-reverse justify-content-md-between m-4">
                 <div class="d-flex align-items-center justify-content-center">
                     <label for="input-couverture" class="d-flex align-items-center justify-content-center second-main-background border-radius-10 hover-couverture" style="height: 560px; min-width: 320px;">
                         <img id="couverture" class="border-radius-10" src="src/ViewCouverture.php?id={$livre->getIdCouv()}" height="560px">
                     </label>
-                    <input id="input-couverture" type="file" name="couverture" class="flex-fill form-control d-none" accept="image/png, image/jpeg" onchange="previewFile('1')" required>
+                    <input id="input-couverture" type="file" name="couverture" class="flex-fill form-control d-none" accept="image/png, image/jpeg" onchange="previewFile('1')">
                 </div>
                 <div class="d-flex flex-fill align-items-center justify-content-center flex-column w-100" style="margin-right: 20px;">
                     <div class="d-flex flex-column form-group w-100">

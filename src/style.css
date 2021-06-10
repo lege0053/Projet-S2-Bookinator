@@ -28,6 +28,9 @@
 .white-text-color {
     color: #F5F5F5;
 }
+.white-text-color:hover {
+    color: #F5F5F5;
+}
 
 .white-background-color {
     background-color: #F5F5F5;
