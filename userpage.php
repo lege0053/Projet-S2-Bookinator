@@ -24,7 +24,9 @@ if($user->getPhotoProfil() == null)
     HTML;
 } else {
     $pdp = <<<HTML
-        <img alt="" src="./src/ViewPdP.php?id={$user->getIdUtilisateur()}" height="180" width="180" class="border-radius-100">
+    <div style="width: 180px; height: 180px;">
+        <img alt="" src="./src/ViewPdP.php?id={$user->getIdUtilisateur()}" height="180" width="180" class="border-radius-100" style="object-fit: cover;">
+    </div>
     HTML;
 }
 
