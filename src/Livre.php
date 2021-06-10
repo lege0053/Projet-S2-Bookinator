@@ -358,6 +358,7 @@ class Livre
                 FROM Livre
                 WHERE ISBN=?
         SQL);
+        $req->execute([$isbn]);
         if(!$req->fetch())
             $retour=false;
         return $retour;

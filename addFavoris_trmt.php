@@ -15,7 +15,7 @@ try{
     INSERT INTO Favoris(ISBN, idUtilisateur)
     VALUES(?, ?)
 SQL);
-    $req->execute([$id, $_SESSION['idUtilisateur'] ]);
+    $req->execute([$id, $_SESSION['idUtilisateur']]);
 
     header('Location: Article.php?idArticle='.$id);
 }catch (Exception $e){
