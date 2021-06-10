@@ -53,51 +53,51 @@ function affichageLivre(string $isbn):string
 <div class='d-flex flex-column-reverse flex-md-row font-size-24 align-items-center justify-content-md-center p-5'>
     <div class='m-1 d-flex flex-column w-75'>
         <div class='d-flex flex-row justify-content-between'>
-            <span>{$livre->getTitre()}</span>";
+            <span class='mb-4 font-size-28'>{$livre->getTitre()}</span>";
 
     if($livre->getNoteMoyenne()!=-1)
         $retour.="
             <a href='#avis' class='booki-link'>({$livre->getNbAppreciations()} avis) {$livre->getNoteMoyenne()}/5</a>";
     else
         $retour.="
-            <span class='booki-link'>({$livre->getNbAppreciations()} avis) Aucune note</span>";
+            <span class='booki-link font-size-20'>({$livre->getNbAppreciations()} avis) Aucune note</span>";
 
     $retour.="
         </div>
         <table>
             <tr>
                 <td>Prix</td>
-                <td class='main-text-color'>{$livre->getPrix()} €</td>
+                <td class='main-text-color font-size-20'>{$livre->getPrix()} €</td>
              
             </tr>
             <tr>
                 <td>Éditeur</td>
-                <td><a href='index.php?editeur[]=$editeur' class='booki-link'>$editeur</a></td>
+                <td><a href='index.php?editeur[]=$editeur' class='booki-link font-size-20'>$editeur</a></td>
             </tr>
             <tr>
                 <td>Auteur</td>
-                <td>$nomsAuteurs</td>            
+                <td class='font-size-20'>$nomsAuteurs</td>            
             </tr>
             <tr>
                 <td>Année de publication</td>
-                <td><a href='index.php?year[]={$livre->getDatePublication()}'  class='booki-link'>{$livre->getDatePublication()}</a></td>               
+                <td><a href='index.php?year[]={$livre->getDatePublication()}'  class='booki-link font-size-20'>{$livre->getDatePublication()}</a></td>               
             </tr>
             <tr>
                 <td>Genre</td>
-                <td>$nomsGenres</td>                
+                <td class='font-size-20'>$nomsGenres</td>                
             </tr>
             <tr>
                <td>Langue</td>
-               <td><a href='index.php?langue[]={$livre->getLangue()}' class='booki-link'>{$livre->getLangue()}</a></td>               
+               <td><a href='index.php?langue[]={$livre->getLangue()}' class='booki-link font-size-20'>{$livre->getLangue()}</a></td>               
             </tr>
             <tr>
                 <td>ISBN</td>
-                <td class='booki-link'>{$livre->getISBN()}</td>
+                <td class='booki-link font-size-20'>{$livre->getISBN()}</td>
                 $favori
             </tr>
         </table>
-        <span>Description :</span>
-        <span class='p-3 border-radius-10 description-background description-text'>{$livre->getDescription()}</span>
+        <span class='mt-4 mb-2'>Description :</span>
+        <span class='p-3 border-radius-10 description-background description-text font-size-20'>{$livre->getDescription()}</span>
     </div>
     <img alt='' src='./src/ViewCouverture.php?id={$livre->getIdCouv()}' height='560' class='p-2'>
 </div>
@@ -134,7 +134,7 @@ function affichageAppreciations(string $isbn):string
         if($userPseudo==null)
             $userPseudo=$utilisateur->getNom()." ".$utilisateur->getPrenom();
         $retour.="
-<div class='m-3 p-4 d-flex flex-column font-size-24 border-radius-10 main-background w-75 align-self-center'>
+<div class='mb-5 p-4 d-flex flex-column font-size-24 border-radius-10 main-background w-75 align-self-center'>
     <div class='d-flex flex-row justify-content-between'>
         <div>
             $pdp
