@@ -1,8 +1,11 @@
-function previewFile() {
+function previewFile(edit) {
     var preview = document.querySelector('#couverture');
-    var preview_logo = document.querySelector('#no_image');
-    if(!preview_logo.classList.contains('d-none')){
-        preview_logo.classList.add('d-none');
+    if(edit != 1){
+        var preview_logo = document.querySelector('#no_image');
+
+        if(!preview_logo.classList.contains('d-none')){
+            preview_logo.classList.add('d-none');
+        }
     }
     var file    = document.querySelector('input[type=file]').files[0];
     var reader  = new FileReader();
