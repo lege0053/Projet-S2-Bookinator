@@ -6,9 +6,11 @@ require_once "src/Utils.php";
 
 init_php_session();
 
-$id='9782723488525';
-if(isset($_GET['id']) && !empty($_GET['id']) && ctype_digit($_GET['id']))
+$id='';
+if(isset($_GET['id']) && !empty($_GET['id']) && ctype_digit($_GET['id']) && Livre::exist($_GET['id']) && isLogged())
     $id=$_GET['id'];
+else
+    header('Location: index.php');
 
 $webPage = new WebPage("Commentaire");
 $webPage->appendContent(getHeader());
@@ -41,11 +43,12 @@ $form = <<<HTML
 
         <div class="d-flex m-5 p-5 main-background flex-column align-items-center border-radius-10 login-form justify-content-center ">
         
-            <form action="addCommentaire_trmt.php?isbn=$id" class="d-flex flex-column" method="post">
+            <form action="addCommentaire_trmt.php" class="d-flex flex-column" method="post">
                 <h2 class="d-flex form-title justify-content-center white-text-color">Rédiger Une Appréciation</h2>
                 <div class="d-flex flex-column form-group ">
                     <div class="white-text-color m-0">Note</div>
                     <input type="number" name="note" min="0" max="5" step="1" class="form-control second-main-background " style="outline: 0; border:0; color:black;" required>
+                    <input type="hidden" name="isbn" value="$id">
                 </div>
                 <div class="form-group d-flex flex-column">
                     <div class="white-text-color m-0" >Commentaire</div>
@@ -58,7 +61,6 @@ $form = <<<HTML
         </div>
  </div>
 HTML;
-
 
 $webPage->appendContent($form);
 $webPage->appendContent(getFooter());

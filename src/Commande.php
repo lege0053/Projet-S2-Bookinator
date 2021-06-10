@@ -167,4 +167,19 @@ class Commande
         return $req->fetchAll();
 
     }
+
+    public static function exist($id, $idUtilisateur):bool
+    {
+        $retour=true;
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Commande
+                WHERE idCmd=?
+                AND idUtilisateur=?
+        SQL);
+        $req->execute([$id, $idUtilisateur]);
+        if(!$req->fetch())
+            $retour=false;
+        return $retour;
+    }
 }

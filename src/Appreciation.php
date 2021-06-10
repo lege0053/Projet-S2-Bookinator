@@ -107,4 +107,18 @@ class Appreciation
             $retour=false;
         return $retour;
     }
+
+    public static function existId($id):bool
+    {
+        $retour=true;
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Appreciation
+                WHERE idAppreciation=?
+        SQL);
+        $req->execute([$id]);
+        if(!$req->fetch())
+            $retour=false;
+        return $retour;
+    }
 }

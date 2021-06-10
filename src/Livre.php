@@ -224,6 +224,11 @@ class Livre
         return $stat->fetchAll();
     }
 
+    /**
+     * Retourne tout les livres de la base de donnée.
+     * @return array
+     * @throws Exception
+     */
     public static function getAll():array
     {
         $stat = MyPDO::getInstance()->prepare(<<<SQL
@@ -236,7 +241,18 @@ class Livre
         return $stat->fetchAll();
     }
 
-
+    /**
+     * Fonction pour les filtres.
+     * @param String $research
+     * @param array $authors
+     * @param array $years
+     * @param array $editeurs
+     * @param array $genres
+     * @param array $languages
+     * @param int $page
+     * @return array
+     * @throws Exception
+     */
     public static function getResearch(String $research, array $authors, array $years, array $editeurs, array $genres, array $languages, int $page):array {
 
         $offset = $page * 30;
@@ -333,5 +349,17 @@ class Livre
         $stat->execute();
         return $stat->fetchAll();
 
+    }
+
+    public static function exist(string $isbn):bool{
+        $retour=true;
+        $req = MyPDO::getInstance()->prepare(<<<SQL
+                SELECT *
+                FROM Livre
+                WHERE ISBN=?
+        SQL);
+        if(!$req->fetch())
+            $retour=false;
+        return $retour;
     }
 }

@@ -7,22 +7,26 @@ require_once "src/Utils.php";
 init_php_session();
 
 $id = '';
-$url='';
-if (isset($_GET['isbn']))
+$name='';
+if(!isLogged())
+    header('Location: index.php');
+if (isset($_GET['isbn']) && !empty($_GET['isbn']) && ctype_digit($_GET['isbn']) && Livre::exist($_GET['isbn']))
 {
     $id=$_GET['isbn'];
-    $url="isbn=$id";
+    $name="isbn";
 }
-else if (isset($_GET['idCmd']))
+else if (isset($_GET['idCmd']) && !empty($_GET['idCmd']) && ctype_digit($_GET['idCmd']) && Commande::exist($_GET['idCmd'], $_SESSION['idUtilisateur']))
 {
     $id=$_GET['idCmd'];
-    $url="idCmd=$id";
+    $name="idCmd";
 }
-else if (isset($_GET['idApp']))
+else if (isset($_GET['idApp']) && !empty($_GET['idApp']) && ctype_digit($_GET['idApp']) && Appreciation::existId($_GET['idApp']))
 {
     $id=$_GET['idApp'];
-    $url="idApp=$id";
+    $name="idApp";
 }
+else
+    header('Location: index.php');
 
 $webPage = new WebPage("Signalement");
 $webPage->appendContent(getHeader());
@@ -55,11 +59,12 @@ $form = <<<HTML
 
         <div class="d-flex m-5 p-5 main-background flex-column align-items-center border-radius-10 login-form justify-content-center ">
         
-            <form action="addSignalement_trmt.php?$url" class="d-flex flex-column" method="post">
+            <form action="addSignalement_trmt.php" class="d-flex flex-column" method="post">
                 <h2 class="d-flex form-title justify-content-center white-text-color">Signalement</h2>
                 <div class="d-flex flex-column form-group ">
                     <div class="white-text-color m-0">Veuillez décrire votre problème : </div>
                     <textarea name="contenu" class="form-control second-main-background " style="outline: 0; border:0; color:black;" maxlength="500" cols="300" rows="20" required></textarea>
+                    <input type="hidden" name="$name" value="$id">
                 </div>
                 <div class="d-flex form-group justify-content-center">
                     <button type="submit" class="font-size-20 main-color-background dark-text border-radius-5 padding-button font-weight-bold" style="outline: 0; border:0;">Envoyer</button>

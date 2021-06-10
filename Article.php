@@ -31,5 +31,6 @@ try{
     }
 }catch(Exception $e)
 {
-    header('Location: index.php');
+    echo "<script>window.alert('Cette page est indisponible !')</script>";
+    echo "<script>window.location.href='index.php'</script>";
 }
