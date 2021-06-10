@@ -7,10 +7,10 @@ require '../src/Utils.php';
 init_php_session();
 
 if(!isLogged()){
-    header('Location: index.php');
+    header('Location: ../index.php');
 }
 if(!isAdmin()){
-    header('Location: index.php');
+    header('Location: ../index.php');
 }
 
 $oldISBN = $_GET['oldISBN'];

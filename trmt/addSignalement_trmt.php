@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-require_once "autoload.php";
-require_once "src/Utils.php";
+require_once "../autoload.php";
+require_once "../src/Utils.php";
 
 init_php_session();
 
 if(!isLogged())
-    header('Location: index.php');
+    header('Location: ../index.php');
 
 $isBookReport=false;
 $isCommentReport=false;
@@ -74,9 +74,9 @@ try{
     SQL);
         $req2->execute([$idSignalement, $id]);
     }
-    header('Location: index.php');
+    header('Location: ../index.php');
 }catch(Exception $e)
 {
-    header('Location: Article.php?idArticle='.$id);
+    header('Location: ../Article.php?idArticle='.$id);
 }
 

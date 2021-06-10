@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-require "autoload.php";
-require "src/Utils.php";
+require "../autoload.php";
+require "../src/Utils.php";
 
 init_php_session();
 
@@ -54,12 +54,12 @@ if(isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prnm']) && !em
 
                         $_SESSION['idUtilisateur'] = (int)($data['idUtilisateur']);
                         $_SESSION['isAdmin'] = (int)($data['isAdmin']);
-                        header('Location: userpage.php');
+                        header('Location: ../userpage.php');
 
-                    } else header('Location: inscription.php?reg_err=mail');
-                } else header('Location: inscription.php?reg_err=mail_lenght');
-            } else header('Location: inscription.php?reg_err=prnm_lenght');
-        } else header('Location: inscription.php?reg_err=nom_lenght');
-    } else header('Location: inscription.php?reg_err=already');
-} else header('Location: inscription.php');
+                    } else header('Location: ../inscription.php?reg_err=mail');
+                } else header('Location: ../inscription.php?reg_err=mail_lenght');
+            } else header('Location: ../inscription.php?reg_err=prnm_lenght');
+        } else header('Location: ../inscription.php?reg_err=nom_lenght');
+    } else header('Location: ../inscription.php?reg_err=already');
+} else header('Location: ../inscription.php');
 

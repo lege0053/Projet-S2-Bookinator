@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-require_once "autoload.php";
-require_once "src/Utils.php";
+require_once "../autoload.php";
+require_once "../src/Utils.php";
 init_php_session();
 
 $id='';
 if(isset($_POST['isbn']) && !empty($_POST['isbn']) && ctype_digit($_POST['isbn']) && isLogged())
     $id=$_POST['isbn'];
 else
-    header('Location: index.php');
+    header('Location: ../index.php');
 try{
     if(!Appreciation::exist($id, $_SESSION['idUtilisateur']))
     {
@@ -18,7 +18,7 @@ try{
         VALUES(null, ?,?,SYSDATE(),?,?)
     SQL);
         $req->execute([$_POST['commentaire'], $_POST['note'], $_SESSION['idUtilisateur'], $id]);
-        header('Location: Article.php?idArticle='.$id);
+        header('Location: ../Article.php?idArticle='.$id);
     }
     else
     {
@@ -26,6 +26,6 @@ try{
         echo "<script>window.location.href='Article.php?idArticle=$id'</script>";
     }
 }catch(Exception $e){
-    header('Location: Article.php?idArticle='.$id);
+    header('Location: ../Article.php?idArticle='.$id);
 }
 

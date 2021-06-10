@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-require "autoload.php";
-require "src/Utils.php";
+require "../autoload.php";
+require "../src/Utils.php";
 init_php_session();
 
 if(isset($_POST['mail']) && !empty($_POST['mail']) && isset($_POST['mdp']) && !empty($_POST['mdp']))
@@ -24,13 +24,13 @@ if(isset($_POST['mail']) && !empty($_POST['mail']) && isset($_POST['mdp']) && !e
 
                 $_SESSION['idUtilisateur'] = (int)($data['idUtilisateur']);
                 $_SESSION['isAdmin'] = (int)($data['isAdmin']);
-                header('Location:index.php');
+                header('Location: ../index.php');
 
             }
-            else header('Location: connexion.php?login_err=password');
+            else header('Location: ../connexion.php?login_err=password');
         }
-        else header('Location: connexion.php?login_err=email');
+        else header('Location: ../connexion.php?login_err=email');
     }
-    else header('Location: connexion.php?login_err=inconnu');
+    else header('Location: ../connexion.php?login_err=inconnu');
 }
-else header('Location: connexion.php');
+else header('Location: ../connexion.php');
