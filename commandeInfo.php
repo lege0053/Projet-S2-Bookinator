@@ -66,6 +66,10 @@ foreach ($panier as $livres) {
            <div class=" main-text-color ">Quantité : {$qte['qte']}</div>
            <div class="d-flex white-text-color flex-fill align-items-end">Langue : {$livres->getLangue()}</div>
        </div>
+    
+     <div class="d-flex flex-column  ">
+           <div class="second-main-background align-items-center main-text-color font-size-15 padding-button  border-radius-5 align-items-center flex-fill  "> {$prixL} € </div>
+    </div>
     </div>
   
 
@@ -104,48 +108,50 @@ $html = <<<HTML
                 </defs>
             </svg>
         </a>
-        <div class="d-flex flex-column main-background  padding-button h-100 border-radius-5">
-                 <div class="d-flex flex-row justify-content-between ">
-                    <div class="form-group d-flex m-3 flex-fill flex-column">
-                        <div class="white-text-color ">N°Commande</div>
-                        <div class="form-control second-main-background button-no-outline font-size-10 white-text-color"> $numCmd </div>
+        <div class="d-flex flex-column"> 
+            <div class="d-flex flex-column main-background padding-button h-100 border-radius-5">
+                     <div class="d-flex flex-row justify-content-between ">
+                        <div class="form-group d-flex m-3 flex-fill flex-column">
+                            <div class="white-text-color ">N°Commande</div>
+                            <div class="form-control second-main-background button-no-outline font-size-10 white-text-color"> $numCmd </div>
+                        </div>
+                        <div class=" d-flex m-3 flex-fill flex-column">
+                            <div class="white-text-color">Statue</div>
+                            <div class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> ??????? </div>
+                        </div>
                     </div>
-                    <div class=" d-flex m-3 flex-fill flex-column">
-                        <div class="white-text-color">Statue</div>
-                        <div class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> ??????? </div>
+                    <div class="d-flex flex-row justify-content-between">
+                         <div class="form-group flex-fill d-flex flex-column ">
+                            <div class="white-text-color">Adresse de livraison</div>
+                         </div>
+                         <div class="form-group flex-fill d-flex flex-column">
+                             <div class="white-text-color">Prix</div>
+                             <div class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> $prix € </div>
+                         </div>
                     </div>
+                    <div class="form-group  d-flex flex-column">
+                          <div class="d-flex  flex-row justify-content-between">
+                        <div class="form-group d-flex  m-3 flex-fill flex-column">
+                            <div class="white-text-color ">Ville</div>
+                            <div class="form-control second-main-background button-no-outline font-size-10 white-text-color"> $ville </div>
+                        </div>
+                        <div class=" d-flex  flex-fill m-3 flex-column">
+                            <div class="white-text-color">Code postal</div>
+                            <div class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> $CP </div>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex flex-column">
+                          <div class="white-text-color">Adresse</div>
+                          <div  class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> $adr </div>
+                    </div> 
                 </div>
-                <div class="d-flex flex-row justify-content-between">
-                     <div class="form-group flex-fill d-flex flex-column ">
-                        <div class="white-text-color">Adresse de livraison</div>
-                     </div>
-                     <div class="form-group flex-fill d-flex flex-column">
-                         <div class="white-text-color">Prix</div>
-                         <div class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> $prix € </div>
-                     </div>
-                </div>
-                <div class="form-group d-flex flex-column">
-                      <div class="d-flex flex-row justify-content-between">
-                    <div class="form-group d-flex m-3 flex-fill flex-column">
-                        <div class="white-text-color ">Ville</div>
-                        <div class="form-control second-main-background button-no-outline font-size-10 white-text-color"> $ville </div>
-                    </div>
-                    <div class=" d-flex m-3 flex-fill flex-column">
-                        <div class="white-text-color">Code postal</div>
-                        <div class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> ??????? </div>
-                    </div>
-                </div>
-                <div class="form-group d-flex flex-column">
-                      <div class="white-text-color">Adresse</div>
-                      <div  class="form-control second-main-background  button-no-outline font-size-10 white-text-color"> $adr </div>
-                </div> 
+            </div>
+            <div class="d-flex  flex-column">
+                $livre
             </div>
         </div>
-        <div class="d-flex  flex-column">
-            $livre
-        </div>
     </div>
-</div>
+   </div>
   
 
 
