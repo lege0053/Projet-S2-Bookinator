@@ -166,7 +166,7 @@ function affichageConnecte(string $isbn):string
 
     if(Appreciation::exist($isbn, $_SESSION['idUtilisateur']))
     {
-        $retour.="<a href='#' class='justify-content-center d-flex flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Merci de votre retour !</a>";
+        $retour.="<a href='' class='justify-content-center d-flex flex-md-grow-1 font-size-24 main-color-background dark-text border-radius-5 padding-button font-weight-bold button'>Merci de votre retour !</a>";
     }
     else
     {

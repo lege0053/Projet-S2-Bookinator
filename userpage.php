@@ -24,9 +24,12 @@ if($user->getPhotoProfil() == null)
     HTML;
 } else {
     $pdp = <<<HTML
-    <div style="width: 180px; height: 180px;">
-        <img alt="" src="./src/ViewPdP.php?id={$user->getIdUtilisateur()}" height="180" width="180" class="border-radius-100" style="object-fit: cover;">
-    </div>
+        <div class="d-flex align-items-center justify-content-center">
+            <label for="input-couverture" class="d-flex align-items-center justify-content-center second-main-background border-radius-10 hover-couverture" style="width: 180px; height: 180px;">
+                <img alt="" src="./src/ViewPdP.php?id={$user->getIdUtilisateur()}" height="180" width="180" class="border-radius-100" style="object-fit: cover;">
+            </label>
+            <input id="input-couverture" type="file" name="couverture" class="flex-fill form-control d-none" accept="image/png, image/jpeg" onchange="previewFile('1')">
+       </div>
     HTML;
 }
 
