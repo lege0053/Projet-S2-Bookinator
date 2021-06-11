@@ -67,7 +67,7 @@ if(!$exist) {
             AND UPPER(prnm) = UPPER(?)
             SQL);
             $req->execute([$nomAuteurList[$i], $prenomAuteurList[$i]]);
-            $authorId[] = $idExist['idAuteur'];
+            $authorId[] = $req->fetch()['idAuteur'];
         }else{
             $authorId[] = $idExist['idAuteur'];
         }
