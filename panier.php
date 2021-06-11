@@ -5,6 +5,9 @@ require_once "autoload.php";
 require "src/Utils.php";
 init_php_session();
 
+if(!isLogged())
+    header('Location: index.php');
+
 $webPage = new WebPage("Panier");
 $webPage->appendContent(getHeader());
 $webPage->appendCssUrl("src/style.css");
