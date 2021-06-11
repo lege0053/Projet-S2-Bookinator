@@ -26,12 +26,13 @@ foreach ($panier as $livres) {
 
     $req = MyPDO::getInstance()->prepare(<<<SQL
                 SELECT qte
-                FROM Contenu 
+                FROM Contenu
                 WHERE ISBN=?
+                AND idCmd = ?
 
     SQL
     );
-    $req->execute([$livres->getISBN()]);
+    $req->execute([$livres->getISBN(), $Commande->getIdCmd()]);
     $qte = $req->fetch();
 
     $tabAuteurs = $livres->getAuteurs();
@@ -64,10 +65,9 @@ foreach ($panier as $livres) {
        
        
        <div class="d-flex flex-column ">
-           <div class="second-main-background main-text-color font-size-15 padding-button  border-radius-5 align-items-center flex-fill  "> {$prix} € </div>
+           <div class="d-flex second-main-background main-text-color font-size-20 padding-button  border-radius-5 justify-content-center align-items-center flex-fill  "> {$prix} € </div>
           
-          
-           <a href="trmt/supressionPanier_trmt.php?ISBN={$livres->getISBN()}" class="btn font-size-15 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</a>
+           <a href="trmt/supressionPanier_trmt.php?ISBN={$livres->getISBN()}" class="btn d-flex justify-content-center align-items-center font-size-20 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</a>
           
        </div>
        
