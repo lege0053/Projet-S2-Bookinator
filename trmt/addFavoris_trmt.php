@@ -20,5 +20,5 @@ SQL);
     header('Location: ../Article.php?idArticle='.$id);
 }catch (Exception $e){
     echo "<script>window.alert('Ce livre était déjà en favori ou une erreur interne est survenue.')</script>";
-    echo "<script>window.location.href='Article.php?idArticle=$id'</script>";
+    echo "<script>window.location.href='../Article.php?idArticle=$id'</script>";
 }

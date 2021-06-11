@@ -32,7 +32,7 @@ function affichageLivre(string $isbn):string
     if(isLogged())
     {
         $favori="<td class='d-flex flex-row'>
-<a href='addFavoris_trmt.php?isbn=$isbn' class='d-flex justify-content-center align-items-center font-size-24 border-radius-5 padding-button button'>
+<a href='trmt/addFavoris_trmt.php?isbn=$isbn' class='d-flex justify-content-center align-items-center font-size-24 border-radius-5 padding-button button'>
     <svg width='50' height='50' viewBox='0 0 88 88' fill='none' xmlns='http://www.w3.org/2000/svg'>
         <rect width='88' height='88' rx='5' fill='#E1B74A'/>
         <path d='M64.5137 25.9775C63.1352 24.5893 61.4959 23.4872 59.6901 22.7347C57.8843 21.9822 55.9475 21.594 53.9912 21.5925C50.2907 21.5931 46.7254 22.9832 44.0012 25.4875C41.2772 22.9827 37.7117 21.5926 34.0112 21.5925C32.0525 21.5945 30.1136 21.9839 28.306 22.7382C26.4984 23.4924 24.8578 24.5967 23.4787 25.9875C17.5962 31.895 17.5987 41.135 23.4837 47.0175L44.0012 67.535L64.5187 47.0175C70.4037 41.135 70.4062 31.895 64.5137 25.9775Z' fill='#2F2F2F'/>

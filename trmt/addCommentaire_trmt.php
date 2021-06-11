@@ -23,7 +23,7 @@ try{
     else
     {
         echo "<script>window.alert('Vous avez déjà rédigé un commentaire pour ce livre.')</script>";
-        echo "<script>window.location.href='Article.php?idArticle=$id'</script>";
+        echo "<script>window.location.href='../Article.php?idArticle=$id'</script>";
     }
 }catch(Exception $e){
     header('Location: ../Article.php?idArticle='.$id);
