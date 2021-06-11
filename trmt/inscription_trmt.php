@@ -8,8 +8,7 @@ init_php_session();
 
 if(isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prnm']) && !empty($_POST['prnm'])
     && isset($_POST['mail']) && !empty($_POST['mail']) && isset($_POST['repeat_mail']) && !empty($_POST['repeat_mail'])
-    && isset($_POST['mdp']) && !empty($_POST['mdp']) && isset($_POST['repeat_mdp']) && !empty($_POST['repeat_mdp'])
-    && isset($_POST['dateNais']) && !empty($_POST['dateNais']))
+    && isset($_POST['mdp']) && !empty($_POST['mdp']) && isset($_POST['repeat_mdp']) && !empty($_POST['repeat_mdp']))
 {
     $nom = htmlspecialchars($_POST['nom']);
     $prnm = htmlspecialchars($_POST['prnm']);
@@ -17,7 +16,6 @@ if(isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prnm']) && !em
     $mdp = htmlspecialchars($_POST['mdp']);
     $repeat_mail = htmlspecialchars($_POST['repeat_mail']);
     $repeat_mdp = htmlspecialchars($_POST['repeat_mdp']);
-    $dateNais = htmlspecialchars($_POST['dateNais']);
 
     $check = MyPDO::getInstance()->prepare(<<<SQL
         SELECT * FROM Utilisateur
@@ -43,7 +41,7 @@ if(isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prnm']) && !em
                             'INSERT INTO Utilisateur(nom, prnm, mail, mdp, dateNais)
                             VALUES(?, ?, ?, ?, ?)');
                         
-                        $insert->execute([$nom, $prnm, $mail, $mdp, $dateNais]);
+                        $insert->execute([$nom, $prnm, $mail, $mdp, '2000-01-01']);
 
                         $get = MyPDO::getInstance()->prepare(<<<SQL
                             SELECT * FROM Utilisateur
