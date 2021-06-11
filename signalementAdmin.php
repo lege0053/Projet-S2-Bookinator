@@ -22,12 +22,13 @@ $signs=$signs->fetchAll();
 $resultSigns='';
 foreach ($signs as $sign) {
     $type=Signalement::getTypeSig($sign['idSignalement']);
+    $user=Utilisateur::createFromId((int)$sign['idUtilisateur']);
     $resultSigns .= <<<HTML
         <tr>
-            <th scope="row">{$sign['idSignalement']}</th>
+            <th scope="row">{$sign['dateSig']}</th>
             <td>$type</td>
-            <td>{$sign['idUtilisateur']}</td>
-            <td>{$sign['dateSig']}</td>
+            <td>{$user->getMail()} <a href="" </td>
+            <td></td>
         </tr>
 HTML;
 }
@@ -37,12 +38,11 @@ $html = <<<HTML
         <div class="d-flex font-size-36 dark-text main-color-background mt-5 mb-5 px-5 border-radius-5 align-self-center">Signalements</div>
         <div class="d-flex flex-column px-5 pb-5">
             <table class="table table-striped table-bordered table-dark">
-                <thead>
+                <thead class="main-text-color">
                     <tr>
-                      <th scope="col">Signalement</th>
+                      <th scope="col">Date</th>
                       <th scope="col">Type</th>
                       <th scope="col">Utilisateur</th>
-                      <th scope="col">Date</th>
                     </tr>
                 </thead>         
                 <tbody>
