@@ -34,6 +34,10 @@ if(isset($_GET['idSignalement']) && !empty($_GET['idSignalement']) && ctype_digi
                     <td class='white-text-color'>{$sign->getDateSig()}</td>
                 </tr>
                 <tr>
+                    <td class="main-text-color">Type</td>
+                    <td class='white-text-color'>$type</td>
+                </tr>
+                <tr>
                     <td class="main-text-color">Contenu</td>
                     <td class='white-text-color'>{$sign->getContenu()}</td>
                 </tr>
