@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
+* {
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: bold;
+}
+.font-size-36{
+    font-size: 36px;
+}
+
+.font-size-32{
+    font-size: 32px;
+}
+
+.font-size-28{
+    font-size: 28px;
+}
+
+.font-size-24{
+    font-size: 24px;
+}
+
+.font-size-20{
+    font-size: 20px;
+}
+
+.white-text-color {
+    color: #F5F5F5;
+}
+.white-text-color:hover {
+    color: #F5F5F5;
+}
+
+.white-background-color {
+    background-color: #F5F5F5;
+}
+
+.main-text-color {
+    color: #e1b74a;
+}
+
+.main-background {
+    background-color: #353535;
+}
+
+.second-main-background {
+    background-color: #525252;
+}
+
+.main-color-background {
+    background-color: #E1B74A;
+}
+
+.dark-text {
+    color: #2F2F2F;
+}
+
+.description-text {
+    color: #616161;
+}
+.description-background {
+    background-color: #DADADA;
+}
+
+.footer {
+    padding: 10px;
+}
+
+.booki-link {
+    color: #E1B74A;
+}
+.booki-link:hover {
+    color: #E1B74A;
+    text-decoration: underline;
+}
+
+.border-radius-100 {
+    border-radius: 100px;
+}
+
+.border-radius-10 {
+    border-radius: 10px;
+}
+
+.border-radius-5 {
+    border-radius: 5px;
+}
+
+.logo {
+    filter: invert(100%) sepia(7%) saturate(241%) hue-rotate(280deg) brightness(114%) contrast(92%);
+}
+
+.padding-button {
+    margin: 12px;
+    padding: 5px 30px 5px 30px;
+}
+
+.button {
+    text-decoration: none;
+}
+.button:hover {
+    text-decoration: none;
+    color: #2F2F2F;
+}
+
+.panier-button {
+    padding: 6px;
+    margin-right: 12px;
+}
+
+.header {
+    background: center no-repeat url("../img/background.jpg");
+    background-size: 100% auto;
+    height: 61vh;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
+}
+
+.research-button {
+    border: 0px;
+    outline: 0;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.dackdrop-blur {
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+}
+
+.margin-left {
+    margin-left: 10px;
+}
+
+.margin-right {
+    margin-right: 10px;
+}
+.margin-topbottom-art {
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+
+.square-button {
+    height: 36px;
+    width: 36px;
+}
+
+.button-no-outline {
+    outline: 0;
+    border: 0;
+}
+
+.book-card {
+    width: 280px;
+    margin: 30px;
+    text-decoration: none;
+}
+.book-card:hover{
+    text-decoration: none;
+}
+
+.book-card img{
+    border-radius: 5px 0px 0px 0px;
+}
+.book-card .infos{
+    color: #2F2F2F;
+}
+.book-card .infos:hover{
+    text-decoration: none;
+    color: #2F2F2F;
+}
+
+.bottom-card {
+    border-radius: 0px 0px 5px 5px;
+}
+.bottom-card span {
+    margin: 2px;
+}
+
+.no-decoration {
+    text-decoration: none;
+}
+.no-decoration:hover {
+    text-decoration: none;
+}
+
+.hover-couverture:hover{
+    -webkit-filter: brightness(0.5);
+    backdrop-filter: brightness(0.5);
+}
