@@ -23,12 +23,14 @@ $resultSigns='';
 foreach ($signs as $sign) {
     $type=Signalement::getTypeSig($sign['idSignalement']);
     $user=Utilisateur::createFromId((int)$sign['idUtilisateur']);
+    $reporter=$user->getPseudo();
     $resultSigns .= <<<HTML
         <tr>
-            <th scope="row">{$sign['dateSig']}</th>
+            <th scope="row"><a href="signalementInfo.php?idSignalement={$sign['idSignalement']}" class="booki-link">Ouvrir</a></th>            
+            <td>{$sign['idSignalement']}</td>
+            <td>$reporter</td>
             <td>$type</td>
-            <td>{$user->getMail()} <a href="" </td>
-            <td></td>
+            <td>{$sign['dateSig']}</td>
         </tr>
 HTML;
 }
@@ -40,9 +42,11 @@ $html = <<<HTML
             <table class="table table-striped table-bordered table-dark">
                 <thead class="main-text-color">
                     <tr>
-                      <th scope="col">Date</th>
-                      <th scope="col">Type</th>
+                      <th></th>
+                      <th scope="col">Id Signalement</th>
                       <th scope="col">Utilisateur</th>
+                      <th scope="col">Catégorie</th>
+                      <th scope="col">Date</th>
                     </tr>
                 </thead>         
                 <tbody>
