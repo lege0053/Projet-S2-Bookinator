@@ -67,7 +67,7 @@ $html = <<<HTML
     <div class="d-flex flex-column">
         <div class="d-flex flex-row">
             <div class="d-flex flex-shrink">$pdp</div>                
-            <div class="d-flex flex-grow-1 main-color-background padding-button border-radius-5 font-weight-bold justify-content-center">
+            <div class="d-flex flex-grow-1 main-color-background padding-button border-radius-10 font-weight-bold justify-content-center">
             <div class="d-flex font-size-36 dark-text align-self-center"> Profil</div>
             </div>
         </div>
@@ -78,7 +78,7 @@ $html = <<<HTML
             </form>
         </div>
     <!--Formulaire-->        
-        <div class="d-flex flex-column main-background padding-button border-radius-5">
+        <div class="d-flex flex-column main-background padding-button border-radius-10">
             <form enctype="multipart/form-data" id="formProfil" name="formProfil" action="trmt/profil_trmt.php" method="post" class="p-3">
                  <div class="d-flex flex-row mt-3 justify-content-between">
                     <div class="form-group d-flex flex-column">

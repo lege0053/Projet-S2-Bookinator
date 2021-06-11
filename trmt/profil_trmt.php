@@ -27,9 +27,9 @@ if(!empty($_FILES['photo']['tmp_name']))
     $reqPhotoProfil->execute([$contents, $_SESSION['idUtilisateur']]);
 }
 
-if(isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prnm']) && !empty($_POST['prnm'])
-    && isset($_POST['ville']) && !empty($_POST['ville']) && isset($_POST['CP']) && !empty($_POST['CP']) && isset($_POST['adresse']) && !empty($_POST['adresse'])
-    && isset($_POST['tel']) && !empty($_POST['tel']))
+if((isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prnm']) && !empty($_POST['prnm']))
+    || (isset($_POST['ville']) && !empty($_POST['ville'])) || (isset($_POST['CP']) && !empty($_POST['CP'])) || (isset($_POST['adresse']) && !empty($_POST['adresse']))
+    || (isset($_POST['tel']) && !empty($_POST['tel'])))
 {
 
     $nom = htmlspecialchars($_POST['nom']);
