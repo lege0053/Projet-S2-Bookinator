@@ -6,6 +6,9 @@ require "src/Utils.php";
 
 init_php_session();
 
+if(!isLogged())
+    header('Location: index.php');
+
 $webPage = new WebPage("Vos commandes : ");
 $webPage->appendContent(getHeader());
 $webPage->appendCssUrl("src/style.css");
@@ -38,13 +41,15 @@ $listeCommandes=Utilisateur::createFromId($_SESSION['idUtilisateur'])->getComman
 
 foreach($listeCommandes as $commande)
 {
-    $color = '';
-    if($commande->getStatus()['idStatus'] == 1){
-        $color = '#4F9649';
-    }else{
-        $color = '#A63F3F';
-    }
-    $html .= <<<HTML
+    if($commande->getStatus()['idStatus']!=3)
+    {
+        $color = '';
+        if($commande->getStatus()['idStatus'] == 1){
+            $color = '#4F9649';
+        }else{
+            $color = '#A63F3F';
+        }
+        $html .= <<<HTML
 
         <div class="d-flex flex-column w-100 justify-content-center"  style="margin-bottom: 30px;"> 
             <div class="d-flex flex-column flex-fill main-background padding-button h-100 border-radius-10 container p-3 m-0">
@@ -94,8 +99,8 @@ foreach($listeCommandes as $commande)
             </div>
        </div>
 HTML;
+    }
 }
-
 $html.=<<<HTML
         </div>
     </div>
