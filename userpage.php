@@ -17,18 +17,24 @@ $webPage->appendCssUrl("src/style.css");
 if($user->getPhotoProfil() == null)
 {
     $pdp= <<<HTML
-        <svg width="180" height="180" viewBox="0 0 181 181" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="90.5" cy="90.5" r="90.5" fill="#353535"/>
-        <path d="M114.555 73.342H105.397V72.401C105.397 68.1973 101.985 64.7856 97.7812 64.7856H83.2155C79.0101 64.7856 75.6001 68.1973 75.6001 72.401V73.342H66.4396C62.2342 73.342 58.8242 76.752 58.8242 80.9574V108.6C58.8242 112.803 62.2342 116.215 66.4396 116.215H114.559C118.764 116.215 122.174 112.803 122.174 108.6V80.9574C122.171 76.7503 118.761 73.342 114.555 73.342ZM90.4958 108.315C82.5623 108.315 76.1112 101.864 76.1112 93.9306C76.1112 85.9988 82.5623 79.546 90.4958 79.546C98.4294 79.546 104.88 85.9971 104.88 93.9306C104.88 101.864 98.4277 108.315 90.4958 108.315ZM98.1112 93.9306C98.1112 98.1259 94.6928 101.546 90.4958 101.546C86.2989 101.546 82.8804 98.1259 82.8804 93.9306C82.8804 89.7337 86.2989 86.3152 90.4958 86.3152C94.6928 86.3152 98.1112 89.7337 98.1112 93.9306Z" fill="#525252"/>
-        </svg>
+        <label for="input-photo" class="d-flex align-items-center justify-content-center second-main-background border-radius-100 hover-couverture" style="width: 180px; height: 180px;">
+            <div id="no_image">
+                <svg width="180" height="180" viewBox="0 0 181 181" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="90.5" cy="90.5" r="90.5" fill="#353535"/>
+                <path d="M114.555 73.342H105.397V72.401C105.397 68.1973 101.985 64.7856 97.7812 64.7856H83.2155C79.0101 64.7856 75.6001 68.1973 75.6001 72.401V73.342H66.4396C62.2342 73.342 58.8242 76.752 58.8242 80.9574V108.6C58.8242 112.803 62.2342 116.215 66.4396 116.215H114.559C118.764 116.215 122.174 112.803 122.174 108.6V80.9574C122.171 76.7503 118.761 73.342 114.555 73.342ZM90.4958 108.315C82.5623 108.315 76.1112 101.864 76.1112 93.9306C76.1112 85.9988 82.5623 79.546 90.4958 79.546C98.4294 79.546 104.88 85.9971 104.88 93.9306C104.88 101.864 98.4277 108.315 90.4958 108.315ZM98.1112 93.9306C98.1112 98.1259 94.6928 101.546 90.4958 101.546C86.2989 101.546 82.8804 98.1259 82.8804 93.9306C82.8804 89.7337 86.2989 86.3152 90.4958 86.3152C94.6928 86.3152 98.1112 89.7337 98.1112 93.9306Z" fill="#525252"/>
+                </svg>
+            </div>
+            <img id="photoProfil" alt="" height="180" width="180" class="d-none border-radius-100" style="object-fit: cover;">
+        </label>
+        <input form="formProfil" id="input-photo" type="file" name="photo" class="flex-fill form-control d-none" accept="image/png, image/jpeg" onchange="previewPhotoProfil('0')">
     HTML;
 } else {
     $pdp = <<<HTML
         <div class="d-flex align-items-center justify-content-center">
-            <label for="input-couverture" class="d-flex align-items-center justify-content-center second-main-background border-radius-10 hover-couverture" style="width: 180px; height: 180px;">
-                <img alt="" src="./src/ViewPdP.php?id={$user->getIdUtilisateur()}" height="180" width="180" class="border-radius-100" style="object-fit: cover;">
+            <label for="input-photo" class="d-flex align-items-center justify-content-center second-main-background border-radius-100 hover-couverture" style="width: 180px; height: 180px;">
+                <img id="photoProfil" alt="" src="./src/ViewPdP.php?id={$user->getIdUtilisateur()}" height="180" width="180" class="border-radius-100" style="object-fit: cover;">
             </label>
-            <input id="input-couverture" type="file" name="couverture" class="flex-fill form-control d-none" accept="image/png, image/jpeg" onchange="previewFile('1')">
+            <input form="formProfil" id="input-photo" type="file" name="photo" class="flex-fill form-control d-none" accept="image/png, image/jpeg" onchange="previewPhotoProfil('1')">
        </div>
     HTML;
 }
@@ -73,7 +79,7 @@ $html = <<<HTML
         </div>
     <!--Formulaire-->        
         <div class="d-flex flex-column main-background padding-button border-radius-5">
-            <form action="trmt/profil_trmt.php" method="post" class="p-3">
+            <form enctype="multipart/form-data" id="formProfil" name="formProfil" action="trmt/profil_trmt.php" method="post" class="p-3">
                  <div class="d-flex flex-row mt-3 justify-content-between">
                     <div class="form-group d-flex flex-column">
                         <div class="white-text-color">Nom</div>
@@ -118,5 +124,6 @@ $html = <<<HTML
 HTML;
 
 $webPage->appendContent($html);
+$webPage->appendJsUrl('js/image.js');
 $webPage->appendContent(getFooter());
 echo $webPage->toHTML();

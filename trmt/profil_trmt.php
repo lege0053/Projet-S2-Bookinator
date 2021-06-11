@@ -6,6 +6,27 @@ require "../src/Utils.php";
 
 init_php_session();
 
+if(!isLogged()){
+    header('Location ../index.php');
+}
+
+// Ajout de la Couverture //
+if(!empty($_FILES['photo']['tmp_name']))
+{
+    $image = $_FILES['photo']['tmp_name'];
+    $data = fopen($image, 'rb');
+    $size = $_FILES['photo']['size'];
+    $contents = fread($data, $size);
+    fclose($data);
+
+    $reqPhotoProfil = MyPDO::getInstance()->prepare(<<<SQL
+            UPDATE Utilisateur
+            SET photoProfil = ?
+            WHERE idUtilisateur = ?
+        SQL);
+    $reqPhotoProfil->execute([$contents, $_SESSION['idUtilisateur']]);
+}
+
 if(isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prnm']) && !empty($_POST['prnm'])
     && isset($_POST['ville']) && !empty($_POST['ville']) && isset($_POST['CP']) && !empty($_POST['CP']) && isset($_POST['adresse']) && !empty($_POST['adresse'])
     && isset($_POST['tel']) && !empty($_POST['tel']))
