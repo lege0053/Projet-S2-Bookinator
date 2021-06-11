@@ -73,6 +73,7 @@ $html = <<<HTML
         </div>
         <div class="d-flex flex-row justify-content-around p-2">
             <a href="favoris.php" class="font-size-15 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Mes Favoris</a>
+            <a href="listeCommande.php" class="font-size-15 main-color-background dark-text border-radius-5 padding-button font-weight-bold button">Mes Commandes</a>
             <form action="disconnect.php" method="post">
                 <button type="submit" class="btn font-size-15 bg-danger dark-text border-radius-5 padding-button font-weight-bold button">Se déconnecter</button>
             </form>
