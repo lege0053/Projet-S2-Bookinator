@@ -51,7 +51,7 @@ foreach ($panier as $livres) {
     $livre .= <<<HTML
     <div class="d-flex flex-row main-background border-radius-5 m-4">
     
-       <div class=""> <a href="article.php?idArticle={$livres->getISBN()} ">  <img height="200" src="./src/ViewCouverture.php?id={$livres->getIdCouv()}" style="border-radius: 5px 0px 0px 5px;"></a> </div> 
+       <div class=""> <a href="trmt/article.php?idArticle={$livres->getISBN()} ">  <img height="200" src="./src/ViewCouverture.php?id={$livres->getIdCouv()}" style="border-radius: 5px 0px 0px 5px;"></a> </div> 
        <div class="d-flex second-main-background flex-column flex-fill m-2 p-2 border-radius-5">
            <div class=" white-text-color ">{$livres->getTitre()}</div>
            <div class="d-flex white-text-color"> De : {$auteurs} </div>
@@ -64,7 +64,7 @@ foreach ($panier as $livres) {
            <div class="second-main-background main-text-color font-size-15 padding-button  border-radius-5 align-items-center flex-fill  "> {$prix} € </div>
           
           
-           <a href="supressionPanier_trmt.php?ISBN={$livres->getISBN()}" class="btn font-size-15 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</a>
+           <a href="trmt/supressionPanier_trmt.php?ISBN={$livres->getISBN()}" class="btn font-size-15 bg-danger dark-text border-radius-5  flex-fill padding-button font-weight-bold button">Supprimer</a>
           
        </div>
        
