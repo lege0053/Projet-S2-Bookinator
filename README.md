@@ -62,5 +62,5 @@ Répartition des pages :
 Finition du projet.
 
 **Vendredi 11 Juin :**
-Dernier jour du projet, beaucoup de corrections et de finitions de petits détails, quelques gros problème corriger. Regroupement des branches php-entity et database dans master.  
+Dernier jour du projet, beaucoup de corrections et de finitions de petits détails, quelques gros problèmes corrigée. Regroupement des branches php-entity et database dans master.  
 Rendu du projet à 14h ! On croise les doigts.
