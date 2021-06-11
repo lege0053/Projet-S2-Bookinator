@@ -73,7 +73,7 @@ $html = <<<HTML
         </div>
     <!--Formulaire-->        
         <div class="d-flex flex-column main-background padding-button border-radius-5">
-            <form action="profil_trmt.php" method="post" class="p-3">
+            <form action="trmt/profil_trmt.php" method="post" class="p-3">
                  <div class="d-flex flex-row mt-3 justify-content-between">
                     <div class="form-group d-flex flex-column">
                         <div class="white-text-color">Nom</div>

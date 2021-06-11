@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-require "autoload.php";
-require "src/Utils.php";
+require "../autoload.php";
+require "../src/Utils.php";
 
 init_php_session();
 
@@ -41,14 +41,14 @@ if(isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['prnm']) && !em
                                 WHERE idUtilisateur = :idUtilisateur
                             SQL);
                             $update->execute([':nom'=>$nom,':prnm'=>$prnm,':tel'=>$tel,':ville'=>$ville,':CP'=>$CP, ':rue'=> $adresse,':idUtilisateur'=>$_SESSION['idUtilisateur']]);
-                            header('Location: userpage.php');
-                        }else header('Location: userpage.php?reg_err=tel_lenght');
-                    }else header('Location: userpage.php?reg_err=adresse_lenght');
-                }else header('Location: userpage.php?reg_err=CP_lenght');
-            }else header('Location: userpage.php?reg_err=ville_lenght');
-        } else header('Location: userpage.php?reg_err=prnm_lenght');
-    } else header('Location: userpage.php?reg_err=nom_lenght');
-} else header('Location: userpage.php');
+                            header('Location: ../userpage.php');
+                        }else header('Location: ../userpage.php?reg_err=tel_lenght');
+                    }else header('Location: ../userpage.php?reg_err=adresse_lenght');
+                }else header('Location: ../userpage.php?reg_err=CP_lenght');
+            }else header('Location: ../userpage.php?reg_err=ville_lenght');
+        } else header('Location: ../userpage.php?reg_err=prnm_lenght');
+    } else header('Location: ../userpage.php?reg_err=nom_lenght');
+} else header('Location: ../userpage.php');
 
 
 

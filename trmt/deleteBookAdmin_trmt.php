@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-require "autoload.php";
-require "src/Utils.php";
+require "../autoload.php";
+require "../src/Utils.php";
 
 init_php_session();
 
@@ -15,6 +15,6 @@ if(isset($_POST['ISBN']) && !empty($_POST['ISBN']))
 SQL);
 
     $update->execute([':ISBN'=>$_POST['ISBN']]);
-    header('Location: gestionLivre.php');
-}else header('Location: gestionLivre.php?reg_err=ISBN');
+    header('Location: ../gestionLivre.php');
+}else header('Location: ../gestionLivre.php?reg_err=ISBN');
 
