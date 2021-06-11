@@ -40,11 +40,11 @@ $form = <<<HTML
                 <h2 class="d-flex form-title justify-content-center white-text-color">Connexion</h2>
                 <div class="d-flex flex-column form-group ">
                     <div class="white-text-color m-0">Adresse Mail</div>
-                    <input type="email" name="mail"  class="form-control second-main-background " style="outline: 0; border:0;" required>
+                    <input type="email" name="mail"  class="p-2 button-no-outline no-decoration white-text-color second-main-background border-radius-5 " style="outline: 0; border:0;" required>
                 </div>
                 <div class="form-group d-flex flex-column">
                     <div class="white-text-color m-0" >Mot de Passe</div>
-                    <input type="password" name="mdp" class="form-control second-main-background" style="outline: 0; border:0;" required>
+                    <input type="password" name="mdp" class="p-2 button-no-outline no-decoration white-text-color second-main-background border-radius-5" style="outline: 0; border:0;" required>
                 </div>
                 <div class="d-flex form-group justify-content-center">
                     <button type="submit" class="font-size-20 main-color-background dark-text border-radius-5 padding-button font-weight-bold" style="outline: 0; border:0;">Se connecter</button>
