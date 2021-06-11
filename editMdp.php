@@ -36,7 +36,7 @@ $form = <<<HTML
     
     <div class="d-flex flex-column main-background padding-button border-radius-5">
         <div class="login-form">
-            <form action="editMdp_trmt.php" method="post" class="padding-button">
+            <form action="trmt/editMdp_trmt.php" method="post" class="padding-button">
                 <div class="d-flex flex-row justify-content-center">
                     <div class="form-group d-inline-flex">
                         <h2 class="form-title white-text-color">Changement du mot de passe</h2>

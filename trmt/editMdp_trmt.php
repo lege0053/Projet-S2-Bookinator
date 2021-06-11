@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-require "autoload.php";
-require "src/Utils.php";
+require "../autoload.php";
+require "../src/Utils.php";
 init_php_session();
 
 if(isset($_POST['mdp']) && !empty($_POST['mdp']) && isset($_POST['repeat_mdp']) && !empty($_POST['repeat_mdp']) && isset($_POST['oldMdp']) && !empty($_POST['oldMdp'])) {
@@ -23,8 +23,8 @@ if(isset($_POST['mdp']) && !empty($_POST['mdp']) && isset($_POST['repeat_mdp']) 
                     WHERE idUtilisateur = :idUtilisateur
                 SQL);
             $update->execute([':mdp'=>$mdp, ':idUtilisateur'=>$_SESSION['idUtilisateur']]);
-            header('Location: userpage.php');
-        }else header('Location: editMdp.php?reg_err=sameMdp');
-    }else header('Location: editMdp.php?reg_err=oldMdp');
-}else header('Location: editMdp.php');
+            header('Location: ../userpage.php');
+        }else header('Location: ../editMdp.php?reg_err=sameMdp');
+    }else header('Location: ../editMdp.php?reg_err=oldMdp');
+}else header('Location: ../editMdp.php');
 

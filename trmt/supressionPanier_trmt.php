@@ -3,8 +3,8 @@
 
 declare(strict_types=1);
 
-require "autoload.php";
-require "src/Utils.php";
+require "../autoload.php";
+require "../src/Utils.php";
 
 init_php_session();
 
@@ -63,4 +63,4 @@ SQL);
 $req2->execute([$prix, $user]);
 
 
-header('Location: panier.php');
+header('Location: ../panier.php');

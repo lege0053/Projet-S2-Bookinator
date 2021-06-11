@@ -76,7 +76,7 @@ HTML;
 
 
 
-$html=<<<HTML
+$html= <<<HTML
 <div class="d-flex flex-row justify-content-center margin-topbottom-art">
     <!--Bouton retour-->
     <div class="d-flex flex-column align-items-start padding-button">
@@ -105,7 +105,7 @@ $html=<<<HTML
             <div class="d-flex flex-grow-1 main-color-background padding-button border-radius-5 font-weight-bold justify-content-center">
                 <div class="d-flex font-size-36 dark-text ">Panier</div>
                 <form action="" method="post">
-                    <a href="viderPanier_trmt.php" class="btn font-size-15 bg-danger dark-text border-radius-5 padding-button font-weight-bold button">Vider</a>
+                    <a href="trmt/viderPanier_trmt.php" class="btn font-size-15 bg-danger dark-text border-radius-5 padding-button font-weight-bold button">Vider</a>
                 </form>
             </div>
         </div>

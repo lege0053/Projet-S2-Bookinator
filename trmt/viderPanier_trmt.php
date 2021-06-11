@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-require "autoload.php";
-require "src/Utils.php";
+require "../autoload.php";
+require "../src/Utils.php";
 
 init_php_session();
 
@@ -23,5 +23,5 @@ $req2 = MyPDO::getInstance()->prepare(<<<SQL
 SQL);
 $req2->execute([0, $user]);
 
-header('Location: panier.php');
+header('Location: ../panier.php');
 
