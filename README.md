@@ -4,11 +4,11 @@
 [Maquette Figma](https://www.figma.com/file/o3G6N9qFhRvI0yEHWXxuKN/Untitled?node-id=0%3A1)  
 
 # Etudiants sur le projet :
-LEGENDRE Marine
-FOSSIER Lucie
-GAY Nicolas
-CHOULET Maxence
-MAINGOT Thibaut
+* LEGENDRE Marine
+* FOSSIER Lucie
+* GAY Nicolas
+* CHOULET Maxence
+* MAINGOT Thibaut
 
 # Première Semaine : 
 **Lundi 31 Mai :** 
